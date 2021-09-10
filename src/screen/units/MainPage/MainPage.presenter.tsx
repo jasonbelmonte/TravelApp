@@ -33,7 +33,7 @@ export default function MainPageUI(props) {
               showsHorizontalScrollIndicator={false}>
               <Button>
                 <CountryImage
-                  source={require('../../../Assets/Images/ER.png')}
+                  source={require('../../../Assets/Images/MainAfreecaImg.png')}
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>Europe</ClickText>
@@ -41,7 +41,7 @@ export default function MainPageUI(props) {
               </Button>
               <Button>
                 <CountryImage
-                  source={require('../../../Assets/Images/Asia.png')}
+                  source={require('../../../Assets/Images/MainAfreecaImg.png')}
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>Asia</ClickText>
@@ -49,7 +49,7 @@ export default function MainPageUI(props) {
               </Button>
               <Button>
                 <CountryImage
-                  source={require('../../../Assets/Images/USA.png')}
+                  source={require('../../../Assets/Images/MainAfreecaImg.png')}
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>North America</ClickText>
@@ -57,7 +57,7 @@ export default function MainPageUI(props) {
               </Button>
               <Button>
                 <CountryImage
-                  source={require('../../../Assets/Images/AF.png')}
+                  source={require('../../../Assets/Images/MainAfreecaImg.png')}
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>Africa</ClickText>
@@ -109,7 +109,7 @@ export default function MainPageUI(props) {
         </Body>
         <WriteBtn onPress={props.goToWrite}>
           <CountryImage
-            source={require('../../../Assets/Images/GoToWrite.png')}
+            source={require('../../../Assets/Images/MainAfreecaImg.png')}
             resizeMode="cover"
             // imageStyle={{borderRadius: 10}}
           ></CountryImage>
