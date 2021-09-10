@@ -10,6 +10,7 @@ import {
   ScrollView,
   
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function MyPageUI(props) {
   return (
@@ -23,13 +24,18 @@ export default function MyPageUI(props) {
         <Wrapper>
         <Head>
           <HeadLeft>
-          <Icon name={'chevron-back'} size={18} />
+          <Icon name={'chevron-back'} size={18} onPress={props.gotoCommentAlarmPage} />
           </HeadLeft>
           <HeadMiddle>
           <HeadText>마이페이지</HeadText>
           </HeadMiddle>
           <HeadRight>
-          <Icon name={'pencil-sharp'} size={18} />
+            {!props.isEdit && (
+              <Icon name={'pencil-sharp'} size={18} />
+            )}
+            {props.isEdit && (
+                <Icon name={'notifications-outline'} size={18} />
+            )}
         <Icon name={'notifications-outline'} size={18} onPress={props.gotoCommentAlarmPage} />
           </HeadRight>
         
