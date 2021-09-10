@@ -21,10 +21,7 @@ const ScrapStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
 // const HomeStack = creacteStackNavigator();
 
-
 const HomeStackScreen = () => {
-
-  
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -61,47 +58,41 @@ const MapStackScreen = () => {
 const ScrapStackScreen = () => {
   return (
     <ScrapStack.Navigator>
-      <ScrapStack.Screen 
+      <ScrapStack.Screen
         name="Scrap"
         component={ScrapListPage}
         options={{title: 'Scrap', headerShown: false}}
       />
-
-      
     </ScrapStack.Navigator>
-  )
-}
+  );
+};
 
 const MypageStackScreen = () => {
   return (
     <MypageStack.Navigator>
-      <MypageStack.Screen 
-        name = "Mypage"
-        component = {MyPage}
+      <MypageStack.Screen
+        name="Mypage"
+        component={MyPage}
         options={{title: 'Mypage', headerShown: false}}
       />
     </MypageStack.Navigator>
-  )
-}
+  );
+};
 
 const LoginStackScreen = () => {
   return (
     <LoginStack.Navigator>
-    <LoginStack.Screen 
-      name = "Login"
-      component= {LoginPage}
-      options = {{title: 'Login하세용', headerShown: true}}
-    />    
-  </LoginStack.Navigator>
-  )
-  
-}
+      <LoginStack.Screen
+        name="Login"
+        component={LoginPage}
+        options={{title: 'Login하세용', headerShown: true}}
+      />
+    </LoginStack.Navigator>
+  );
+};
 export default function Tabs() {
-  
   return (
-    
-    
-      <Tab.Navigator
+    <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
@@ -139,7 +130,5 @@ export default function Tabs() {
       <Tab.Screen name="ScrapStack" component={ScrapStackScreen} />
       <Tab.Screen name="MypageStack" component={MypageStackScreen} />
     </Tab.Navigator>
-    
-    
   );
 }

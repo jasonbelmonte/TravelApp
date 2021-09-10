@@ -15,9 +15,7 @@ export const Body = styled.View`
 export const Title = styled.TextInput``;
 
 export const Contents = styled.Text`
-  font-size : 25px;
+  font-size: 25px;
 `;
 
-export const Button = styled.TouchableOpacity`
-  
-`;
+export const Button = styled.TouchableOpacity``;

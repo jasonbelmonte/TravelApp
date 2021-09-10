@@ -1,4 +1,13 @@
-import {View, MarkView, Title, TimeAndPlace, Heading, TextRowWrapper, TextWrapper, Recruitment} from './MapPage.styles';
+import {
+  View,
+  MarkView,
+  Title,
+  TimeAndPlace,
+  Heading,
+  TextRowWrapper,
+  TextWrapper,
+  Recruitment,
+} from './MapPage.styles';
 import React from 'react';
 // import {Text, View} from 'react-native';
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';

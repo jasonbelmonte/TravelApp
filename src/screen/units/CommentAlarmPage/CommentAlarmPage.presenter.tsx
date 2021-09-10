@@ -5,9 +5,11 @@ import React from 'react';
 export default function CommentAlarmPageUI() {
   return (
     <>
-      <Head></Head>
+      <Head />
       <Wrapper>
-        <Body><Contents>CommentAlarmpage</Contents></Body>
+        <Body>
+          <Contents>CommentAlarmpage</Contents>
+        </Body>
       </Wrapper>
     </>
   );

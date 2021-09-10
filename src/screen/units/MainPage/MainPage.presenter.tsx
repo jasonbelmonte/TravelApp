@@ -1,19 +1,31 @@
-import {Container, Head, ClickText, CountryImage, Button, Colum, Body, List, ProfileImg, ProfileInit,
-ProfileHead, ProfileBody, Line, ProfileInfo, Name, Country, Title, JobTitle, WriteBtn
+import {
+  Container,
+  Head,
+  ClickText,
+  CountryImage,
+  Button,
+  Colum,
+  Body,
+  List,
+  ProfileImg,
+  ProfileInit,
+  ProfileHead,
+  ProfileBody,
+  Line,
+  ProfileInfo,
+  Name,
+  Country,
+  Title,
+  JobTitle,
+  WriteBtn,
 } from './MainPage.styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {
-  Animated,
-  FlatList,
-  ListViewComponent,
-  ScrollView,
-  
-} from 'react-native';
+import {Animated, ScrollView} from 'react-native';
 import React from 'react';
 
 // import MapView from 'react-native-maps';
 
-export default function MainPageUI(props) {
+export default function MainPageUI(props: any) {
   return (
     <>
       <Container>
@@ -33,7 +45,9 @@ export default function MainPageUI(props) {
               showsHorizontalScrollIndicator={false}>
               <Button>
                 <CountryImage
-                  source={require('../../../Assets/Images/MainAfreecaImg.png')}
+
+
+                  source={require('../../../Assets/Images/MainEuropeImg.png')}
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>Europe</ClickText>
@@ -41,7 +55,9 @@ export default function MainPageUI(props) {
               </Button>
               <Button>
                 <CountryImage
+
                   source={require('../../../Assets/Images/MainAfreecaImg.png')}
+
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>Asia</ClickText>
@@ -49,7 +65,9 @@ export default function MainPageUI(props) {
               </Button>
               <Button>
                 <CountryImage
-                  source={require('../../../Assets/Images/MainAfreecaImg.png')}
+
+                  source={require('../../../Assets/Images/MainNorthAmericaImg.png')}
+
                   resizeMode="cover"
                   imageStyle={{borderRadius: 10}}>
                   <ClickText>North America</ClickText>
@@ -105,14 +123,15 @@ export default function MainPageUI(props) {
                   </ProfileInfo>
                 </List>
               );
-            }}></Animated.FlatList>
+            }}
+          />
         </Body>
         <WriteBtn onPress={props.goToWrite}>
           <CountryImage
             source={require('../../../Assets/Images/MainAfreecaImg.png')}
             resizeMode="cover"
             // imageStyle={{borderRadius: 10}}
-          ></CountryImage>
+          />
         </WriteBtn>
       </Container>
     </>

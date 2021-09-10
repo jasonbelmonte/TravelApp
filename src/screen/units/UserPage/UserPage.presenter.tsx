@@ -1,4 +1,3 @@
-
 import {Wrapper, Head, Body, Contents} from './UserPage.styles';
 import React from 'react';
 // import MapView from 'react-native-maps';
@@ -6,9 +5,11 @@ import React from 'react';
 export default function UserPageUI() {
   return (
     <>
-      <Head></Head>
+      <Head />
       <Wrapper>
-        <Body><Contents>UserPage</Contents></Body>
+        <Body>
+          <Contents>UserPage</Contents>
+        </Body>
       </Wrapper>
     </>
   );

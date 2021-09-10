@@ -1,7 +1,6 @@
 import styled from '@emotion/native';
 
-export const View = styled.View`
-`
+export const View = styled.View``;
 
 export const MarkView = styled.View`
   width: 250px;

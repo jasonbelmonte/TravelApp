@@ -106,7 +106,7 @@ export const Country = styled.Text`
   opacity: 0.7;
   margin-left: 7px;
 `;
-export const Title = styled.Text` 
+export const Title = styled.Text`
   font-size: 12px;
 `;
 export const JobTitle = styled.Text`
