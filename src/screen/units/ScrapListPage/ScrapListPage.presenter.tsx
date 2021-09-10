@@ -1,4 +1,3 @@
-
 import {Wrapper, Head, Body, Contents} from './ScrapListPage.styles';
 import React from 'react';
 // import MapView from 'react-native-maps';
@@ -6,9 +5,11 @@ import React from 'react';
 export default function ScrapListPageUI() {
   return (
     <>
-      <Head></Head>
+      <Head />
       <Wrapper>
-        <Body><Contents>ScrapListPage</Contents></Body>
+        <Body>
+          <Contents>ScrapListPage</Contents>
+        </Body>
       </Wrapper>
     </>
   );

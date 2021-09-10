@@ -116,7 +116,7 @@ const Country = styled.Text`
   opacity: 0.7;
   margin-left: 7px;
 `;
-const Title = styled.Text` 
+const Title = styled.Text`
   font-size: 12px;
 `;
 const JobTitle = styled.Text`
@@ -254,14 +254,15 @@ export default function Screen1({navigation, route}) {
                   </ProfileInfo>
                 </List>
               );
-            }}></Animated.FlatList>
+            }}
+          />
         </Body>
         <WriteBtn onPress={goToWrite}>
           <CountryImage
             source={require('../Assets/Images/GoToWrite.png')}
             resizeMode="cover"
             // imageStyle={{borderRadius: 10}}
-          ></CountryImage>
+          />
         </WriteBtn>
       </Container>
     </>

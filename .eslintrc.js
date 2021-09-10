@@ -1,12 +1,20 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
+  parserOptions: {
+    parser: 'babel-eslint'
   },
-};
+  env: {
+    browser: true
+  },
+  extends: [
+    'plugin:vue/essential',
+    'standard',
+    'prettier'
+  ],
+	plugins: ['vue', 'prettier'],
+  rules: {
+    'generator-star-spacing': 'off',
+    
+    'prettier/prettier': 'error'
+  }
+}

@@ -5,9 +5,11 @@ import React from 'react';
 export default function BoardDetailPageUI() {
   return (
     <>
-      <Head></Head>
+      <Head />
       <Wrapper>
-        <Body><Contents>Detail page</Contents></Body>
+        <Body>
+          <Contents>Detail page</Contents>
+        </Body>
       </Wrapper>
     </>
   );

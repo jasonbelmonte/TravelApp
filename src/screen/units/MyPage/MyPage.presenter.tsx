@@ -1,4 +1,5 @@
 
+
 import {Wrapper, Head,HeadLeft,HeadMiddle,HeadRight,HeadText, Body,UserImg,BodyLocation,  BodyContents,
    BodyUserText, BodyCountryText, BodyCityText, BodyDateText,BodyContentsText, BoardHead,BoardHeadText, BoardBody,  ProfileImg, ProfileInit,
   ProfileHead, ProfileBody, Line, ProfileInfo, Name, Country, Title, JobTitle, WriteBtn,} from './MyPage.styles';
@@ -12,16 +13,13 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
+
 export default function MyPageUI(props) {
   return (
     <>
-      
-       
-        <ScrollView 
-          horizontal={false}
-          showsHorizontalScrollIndicator={false}
-        >
+      <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
         <Wrapper>
+
         <Head>
           <HeadLeft>
           <Icon name={'chevron-back'} size={18} onPress={props.gotoCommentAlarmPage} />
@@ -89,9 +87,9 @@ export default function MyPageUI(props) {
 
                 
       
+
         </Wrapper>
-        </ScrollView>
-            
+      </ScrollView>
     </>
   );
 }

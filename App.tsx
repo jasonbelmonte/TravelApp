@@ -33,19 +33,13 @@ import Tabs from './src/navigations/tabs';
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
-
-  
   return (
     <>
-         <NavigationContainer>
-         <Tabs />
-       </NavigationContainer>
+      <NavigationContainer>
+        <Tabs />
+      </NavigationContainer>
     </>
-    
-    
   );
 };
-
-
 
 export default App;

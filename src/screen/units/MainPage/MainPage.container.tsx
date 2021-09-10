@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import MainPageUI from './MainPage.presenter';
 
-
 export default function MainPage({navigation, route}) {
   const goToWrite = e => {
     navigation.navigate('Write');
@@ -40,6 +39,11 @@ export default function MainPage({navigation, route}) {
   // const ITEM_SIZE = 70 + 20 * 3;
 
   return (
-    <MainPageUI translateY = {translateY} scrollY={scrollY} DATA={DATA} goToWrite={goToWrite}/>
-  )
+    <MainPageUI
+      translateY={translateY}
+      scrollY={scrollY}
+      DATA={DATA}
+      goToWrite={goToWrite}
+    />
+  );
 }
