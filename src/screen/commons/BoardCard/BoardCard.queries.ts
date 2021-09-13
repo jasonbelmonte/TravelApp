@@ -1,0 +1,1 @@
+// BoardCard Queries.ts
