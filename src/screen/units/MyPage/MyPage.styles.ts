@@ -3,7 +3,7 @@ import styled from '@emotion/native';
 export const Wrapper = styled.View`
   width: 100%;
   /* height: 2000px; */
-  background-color: red;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@ export const Wrapper = styled.View`
 export const Head = styled.View`
   width: 321px;
   height: 18px;
-  background-color: blue;
+  /* background-color: blue; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,7 +20,7 @@ export const Head = styled.View`
 `;
 
 export const HeadLeft = styled.View`
-  width: 45px;
+  width: 60px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -32,7 +32,7 @@ export const HeadMiddle = styled.View`
   justify-content: center;
 `;
 export const HeadRight = styled.View`
-  width: 45px;
+  width: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -48,7 +48,7 @@ export const HeadText = styled.Text`
 export const Body = styled.View`
   width: 281px;
 
-  background-color: yellow;
+  /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,11 +98,19 @@ export const BoardHead = styled.View`
   width: 330px;
   /* height : 31px; */
   margin-top: 78px;
-  background-color: green;
+  /* background-color: green; */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin-bottom : 10px;
 `;
+
+export const BoardHeadLine = styled.View`
+  width : 330px;
+  height : 0px;
+  margin-bottom : 9.5px;
+  border : 0.5px solid black;
+`
 
 
 export const BoardHeadText= styled.Text`
@@ -126,10 +134,11 @@ export const BoardBody = styled.View`
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 9.5px;
+  margin-bottom: 9.5px;
   border-radius: 10px;
   elevation: 2;
+  
 `;
 export const ProfileImg = styled.Image`
   width: 16px;

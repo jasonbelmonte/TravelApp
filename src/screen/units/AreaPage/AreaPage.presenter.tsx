@@ -1,44 +1,68 @@
 import {
+  Button,
+  Wrapper,
   AreaListHeader,
   AreaListTop,
-  AreaTitle,
+  AreaTitleBox,
+  AreaBoxLeft,
+  AreaBoxRight,
   GoToBack,
   AreaTextBox,
+  SearchIcon,
+  CommentAlarm,
   IconImg,
-  IconLine,
-  Wrapper,
-  AreaListBody,
-  Contents,
+  SubTitleBox,
+  AreaListWrap,
+  AreaList,
 } from './AreaPage.styles';
 import React from 'react';
+import BoardCard from '../../commons/BoardCard/BoardCard.contatiner';
 
 export default function AreaPageUI() {
   return (
-    <>
-      <AreaListHeader>
-        <AreaListTop
-          source={require('../../../Assets/Images/MainAfreecaImg.png')}
-          resizeMode="cover">
-          <AreaTitle>
+    <Wrapper>
+      {/* //! ===== TopHeader Start ===== */}
+      <AreaListHeader
+        source={require('../../../Assets/Images/AreaListEuropeImg.png')}
+        resizeMode="cover">
+        <AreaListTop>
+          <AreaTitleBox>
+            <AreaBoxLeft>
+              <Button>
+                <GoToBack
+                  source={require('../../../Assets/Images/GoToBack_W.png')}
+                />
+              </Button>
+              <AreaTextBox>Europe</AreaTextBox>
+            </AreaBoxLeft>
+            <AreaBoxRight>
+              <Button>
+                <SearchIcon
+                  source={require('../../../Assets/Images/IconSearch.png')}
+                />
+              </Button>
+              <Button>
+                <CommentAlarm
+                  source={require('../../../Assets/Images/IconAlarm_W.png')}
+                />
+              </Button>
+            </AreaBoxRight>
+          </AreaTitleBox>
 
-            <GoToBack
-              source={require('../../../Assets/Images/GoToBack_W.png')}
-            />
-
-            <AreaTextBox> Europe</AreaTextBox>
-          </AreaTitle>
-          <IconLine>
+          <SubTitleBox>
             <IconImg
               source={require('../../../Assets/Images/MainAfreecaImg.png')}
             />
-          </IconLine>
+          </SubTitleBox>
         </AreaListTop>
       </AreaListHeader>
-      <Wrapper>
-        <AreaListBody>
-          <Contents>AreaPage</Contents>
-        </AreaListBody>
-      </Wrapper>
-    </>
+
+      {/* //! ===== Contents Start ===== */}
+      <AreaListWrap>
+        <AreaList>
+          <BoardCard />
+        </AreaList>
+      </AreaListWrap>
+    </Wrapper>
   );
 }

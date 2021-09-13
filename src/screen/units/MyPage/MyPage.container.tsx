@@ -9,7 +9,12 @@ export default function MyPage({navigation}) {
   const gotoCommentAlarmPage = () => {
     navigation.navigate('CommentAlarmpage');
   }
-  
-  return <MyPageUI gotoCommentAlarmPage={gotoCommentAlarmPage} isEdit = {isEdit} setIsEdit={setIsEdit}/>;
+  const editOn = () => {
+    setIsEdit(true)
+  }
+  const editOff = () => {
+    setIsEdit(false)
+  }
+  return <MyPageUI gotoCommentAlarmPage={gotoCommentAlarmPage} isEdit = {isEdit} editOn={editOn} editOff={editOff}/>;
 }
 
