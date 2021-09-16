@@ -21,7 +21,6 @@ export const AreaListHeader = styled.ImageBackground`
 export const AreaListTop = styled.View`
   width: 100%;
   padding: 30px 20px;
-  /* border: 1px solid red; */
 `;
 export const AreaTitleBox = styled.View`
   width: 100%;
@@ -77,11 +76,11 @@ export const IconImg = styled.Image`
 //! ===== Contents Start ======================
 export const AreaListWrap = styled.View`
   width: 100%;
-  height: 640px;
+  /* height: 640px; */
   margin-top: 120px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: #fff;
+  background-color: blue;
   padding-top: 19px;
   padding-bottom: 30px; // 스크롤 최하단 여백
 `;

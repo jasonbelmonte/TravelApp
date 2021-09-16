@@ -9,8 +9,11 @@ import {
 import MainPageUI from './MainPage.presenter';
 
 export default function MainPage({navigation, route}) {
-  const goToWrite = e => {
+  const goToWrite = () => {
     navigation.navigate('Write');
+  };
+  const goToAreaPage = () => {
+    navigation.push('AreaPage');
   };
 
   var faker = require('faker');
@@ -44,6 +47,7 @@ export default function MainPage({navigation, route}) {
       scrollY={scrollY}
       DATA={DATA}
       goToWrite={goToWrite}
+      goToAreaPage={goToAreaPage}
     />
   );
 }

@@ -16,8 +16,7 @@ import {
 } from './AreaPage.styles';
 import React from 'react';
 import BoardCard from '../../commons/BoardCard/BoardCard.contatiner';
-
-export default function AreaPageUI() {
+export default function AreaPageUI(props: any) {
   return (
     <Wrapper>
       {/* //! ===== TopHeader Start ===== */}
@@ -35,12 +34,12 @@ export default function AreaPageUI() {
               <AreaTextBox>Europe</AreaTextBox>
             </AreaBoxLeft>
             <AreaBoxRight>
-              <Button>
+              <Button onPress={props.goToSearch}>
                 <SearchIcon
                   source={require('../../../Assets/Images/IconSearch.png')}
                 />
               </Button>
-              <Button>
+              <Button onPress={props.goToCommetAlarm}>
                 <CommentAlarm
                   source={require('../../../Assets/Images/IconAlarm_W.png')}
                 />
@@ -58,7 +57,7 @@ export default function AreaPageUI() {
 
       {/* //! ===== Contents Start ===== */}
       <AreaListWrap>
-        <BoardCard />
+        <BoardCard navigation={props.navigation} />
       </AreaListWrap>
     </Wrapper>
   );

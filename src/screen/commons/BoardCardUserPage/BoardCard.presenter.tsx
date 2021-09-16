@@ -21,42 +21,23 @@ import {
 
 export default function BoardCardUI(props: any) {
   // const [myMenu, setMyMenu] = useState('') // myMenu = "유럽"
+  console.log(props.data);
+  // const [aaa, setAaa] = useState();
 
-  const [hasMore, setHasMore] = useState(true);
-
-  const onLoadMore = () => {
-    console.log('12312312312312312');
-    if (!props.data) return;
-    console.log(props.data?.fetchBoards.length);
-    console.log(Math.ceil(props.data?.fetchBoards.length / 10) + 1);
-    props.fetchMore({
-      variables: {
-        page: Math.ceil(props.data?.fetchBoards.length / 10) + 1,
-      },
-      updateQuery: (prev, {fetchMoreResult}) => {
-        if (!fetchMoreResult.fetchBoards.length) setHasMore(false);
-        return {
-          fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards],
-        };
-      },
-    });
-  };
+  // const handleLoadMore = () => {};
 
   return (
     //       {/* {props.data?.fetchBoards.filter((data) => data.location.area === myMenu) && (
     //         <FlatList
     //           data={props.data.fetchBoards.filter((data) => data.location.area === myMenu)}
-    <CardWrapper>
-      <FlatList
-        data={props.data?.fetchBoards}
-        keyExtractor={item => item._id}
-        onEndReached={(hasMore && onLoadMore) || null}
-        onEndReachedThreshold={1}
-        renderItem={({item}) => {
-          return (
-            <CardWrap key={item._id}>
-              <Card id={item._id}>
-                <CardLeft onPress={props.goToBoardDetail}>
+    
+    <CardWrapper> 
+      {props.data?.fetchBoardsUserWrote.map((item, index) =>{
+        return (
+          
+          <CardWrap key={index} >
+              <Card >
+                <CardLeft>
                   <CardTitle>{item?.title.substr(0, 27) + '...'}</CardTitle>
                   <CardMiddle>
                     <LocationImg
@@ -87,18 +68,19 @@ export default function BoardCardUI(props: any) {
                   </CardWriter>
                 </CardLeft>
                 <CardRight>
-                  <Button onPress={props.scrapBtn}>
+                <Button onPress={props.Scrapping(item._id)}>
                     <ScrapButton
                       source={require('../../../Assets/Images/IconScrap_G.png')}
                       resizeMode="cover"
+                      
                     />
                   </Button>
                 </CardRight>
               </Card>
             </CardWrap>
-          );
-        }}
-      />
+         
+        )
+      })}
     </CardWrapper>
   );
 }

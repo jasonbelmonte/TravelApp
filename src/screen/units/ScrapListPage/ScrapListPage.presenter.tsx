@@ -12,13 +12,14 @@ import {
   LocationIcon,
   CityName,
   Content,
+  Button,
   ScrapIcon,
   Bar2
 } from './ScrapListPage.styles';
 import React from 'react';
 // import MapView from 'react-native-maps';
 
-export default function ScrapListPageUI() {
+export default function ScrapListPageUI(props) {
   return (
     <>
       <Wrapper>
@@ -29,22 +30,31 @@ export default function ScrapListPageUI() {
 
         <Bar></Bar>
 
-        <Scrap>
-          <ScrapImage source={require('../../../Assets/Images/DetailPhoto.png')}></ScrapImage>
+        
 
-            <Contents>
-              <Title>여행 동행 구합니다.</Title>
-                <Location>
-                  <LocationIcon source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
-                  <CityName>Spain, Barcelona</CityName>
-                </Location>
-              <Content>내일이나 모레 오후에 바르셀로나 근교 몬세라트에 가려고 해요. 몬세라트까지 1시 ...</Content>
-          </Contents>
+        {props.data?.fetchBoardsIScrapped.map((data) => (
+          <>
+            <Scrap>
+              <ScrapImage source={require('../../../Assets/Images/DetailPhoto.png')}></ScrapImage>
+                <Contents>
+                  <Title>{data.title}</Title>
+                    <Location>
+                      <LocationIcon source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
+                      <CityName>{data?.location?.country}, {data?.location?.city}</CityName>
+                    </Location>
+                <Content>{data?.contents}</Content>
+                                                                  {/* substr(0, 10) */}
+                </Contents>
 
-          <ScrapIcon source={require('../../../Assets/Images/IconScrap_Y.png')}></ScrapIcon>
-
+          <Button>
+            <ScrapIcon source={require('../../../Assets/Images/IconScrap_Y.png')}></ScrapIcon>
+          </Button>
+          </Scrap>
+          </>
+        ))}
+            
           
-        </Scrap>
+        
 
         <Bar2></Bar2>
 

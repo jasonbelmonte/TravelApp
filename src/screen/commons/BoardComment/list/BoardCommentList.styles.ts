@@ -8,32 +8,13 @@ export const BoardCommentWrapper = styled.View`
   width: 100%;
   padding: 20px;
 `;
-export const CommentTitleBox = styled.View`
-  width: 100%;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-export const CommentIcon = styled.Image`
-  width: 21px;
-  height: 19px;
-`;
-export const CommentTitle = styled.Text`
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 18px;
-  padding-left: 12px;
-`;
-export const CommentList = styled.View`
-  width: 100%;
-  padding-top: 4px;
-`;
 
 // !------------ BoardCommentList.presenterItem --------------
 export const CommentBox = styled.View`
   width: 100%;
-  border-top-width: 0.7px;
-  border-top-color: #d8d8d8;
-  padding-top: 15px;
+  border-bottom-width: 0.7px;
+  border-bottom-color: #d8d8d8;
+  padding-bottom: 15px;
   margin-top: 20px;
 `;
 export const TopInfoBox = styled.View`

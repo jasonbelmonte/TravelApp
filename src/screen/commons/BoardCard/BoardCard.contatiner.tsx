@@ -1,13 +1,13 @@
 import {useQuery} from '@apollo/client';
-import React from 'react';
+import React, {useState} from 'react';
 import BoardCardUI from './BoardCard.presenter';
 import {FETCH_BOARDS} from './BoardCard.queries';
 
-export default function BoardCard() {
-  const {data} = useQuery(FETCH_BOARDS, {
+export default function BoardCard({navigation}) {
+  const [page, setPage] = useState(1);
+  const {data, fetchMore} = useQuery(FETCH_BOARDS, {
     variables: {
-      startDate: '2000-01-01',
-      endDate: '2100-01-01',
+      page: page,
     },
   });
   console.log('data : ', data);
@@ -15,6 +15,16 @@ export default function BoardCard() {
   const scrapBtn = () => {
     console.log('sss');
   };
+  const goToBoardDetail = () => {
+    navigation.navigate('BoardDetailPage');
+  };
 
-  return <BoardCardUI data={data} scrapBtn={scrapBtn} />;
+  return (
+    <BoardCardUI
+      data={data}
+      goToBoardDetail={goToBoardDetail}
+      scrapBtn={scrapBtn}
+      fetchMore={fetchMore}
+    />
+  );
 }

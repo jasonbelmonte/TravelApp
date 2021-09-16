@@ -11,36 +11,40 @@ export const Wrapper = styled.View`
 `;
 export const Head = styled.View`
   width: 321px;
-  height: 18px;
-  /* background-color: blue; */
+  height: 20px;
+ 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 43px;
 `;
 
 export const HeadLeft = styled.View`
-  width: 60px;
+  width: 119px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 `;
 export const HeadMiddle = styled.View`
-  width: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-export const HeadRight = styled.View`
-  width: 60px;
+  width: 162px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+export const HeadRight = styled.View`
+  width: 40px;
+  display: flex;
+  
+  flex-direction: row;
+  justify-content: flex-end;
 
 `
-
+export const EditIcon = styled.Image`
+  width: 20px;
+  height: 20px;
+`;
 export const HeadText = styled.Text`
-  font-size : 13px;
+  font-size : 16px;
   font-weight : 700;
 `;
 
@@ -64,16 +68,26 @@ export const BodyLocation = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom : 26px;
 `;
 
 export const BodyContents = styled.View`
   width: 281px;
-  margin-top: 20px;
+ 
+`
+export const BodyCountry = styled.View`
+ background-color: blue;
+ 
+`
+export const BodyCity = styled.View`
+  background-color: green;
 `
 
 export const BodyUserText = styled.Text`
   font-size : 15px;
   font-weight : 700;
+  margin-bottom : 24px;
+  
 `
 export const BodyCountryText = styled.Text`
   font-size : 14px;
@@ -91,9 +105,22 @@ export const BodyDateText = styled.Text`
 export const BodyContentsText = styled.Text`
   font-size : 14px;
   font-weight : 400;
+  
 `
-
-
+export const BodyCountryTextInput = styled.TextInput`
+  font-size : 14px;
+  font-weight : 400;
+  
+`
+export const BodyCityTextInput = styled.TextInput`
+  font-size : 14px;
+  font-weight : 400;
+  
+`
+export const BodyContentsTextInput = styled.TextInput`
+  font-size : 14px;
+  font-weight : 400;
+`
 export const BoardHead = styled.View`
   width: 330px;
   /* height : 31px; */
@@ -108,7 +135,7 @@ export const BoardHead = styled.View`
 export const BoardHeadLine = styled.View`
   width : 330px;
   height : 0px;
-  margin-bottom : 9.5px;
+  margin-bottom : 19px;
   border : 0.5px solid black;
 `
 
@@ -140,55 +167,7 @@ export const BoardBody = styled.View`
   elevation: 2;
   
 `;
-export const ProfileImg = styled.Image`
-  width: 16px;
-  height: 16px;
-  border-radius: 70px;
-  margin-right: 10px;
-`;
-export const ProfileInit = styled.View``;
-export const ProfileHead = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-`;
-export const ProfileBody = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
 
-export const Line = styled.View`
-  border: 0.5px solid #cdcdcd;
-  color: #cdcdcd;
-`;
-export const ProfileInfo = styled.View`
-  flex-direction: row;
-`;
-export const Name = styled.Text`
-  font-size: 9px;
-  font-weight: 700;
-`;
-export const Country = styled.Text`
-  font-size: 10px;
-  opacity: 0.7;
-  margin-left: 7px;
-`;
-export const Title = styled.Text`
-  font-size: 12px;
-`;
-export const JobTitle = styled.Text`
-  font-size: 18px;
-  font-weight: 700;
-`;
-export const WriteBtn = styled.TouchableOpacity`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  align-items: center;
-  justify-content: center;
-  right: 28px;
-  bottom: 20px;
-  border-radius: 30px;
-`;
 
 export const LogOutBtn = styled.TouchableOpacity`
   width : 300px;

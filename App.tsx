@@ -37,6 +37,7 @@ import {
   useMutation,
   gql,
 } from '@apollo/client';
+import {red100} from 'react-native-paper/lib/typescript/styles/colors';
 declare const global: {HermesInternal: null | {}};
 
 export const GlobalContext = createContext({});

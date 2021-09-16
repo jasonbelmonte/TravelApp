@@ -1,8 +1,8 @@
 import {gql} from '@apollo/client';
 
 export const FETCH_BOARDS = gql`
-  query fetchBoards($endDate: DateTime!, $startDate: DateTime!) {
-    fetchBoards(endDate: $endDate, startDate: $startDate) {
+  query fetchBoards($page: Int) {
+    fetchBoards(page: $page) {
       _id
       title
       contents

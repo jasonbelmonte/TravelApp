@@ -82,6 +82,8 @@ export const Content = styled.Text`
   /* letter-spacing: -0.02; */
 `
 
+export const Button = styled.TouchableOpacity``;
+
 export const ScrapIcon = styled.Image`
   width: 17px;
   height: 26px;

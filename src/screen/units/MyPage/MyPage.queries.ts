@@ -8,6 +8,12 @@ query fetchUserLoggedIn{
        email
        name
        picture
+       contents
+       location{
+         area
+         country
+         city
+       }
        createdAt
        updatedAt
        deletedAt
@@ -36,8 +42,19 @@ query fetchboardsIwrote{
 }
 `
 
-export const SCRAP_BOARD = gql`
-    mutation scrapBoard($boardId : ID!){
-        scrapBoard(boardId : $boardId)
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($bbb: Upload!) {
+    uploadFile(file: $bbb) {
+      url
     }
+  }
+`;
+
+
+export const UPDATE_USER = gql`
+  mutation updateUser($updateUserInput : UpdateUserInput!){
+    updateUser(updateUserInput : $updateUserInput){
+      contents
+    }
+  }
 `
