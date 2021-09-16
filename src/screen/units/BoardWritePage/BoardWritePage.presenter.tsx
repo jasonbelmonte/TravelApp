@@ -6,6 +6,7 @@ import {
   Colum,
   Colum2,
   Colum3,
+  Colum3_2,
   Colum4,
   Body,
   Contents,
@@ -25,7 +26,7 @@ import {
 } from './BoardWritePage.styles';
 import React, { useRef, useState } from 'react';
 import { Alert, Modal, StyleSheet } from 'react-native';
-import Claender from '../../commons/Claender/Claender.container';
+import Claender from '../../commons/Calender/Calender.container';
 import { Picker } from "@react-native-picker/picker";
 import Map01 from '../../commons/Map/Map01.container';
 
@@ -104,11 +105,11 @@ export default function BoardWritePageUI(props:any) {
           props.setShow(!props.map);
         }}
       >  
-      <Map01 setMap={props.setMap}/>
+      <Map01 setMap={props.setMap} setOnLocationSelect={props.setOnLocationSelect}/>
       </Modal>
             <LocPick onPress={()=>props.setMap(true)}>
             <IconImg source={require("../../../Assets/Images/IconLocationInBoard.png")}/>
-              <Colum3>위치 추가</Colum3></LocPick>
+              < Colum3_2 onLocationSelect={props.onLocationSelect}>{props.onLocationSelect }</ Colum3_2></LocPick>
             </BodyBox> 
               </Body>
               <Body>

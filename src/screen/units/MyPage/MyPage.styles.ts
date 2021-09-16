@@ -189,3 +189,14 @@ export const WriteBtn = styled.TouchableOpacity`
   bottom: 20px;
   border-radius: 30px;
 `;
+
+export const LogOutBtn = styled.TouchableOpacity`
+  width : 300px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`
+export const LogOutText = styled.Text`
+  font-size : 20px;
+`

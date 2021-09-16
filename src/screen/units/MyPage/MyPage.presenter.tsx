@@ -1,8 +1,8 @@
 
 
 import {Wrapper, Head,HeadLeft,HeadMiddle,HeadRight,HeadText, Body,UserImg,BodyLocation,  BodyContents,
-   BodyUserText, BodyCountryText, BodyCityText, BodyDateText,BodyContentsText, BoardHead,BoardHeadText, BoardBody,  ProfileImg, ProfileInit,
-  ProfileHead, ProfileBody, Line, ProfileInfo, Name, Country, Title, JobTitle, WriteBtn, BoardHeadLine,} from './MyPage.styles';
+   BodyUserText,BodyUserTextInput, BodyCountryText, BodyCityText, BodyDateText,BodyContentsText, BoardHead,BoardHeadText, BoardBody,  ProfileImg, ProfileInit,
+  ProfileHead, ProfileBody, Line, ProfileInfo, Name, Country, Title, JobTitle, WriteBtn, BoardHeadLine,LogOutBtn, LogOutText} from './MyPage.styles';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 // import MapView from 'react-native-maps';
@@ -17,6 +17,7 @@ import { NavigationContainer } from '@react-navigation/native';
 export default function MyPageUI(props) {
   return (
     <>
+    
       <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
         <Wrapper>
 
@@ -25,7 +26,8 @@ export default function MyPageUI(props) {
           <Icon name={'chevron-back'} size={18} onPress={props.gotoCommentAlarmPage} />
           </HeadLeft>
           <HeadMiddle>
-          <HeadText>마이페이지</HeadText>
+          <HeadText>마이페이지좀</HeadText>
+          
           </HeadMiddle>
           <HeadRight>
             {!props.isEdit && (
@@ -48,7 +50,8 @@ export default function MyPageUI(props) {
           {!props.isEdit && (
             <Body>
             <UserImg source={require('../../../Assets/Images/MainAfreecaImg.png')} />
-              <BodyUserText>제이미바디</BodyUserText>
+              <BodyUserText>{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
+              
               <BodyLocation>
               <Icon name={'location'} size={15} />
               <BodyCountryText>England,</BodyCountryText>
@@ -56,10 +59,13 @@ export default function MyPageUI(props) {
               </BodyLocation>
               <BodyDateText>2021.09.30~2036.09.30</BodyDateText>
               <BodyContents>
-                <BodyContentsText>15년동안 축구하실분 구합니다. 영원히 뛰게 해드릴게요 무릎이 작살이 나도 뛰게 해드립니다. ㅎㅎㅎㅎㅎㅎㅎㅎㅎ</BodyContentsText>
+                <BodyContentsText>{props.user?.fetchUserLoggedIn?.email}</BodyContentsText>
               </BodyContents>
             </Body>
           )}
+          
+
+
           {props.isEdit && (
               <Body>
               <UserImg source={require('../../../Assets/Images/MainEuropeImg.png')} />
@@ -83,29 +89,29 @@ export default function MyPageUI(props) {
         </BoardHead>
         <BoardHeadLine></BoardHeadLine>
         
-          {new Array(10).fill(1).map((_, index) => {
+          {props.data?.fetchBoardsIWrote.map((data, index) => {
             return (
               <BoardBody key={index}>
               <ProfileInit>
                 <ProfileHead>
-                  <JobTitle>asd</JobTitle>
-                  <Icon name={'bookmark'} color={'#d8d8d8'} size={20} />
+                  <JobTitle>{data.title}</JobTitle>
+                  <Icon name={'bookmark'} color={'#d8d8d8'} size={20} onPress={props.Scrapping(data._id)}/>
                 </ProfileHead>
                 <ProfileBody>
                   <Icon name={'location'} size={9} />
-                  <Country>tt</Country>
+                  <Country>{data.location.country},{data.location.city}</Country>
                 </ProfileBody>
               </ProfileInit>
               <Line />
-              <Title>dsfsf</Title>
+              <Title>{data.contents}</Title>
               <ProfileInfo>
                 <ProfileImg source={require('../../../Assets/Images/MainAfreecaImg.png')} />
-                <Name>sdfsdfssdf</Name>
+                <Name>{data.writer.name}</Name>
               </ProfileInfo>
             </BoardBody>
             )
           })}
-
+            <LogOutBtn onPress={props.logOut}><LogOutText>로그아웃</LogOutText></LogOutBtn>
                 
       
 

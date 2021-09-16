@@ -10,7 +10,7 @@
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 
 // import {
 //   SafeAreaView,
@@ -29,17 +29,45 @@ import React, {useState} from 'react';
 //   ReloadInstructions,
 // } from 'react-native/Libraries/NewAppScreen';
 import Tabs from './src/navigations/tabs';
-
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  useMutation,
+  gql,
+} from '@apollo/client';
 declare const global: {HermesInternal: null | {}};
 
+export const GlobalContext = createContext({});
+
 const App = () => {
+  const [accessToken, setAccessToken] = useState('');
+
+  // const clientnoheaders = new ApolloClient({
+  //   uri: 'http://35.222.217.201:4000/graphql',
+  //   cache: new InMemoryCache()
+  // });
+
+  const client = new ApolloClient({
+    uri: 'http://35.222.217.201:4000/graphql',
+    headers: {authorization: `Bearer ${accessToken}`},
+    cache: new InMemoryCache(),
+  });
+
+  // const client = accessToken === "" ? clientheaders : clientheaders
   return (
     <>
-      <NavigationContainer>
-        <Tabs />
-      </NavigationContainer>
+      <GlobalContext.Provider value={{accessToken, setAccessToken}}>
+        <ApolloProvider client={client}>
+          <NavigationContainer>
+            <Tabs />
+          </NavigationContainer>
+        </ApolloProvider>
+      </GlobalContext.Provider>
     </>
   );
 };
 
 export default App;
+// dddd

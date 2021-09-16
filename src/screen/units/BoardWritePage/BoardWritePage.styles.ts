@@ -43,7 +43,13 @@ export const Colum2 = styled.Text`
   `;
 export const Colum3 = styled.Text` 
 font-size: 12px;
-color:${(props:any)=>(props.startDate ?"black":"#A5A5A5")};
+color:${(props:any)=>(props.startDate ?"black":"#A5A5A5")} ;
+margin-left: 4px;
+
+`;
+export const Colum3_2 = styled.Text` 
+font-size: 12px;
+color:${(props:any)=>(props.onLocationSelect ?"black":"#A5A5A5")} ;
 margin-left: 4px;
 
 `;

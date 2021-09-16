@@ -7,6 +7,9 @@ export default function BoardWritePage() {
   const [show, setShow] = useState(false);
   const [map ,setMap]=useState(false)
   const [country, setCountry] = useState('Unknown');
+  const [onLocationSelect,setOnLocationSelect] =useState("")
+
+  console.log("주소",onLocationSelect)
   
   return <BoardWritePageUI 
   show={show}
@@ -17,6 +20,8 @@ export default function BoardWritePage() {
   setClaenderDate={setClaenderDate}
   country={country}
   setCountry={setCountry}
+  setOnLocationSelect={setOnLocationSelect}
+  onLocationSelect={onLocationSelect}
 
   />;
 }

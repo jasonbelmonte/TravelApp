@@ -1,5 +1,5 @@
 package com.travel20210930;
-
+import com.devfd.RNGeocoder.RNGeocoderPackage; 
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;

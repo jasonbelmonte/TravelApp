@@ -1,4 +1,5 @@
 import React from 'react';
+import BoardReCommentListUI from '../../BoardReComment/Relist/BoardReCommentList.presenter';
 import CommentListItemUI from './BoardCommentList.presenterItem';
 import {
   BoardCommentWrapper,
@@ -21,6 +22,7 @@ export default function BoardCommentListUI() {
       <CommentList>
         <CommentListItemUI />
       </CommentList>
+      <BoardReCommentListUI />
     </BoardCommentWrapper>
   );
 }

@@ -13,7 +13,6 @@ import {
   IconImg,
   SubTitleBox,
   AreaListWrap,
-  AreaList,
 } from './AreaPage.styles';
 import React from 'react';
 import BoardCard from '../../commons/BoardCard/BoardCard.contatiner';
@@ -51,7 +50,7 @@ export default function AreaPageUI() {
 
           <SubTitleBox>
             <IconImg
-              source={require('../../../Assets/Images/MainAfreecaImg.png')}
+              source={require('../../../Assets/Images/IconAirplane.png')}
             />
           </SubTitleBox>
         </AreaListTop>
@@ -59,9 +58,7 @@ export default function AreaPageUI() {
 
       {/* //! ===== Contents Start ===== */}
       <AreaListWrap>
-        <AreaList>
-          <BoardCard />
-        </AreaList>
+        <BoardCard />
       </AreaListWrap>
     </Wrapper>
   );

@@ -2,9 +2,8 @@ import styled from '@emotion/native';
 
 export const Wrapper = styled.View``;
 
-export const BackImage = styled.View`
+export const BackImage = styled.ImageBackground`
   width: 100%;
-
   background-color: #FFBE2B;
 `;
 
@@ -44,22 +43,22 @@ export const TopRight = styled.View`
   flex-direction: row;
 `
 
-// export const Edit = styled.Image`
-//   width: 14px;
-//   height: 14px;
-//   margin-right: 10px;
-// `
-
-
-// export const Delete = styled.Image`
-//   width: 13px;
-//   height: 15px;
-// `
-
-export const Scrap = styled.Image`
-  width: 12px;
-  height: 18px;
+export const Edit = styled.Image`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 `
+
+
+export const Delete = styled.Image`
+  width: 17px;
+  height: 20px;
+`
+
+// export const Scrap = styled.Image`
+//   width: 12px;
+//   height: 18px;
+// `
 
 export const UserInfo = styled.View`
   display: flex;
@@ -95,7 +94,7 @@ export const City = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 `
 
 export const CityLeft = styled.View`
@@ -104,24 +103,25 @@ export const CityLeft = styled.View`
 `
 
 export const LocationIcon = styled.Image`
-  width: 11.67px;
-  height: 11.33px;
+  width: 15.67px;
+  height: 15.33px;
   margin-right: 6px;
 `
 
 export const CityName = styled.Text`
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 12px;
+  line-height: 13px;
   color: #777;
+  margin-top: 3px;
 `
 
 export const CityRight = styled.View`
-  margin-top: 0.7px;
+  margin-top: 4.7px;
 `
 
 export const TravelDate = styled.Text`
-  font-size: 9px;
-  line-height: 11px;
+  font-size: 12px;
+  line-height: 12px;
   /* letter-spacing: -0.02; */
   color: #777;
 `
@@ -149,7 +149,7 @@ export const TravelContents = styled.Text`
 export const TravelMap = styled.View`
   width: 100%;
   height: 230px;
-  background-color: #FFBE2B;
+  background-color: #F98765;
   margin-bottom: 60px;
 `
 

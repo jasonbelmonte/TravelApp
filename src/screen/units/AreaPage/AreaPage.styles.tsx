@@ -62,36 +62,26 @@ export const CommentAlarm = styled.Image`
   margin-left: 20px;
 `;
 export const SubTitleBox = styled.View`
-  width: 21px;
-  border-bottom-width: 0.5px;
+  width: 25px;
+  border-bottom-width: 0.7px;
   border-bottom-color: #fff;
-  padding: 36px 0px 5px 0px;
-  margin-left: 28px;
+  padding: 34px 0px 6px 0px;
+  margin-left: 23px;
   align-items: center;
 `;
 export const IconImg = styled.Image`
-  width: 17px;
-  height: 11px;
+  width: 23px;
+  height: 15px;
 `;
 
 //! ===== Contents Start ======================
 export const AreaListWrap = styled.View`
   width: 100%;
+  height: 640px;
+  margin-top: 120px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
-  position: absolute;
-  left: 0px;
-  top: 120px;
   background-color: #fff;
-  padding-top: 20px;
-`;
-export const AreaList = styled.View`
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px 20px 20px;
-  background-color: #fff;
+  padding-top: 19px;
+  padding-bottom: 30px; // 스크롤 최하단 여백
 `;
