@@ -25,10 +25,10 @@ export default function BoardCardUI(props: any) {
   const [hasMore, setHasMore] = useState(true);
 
   const onLoadMore = () => {
-    console.log('12312312312312312');
+
     if (!props.data) return;
-    console.log(props.data?.fetchBoards.length);
-    console.log(Math.ceil(props.data?.fetchBoards.length / 10) + 1);
+    // console.log(props.data?.fetchBoards.length);
+    // console.log(Math.ceil(props.data?.fetchBoards.length / 10) + 1);
     props.fetchMore({
       variables: {
         page: Math.ceil(props.data?.fetchBoards.length / 10) + 1,
@@ -65,7 +65,7 @@ export default function BoardCardUI(props: any) {
                     <CardMiddleContents>
                       <CardMiddleText>
                         {item?.location?.area}
-                        {', '}
+                      
                         {item?.location?.country}
                         {', '}
                         {item?.location?.city}

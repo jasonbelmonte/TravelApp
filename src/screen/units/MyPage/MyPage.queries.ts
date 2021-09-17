@@ -45,7 +45,7 @@ query fetchboardsIwrote{
 export const UPLOAD_FILE = gql`
   mutation uploadFile($bbb: Upload!) {
     uploadFile(file: $bbb) {
-      url
+      _id
     }
   }
 `;

@@ -4,18 +4,21 @@ import MyPageUI from './MyPage.presenter';
 import { useMutation, useQuery } from '@apollo/client';
 import { GlobalContext } from '../../../../App';
 import {useForm} from 'react-hook-form'
+import { launchImageLibrary } from 'react-native-image-picker';
+import {ReactNativeFile} from 'apollo-upload-client'
 import { FETCH_USER_LOGGED_IN,FETCH_BOARDS_I_WROTE,UPLOAD_FILE, UPDATE_USER } from './MyPage.queries';
 // import MapView from 'react-native-maps';
+
 
 
 export default function MyPage({navigation}) {
 
   const [isEdit, setIsEdit] = useState(false);
   const [isShow , setIsShow] = useState(false);
-
-  const fileRef1 = useRef<HTMLInputElement>(null);
-  const [imageUrl1, setImageUrl1] = useState("");
-  const [file1, setFile1] = useState();
+  const [imageUriGallary, setimageUriGallary] = useState('');
+  const [realFile, setRealFile] = useState([]);
+  
+  
 
   const {accessToken, setAccessToken } = useContext(GlobalContext);
   const {data} = useQuery(FETCH_BOARDS_I_WROTE)
@@ -29,19 +32,45 @@ export default function MyPage({navigation}) {
   const gotoCommentAlarmPage = () => {
     navigation.navigate('CommentAlarmpage');
   }
+
+  const openGallery = () => {
+    const options ={
+      storageOptions:{
+        mediaType:"photo"
+      },
+      includeBase64:true,
+    }
+    console.log("dlsfjsdj")
+
+    launchImageLibrary(options,response=> {
+      console.log("5",response.assets)
+      const source = {uri:'data:image/jpeg;base64,'+response.assets?.[0].base64};
+      // const newImageUri =  response.assets?.[0].uri
+      const file = new ReactNativeFile({
+        uri: response.assets?.[0].uri,
+        type: response.assets?.[0].type, // ‘image/jpeg’,
+        name: response.assets?.[0].fileName,
+      });
+      setimageUriGallary(source)
+      setRealFile(file)
+      console.log("6",file.uri)
+  })
+}
+    
   const editOn = () => {
     setIsEdit(true)
   }
   const editOff = async (data) => {
-    console.log(data)
+    console.log("444",realFile)
     try{
-      // const resultFiles = await uploadfile({variables: {bbb : file1}})
-      // const picture = resultFiles.data.uploadFile.url;
+     
+      const uploadresult = await uploadfile({ variables:{bbb: realFile}})
+      console.log("sssw")
       await updateuser({
         variables : {
           updateUserInput : {
             contents : data.Contents,
-            // picture : picture,
+            
             location : {
               area : "유럽",
               country: data.Country,
@@ -54,6 +83,7 @@ export default function MyPage({navigation}) {
           {query : FETCH_USER_LOGGED_IN}
         ],
       })
+      console.log(uploadresult)
     }catch(error){
       console.log(error.message)
     }
@@ -67,34 +97,7 @@ export default function MyPage({navigation}) {
     isShow ? setIsShow(false) : setIsShow(true)
   }
   
-  // async function onChangeFile1(event) {
-  //   const file = event.target.files?.[0];
-  //   if (!file?.size) {
-  //     console.log("파일이 없다고");
-  //     return;
-  //   }
-  //   if (file?.size > 5 * 1024 * 1024) {
-  //     console.log("파일 사이즈가 너무크니까 올리지마(제한 5MB)");
-  //     return;
-  //   }
-
-  //   if (!file.type.includes("png") && !file.type.includes("jpeg")) {
-  //     console.log("png또는 jpeg만 전송가능");
-  //     return;
-  //   }
-
-  //   const fileReader = new FileReader();
-  //   fileReader.readAsDataURL(file);
-  //   fileReader.onload = (data) => {
-  //     // setImageUrl1(data.target?.result);
-  //     setFile1(file);
-  //   };
-  // }
-
-  // function onClickGreyBox1() {
-  //   // fileRef1.current?.click();
-  // }
-
+  
 
 
   return <MyPageUI 
@@ -111,11 +114,8 @@ export default function MyPage({navigation}) {
   control = {control}
   errors = {errors}
   handleSubmit = {handleSubmit}
-  
-  // fileRef1 = {fileRef1}
-  // onChangeFile1 = {onChangeFile1}
-  // imageUrl1 = {imageUrl1}
-  // onClickGreyBox1 = {onClickGreyBox1}
+  openGallery = {openGallery}
+  imageUriGallary = {imageUriGallary}
 
 
   />;

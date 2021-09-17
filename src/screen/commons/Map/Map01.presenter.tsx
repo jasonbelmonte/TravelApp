@@ -5,6 +5,7 @@ import { Alert, Dimensions, Image, TouchableOpacity,View,Text, ToastAndroid,Butt
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoder';
 import { useRef } from 'react';
+import Icon  from 'react-native-vector-icons/Ionicons';
 export default function Map01UI(props:any) {
  
   interface ILocation {
@@ -12,7 +13,7 @@ export default function Map01UI(props:any) {
     longitude: number;
   }
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
-  const [region, setRegion] = useState({locality:'',country:''})
+  const [region, setRegion] = useState({locality:'',country:'',lat:'',lng:''})
   const [currentAddress, setCurrentAddress] = useState("");
   const [regionChangeProgress,setRegionChangeProgress]=useState(false)
   
@@ -20,8 +21,6 @@ export default function Map01UI(props:any) {
 
   useEffect(() => {
     handleUser()
-
-    
   }, []);
   const markerRef = useRef(null);
 
@@ -45,19 +44,36 @@ export default function Map01UI(props:any) {
     );
   }
 
+  // const fetchAddress = (lat,lng) => {
+  //   fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + lat +lng + "&key=" + "AIzaSyCiZhmIrIuujupQJICQm7ZcLojjl0iPD-s")
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       let addr = responseJson.results[0].formatted_address;
+  //       // let addr =(res[0].formattedAddress)
+  //       let locality =(responseJson.results[0].locality )
+  //       let country =( responseJson.results[0].country)
+  //       setCurrentAddress(addr)
+  //       setRegion({locality:locality,country:country})
+  //       setRegionChangeProgress(false)
+  //     });
+  // }
+
+
+
 const getAddress = async(lat,lng)=>{
       // simply add your google key
 Geocoder.fallbackToGoogle("AIzaSyCiZhmIrIuujupQJICQm7ZcLojjl0iPD-s");
  try {
   let res = await Geocoder.geocodePosition({lat, lng})
+
   let addr =(res[0].formattedAddress)
-  let locality =(res[0].locality )
+  let locality =(res[0].locality?res[0].locality :" " )
   let country =( res[0].country)
   setCurrentAddress(addr)
-  setRegion({locality:locality,country:country})
+  setRegion({locality:locality,country:country,lat:lat,lng:lng})
   setRegionChangeProgress(false)
+  console.log("city,",locality)
  
-
  } catch (error) {
    console.log(error)
  }
@@ -67,17 +83,20 @@ Geocoder.fallbackToGoogle("AIzaSyCiZhmIrIuujupQJICQm7ZcLojjl0iPD-s");
     if (markerRef && markerRef.current && markerRef.current.showCallout) {
       markerRef.current.showCallout();
     }
-    getAddress(location.latitude,location.longitude)
-    // ToastAndroid.show(JSON.stringify(currentAddress),ToastAndroid.SHORT)
+
+    // ToastAndroid.show(JSON.stringify(location),ToastAndroid.SHORT)
         // alert(JSON.stringify(location))
         setLocation(location)
         setRegionChangeProgress(true)
-        console.log(currentAddress)  
+        // console.log(currentAddress)  
+        getAddress(location.latitude,location.longitude)
   }
 
   const onClickSelect =()=>{
-    props.setOnLocationSelect(region.country+'.'+ region.locality)
+ 
+    props.setOnLocationSelect({country:region.country,city:region.locality, lat:region.lat,lng:region.lng})
     props.setMap(false)
+    
 }
 
 const  styles = StyleSheet.create({
@@ -111,7 +130,7 @@ const  styles = StyleSheet.create({
       <View style={{flex: 1, paddingTop:20,}}>
         {location && <MapView
         
-         customMapStyle={props.mapStyle}
+        //  customMapStyle={props.mapStyle}
          provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
         showsMyLocationButton={true}
@@ -119,8 +138,9 @@ const  styles = StyleSheet.create({
         initialRegion={{
           latitude: location.latitude,
           longitude: location.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: Dimensions.get('window').width /  Dimensions.get('window').width
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.001
+          // Dimensions.get('window').width /  Dimensions.get('window').width
         }}
         onRegionChange={region => {
           setLocation({
@@ -129,7 +149,7 @@ const  styles = StyleSheet.create({
           });
         }}
         onRegionChangeComplete={onChangeValue}>
-        <Marker
+        {/* <Marker
           coordinate={{
             latitude: location.latitude,
             longitude: location.longitude,
@@ -137,15 +157,20 @@ const  styles = StyleSheet.create({
           ref={markerRef}
           title={region.country?"나라: "+region.country:"loading..."}
           description={region.locality?"도시: "+region.locality:"loading..."}
-        />
+        /> */}
+        
       </MapView>
+      
       }
+      <View style={{top:"30%", left:"44.5%",position:"absolute",}}>
+          <Icon name="location" size={45} color={"red"}/>
+        </View>
 
       <View style={styles.deatilSection}>
-            <Text style={{ fontSize: 16, fontWeight: "bold", fontFamily: "roboto", marginBottom: 20 }}>Move map for location</Text>
-            <Text style={{ fontSize: 10, color: "#999" }}>LOCATION</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold", fontFamily: "roboto", marginBottom: 20 }}>위치 찾기</Text>
+            <Text style={{ fontSize: 10, color: "#999" }}>상세주소</Text>
             <Text numberOfLines={2} style={{ fontSize: 14, paddingVertical: 10, borderBottomColor: "silver", borderBottomWidth: 0.5 }}> 
-          {!regionChangeProgress ? currentAddress :"Identifying Location..."}
+          {!regionChangeProgress ? currentAddress :"기다려주세요..."}
            </Text>
             <View style={styles.btnContainer}>
               <Button
