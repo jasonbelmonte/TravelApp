@@ -13,12 +13,10 @@ import {
   IconImg,
   SubTitleBox,
   AreaListWrap,
-  AreaList,
 } from './AreaPage.styles';
 import React from 'react';
 import BoardCard from '../../commons/BoardCard/BoardCard.contatiner';
-
-export default function AreaPageUI() {
+export default function AreaPageUI(props: any) {
   return (
     <Wrapper>
       {/* //! ===== TopHeader Start ===== */}
@@ -28,7 +26,7 @@ export default function AreaPageUI() {
         <AreaListTop>
           <AreaTitleBox>
             <AreaBoxLeft>
-              <Button>
+              <Button onPress={() => props.navigation.goBack(null)}>
                 <GoToBack
                   source={require('../../../Assets/Images/GoToBack_W.png')}
                 />
@@ -36,12 +34,12 @@ export default function AreaPageUI() {
               <AreaTextBox>Europe</AreaTextBox>
             </AreaBoxLeft>
             <AreaBoxRight>
-              <Button>
+              <Button onPress={props.goToSearch}>
                 <SearchIcon
                   source={require('../../../Assets/Images/IconSearch.png')}
                 />
               </Button>
-              <Button>
+              <Button onPress={props.goToCommetAlarm}>
                 <CommentAlarm
                   source={require('../../../Assets/Images/IconAlarm_W.png')}
                 />
@@ -51,7 +49,7 @@ export default function AreaPageUI() {
 
           <SubTitleBox>
             <IconImg
-              source={require('../../../Assets/Images/MainAfreecaImg.png')}
+              source={require('../../../Assets/Images/IconAirplane.png')}
             />
           </SubTitleBox>
         </AreaListTop>
@@ -59,9 +57,7 @@ export default function AreaPageUI() {
 
       {/* //! ===== Contents Start ===== */}
       <AreaListWrap>
-        <AreaList>
-          <BoardCard />
-        </AreaList>
+        <BoardCard navigation={props.navigation} />
       </AreaListWrap>
     </Wrapper>
   );

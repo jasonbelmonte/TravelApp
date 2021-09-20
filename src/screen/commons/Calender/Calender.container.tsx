@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { getDate } from '../../commons/libraries/getdate';
-import ClaenderUI from './Claender.presenter';
+import { getDate } from '../libraries/getdate';
+import CalenderUI from './Calender.presenter';
 
 // import MapView from 'react-native-maps';
-export default function Claender(props:any) {
+export default function Calender(props:any) {
   const  [selectedStartDate, setSelectedStartDate ]= useState('')
   const  [selectedEndDate, setSelectedEndDate ]= useState('')
   const minDate = new Date()// Today
@@ -34,7 +34,7 @@ console.log(props.claenderDate)
 
  
 
-  return <ClaenderUI 
+  return <CalenderUI 
   show={props.show}
   setShow={props.setShow}
   onDateChange={onDateChange}

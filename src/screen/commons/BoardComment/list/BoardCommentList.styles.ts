@@ -6,34 +6,71 @@ export const Button = styled.TouchableOpacity``;
 
 export const BoardCommentWrapper = styled.View`
   width: 100%;
-  background-color: lightcoral;
-  padding: 20px;
-`;
-export const CommentTitleBox = styled.View`
-  width: 100%;
-  background-color: tomato;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-export const CommentIcon = styled.Image`
-  width: 20px;
-  height: 17.33px;
-`;
-export const CommentTitle = styled.Text`
-  font-size: 15px;
-  line-height: 19px;
-  padding-left: 12px;
-`;
-export const CommentList = styled.View`
-  width: 100%;
-  border: 1px solid #000;
+  padding: 0px 20px;
 `;
 
+// !------------ BoardCommentList.presenterItem --------------
 export const CommentBox = styled.View`
   width: 100%;
-  height: 96px;
-  background-color: blue;
-  border-top-width: 10px;
-  border-top-color: #d8d8d8;
-  padding-top: 15px;
+  border-bottom-width: 0.7px;
+  border-bottom-color: #dbdbdb;
+  margin-top: 16px;
+  padding-bottom: 16px;
+`;
+export const TopInfoBox = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const WriterInfo = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  margin-left: 3px;
+  /* background-color: lightblue; */
+`;
+
+export const WriterPhoto = styled.Image`
+  width: 37px;
+  height: 37px;
+`;
+export const WriterName = styled.Text`
+  font-size: 16px;
+  line-height: 37px;
+  font-weight: 700;
+  margin-left: 10px;
+`;
+export const ButtonBox = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 3px;
+`;
+export const CommentIcon = styled.Image`
+  width: 18px;
+  height: 16px;
+`;
+export const EditIcon = styled.Image`
+  width: 18px;
+  height: 20px;
+`;
+export const DeleteIcon = styled.Image`
+  width: 17px;
+  height: 21px;
+  margin-left: 24px;
+`;
+export const BottomContents = styled.View`
+  width: 100%;
+  padding-left: 47px;
+  padding-right: 15px;
+`;
+export const ContentsText = styled.Text`
+  font-size: 14px;
+  line-height: 24px;
+  margin-left: 3px;
+`;
+export const CreatingDate = styled.Text`
+  font-size: 12px;
+  line-height: 18px;
+  color: #a5a5a5;
+  margin-left: 3px;
 `;

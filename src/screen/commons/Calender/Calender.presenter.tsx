@@ -14,7 +14,7 @@ import { Alert, Image, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
-export default function ClaenderUI(props:any) {
+export default function CalenderUI(props:any) {
   const backIcon =<Icon name='caret-back-outline' size={25}color={"#FFBE2B"}/>
   const forwardIcon =<Icon name='caret-forward-outline' size={25} color={"#FFBE2B"}/>
   return (

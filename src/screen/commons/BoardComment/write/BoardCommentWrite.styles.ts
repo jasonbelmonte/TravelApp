@@ -1,21 +1,34 @@
 import styled from '@emotion/native';
 
-export const Wrapper = styled.View`
-  width: 330px;
-  height: 464px;
-`;
-export const Head = styled.View`
+export const CommentWritetWrapper = styled.View`
   width: 100%;
-  height: 100px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  background-color: #d6e8e3;
 `;
-export const Body = styled.View`
-  width: 100%;
-  height: 194px;
+export const WriteBox = styled.View`
+  width: 95%;
+  height: 50px;
+  border: ${props => (props.active ? '1px #FFBE2B' : '1px #d8d8d8')};
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: space-between;
 `;
-export const Title = styled.TextInput``;
-
-export const Contents = styled.Text`
-  font-size: 25px;
+export const InputBox = styled.TextInput`
+  width: 88%;
+  padding-left: 19px;
+  padding-top: 13px;
+  font-size: 15px;
+  color: #000;
 `;
-
-export const Button = styled.TouchableOpacity``;
+export const Button = styled.TouchableOpacity`
+  width: 12%;
+  justify-content: center;
+  align-items: center;
+`;
+export const DeleteIcon = styled.Image`
+  width: 15px;
+  height: 20.3px;
+  margin-right: 10px;
+`;

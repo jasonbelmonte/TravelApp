@@ -1,9 +1,12 @@
 
 
-import {Wrapper, Head,HeadLeft,HeadMiddle,HeadRight,HeadText, Body,UserImg,BodyLocation,  BodyContents,
-   BodyUserText, BodyCountryText, BodyCityText, BodyDateText,BodyContentsText, BoardHead,BoardHeadText, BoardBody,  ProfileImg, ProfileInit,
-  ProfileHead, ProfileBody, Line, ProfileInfo, Name, Country, Title, JobTitle, WriteBtn, BoardHeadLine,} from './MyPage.styles';
+import {Wrapper, Head,HeadLeft,HeadMiddle,HeadRight,HeadText, Body,UserView , UserImg,UserImgBackground,BodyLocation,  BodyContents,
+   BodyUserText,EditIcon,BodyCountry, BodyCity, BodyCountryText, BodyCityText, BodyDateText,BodyContentsText,
+   BodyCityTextInput,BodyCountryTextInput,BodyContentsTextInput, BoardHead,BoardHeadText, BoardBody,
+   BoardHeadLine,LogOutBtn, LogOutText, Button} from './MyPage.styles';
 import React from 'react';
+import {TextInput,Text } from "react-native"
+import {useForm, Controller} from 'react-hook-form'
 import Icon from 'react-native-vector-icons/Ionicons';
 // import MapView from 'react-native-maps';
 import {
@@ -12,11 +15,15 @@ import {
   
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import BoardCard from '../../commons/BoardCardMyPage/BoardCard.contatiner';
 
 
 export default function MyPageUI(props) {
+  const uriedit =   `https://storage.googleapis.com/${props.user?.fetchUserLoggedIn?.picture}` 
+  console.log(uriedit)
   return (
     <>
+    
       <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
         <Wrapper>
 
@@ -26,17 +33,32 @@ export default function MyPageUI(props) {
           </HeadLeft>
           <HeadMiddle>
           <HeadText>마이페이지</HeadText>
-          </HeadMiddle>
-          <HeadRight>
-            {!props.isEdit && (
-              <Icon name={'pencil-sharp'} size={18} onPress={props.editOn} />
+          {!props.isEdit && (
+              // <Icon name={'pencil-sharp'} size={18} onPress={props.editOn} />
+              <Button onPress={props.editOn} >
+                  <EditIcon
+                  source={require('../../../Assets/Images/IconEdit.png')}
+                />
+              </Button>
+              
 
             )}
             {props.isEdit && (
-              <HeadText style={{color:'#FFBE2B'}}  onPress={props.editOff} >완료</HeadText>
+              <HeadText style={{color:'#FFBE2B'}}  onPress={props.handleSubmit(props.editOff)} >완료</HeadText>
               
             )}
-        <Icon name={'notifications-outline'} size={18} onPress={props.gotoCommentAlarmPage} />
+          </HeadMiddle>
+          <HeadRight>
+            
+        {/* <Icon name={'notifications-outline'} size={18} onPress={props.gotoCommentAlarmPage} /> */}
+        <Button onPress={props.gotoCommentAlarmPage}>
+        <EditIcon
+                  source={require('../../../Assets/Images/IconAlarm.png')}
+                  
+                />
+        </Button>
+        
+        
           </HeadRight>
         
         
@@ -47,66 +69,121 @@ export default function MyPageUI(props) {
           </Head>
           {!props.isEdit && (
             <Body>
-            <UserImg source={require('../../../Assets/Images/MainAfreecaImg.png')} />
-              <BodyUserText>제이미바디</BodyUserText>
+            {(props.user?.fetchUserLoggedIn?.picture ? (<UserImg source={{uri : uriedit}} />) : (<UserImg source={require('../../../Assets/Images/Noimage.png')} />))}
+              <BodyUserText>{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
+              
+              
               <BodyLocation>
               <Icon name={'location'} size={15} />
-              <BodyCountryText>England,</BodyCountryText>
-              <BodyCityText>Leicester City</BodyCityText>
+              <BodyCountry>
+              <BodyCountryText>{props.user?.fetchUserLoggedIn?.location?.country || "noCountry"}, </BodyCountryText>
+              </BodyCountry>
+              <BodyCity>
+              <BodyCityText>{props.user?.fetchUserLoggedIn?.location?.city || "noCity"}</BodyCityText>
+              </BodyCity>
               </BodyLocation>
-              <BodyDateText>2021.09.30~2036.09.30</BodyDateText>
+              {/* <BodyDateText>2021.09.30~2036.09.30</BodyDateText> */}
               <BodyContents>
-                <BodyContentsText>15년동안 축구하실분 구합니다. 영원히 뛰게 해드릴게요 무릎이 작살이 나도 뛰게 해드립니다. ㅎㅎㅎㅎㅎㅎㅎㅎㅎ</BodyContentsText>
+                <BodyContentsText>{props.user?.fetchUserLoggedIn?.contents}</BodyContentsText>
               </BodyContents>
             </Body>
           )}
+          
+
+
           {props.isEdit && (
               <Body>
-              <UserImg source={require('../../../Assets/Images/MainEuropeImg.png')} />
-                <BodyUserText style={{color:'#FF5F2E'}}>닉네임은입력해주셔야지요</BodyUserText>
+                
+                
+            <Button onPress={props.openGallery}>
+                {props.imageUriGallary? 
+                (<UserImgBackground source={props.imageUriGallary} />) : 
+                (props.user?.fetchUserLoggedIn?.picture ? (<UserImg source={{uri : uriedit}} />) : (<UserImg source={require('../../../Assets/Images/Noimage.png')} />)) }
+            </Button>
+          
+        
+
+              {/* <UserImg source={require('../../../Assets/Images/MainEuropeImg.png')} /> */}
+                <BodyUserText style={{color:'#FF5F2E'}}>{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
+                
                 <BodyLocation>
-                <Icon name={'location'} size={15} style={{color:'#C8C8C8'}}/>
-                <BodyCountryText style={{color:'#C8C8C8'}}>England,</BodyCountryText>
-                <BodyCityText style={{color:'#C8C8C8'}}>Leicester City</BodyCityText>
+                {/* <Icon name={'location'} size={15} style={{color:'#C8C8C8'}}/> */}
+                <BodyCountry>
+                <Controller
+                    control={props.control}
+                    rules={{
+                    required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <BodyCountryTextInput
+                      style={{color:'#FF5F2E'}}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    )}
+                    name="Country"
+                    defaultValue={props.user?.fetchUserLoggedIn?.location?.country} 
+                  />
+                  {props.errors.Country && <Text>This is required.</Text>}
+                </BodyCountry>
+                
+                <BodyCity>
+                <Controller
+                    control={props.control}
+                    rules={{
+                    required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <BodyCityTextInput
+                      style={{color:'#FF5F2E'}}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    )}
+                    name="City"
+                    defaultValue={props.user?.fetchUserLoggedIn?.location?.city} 
+                  />
+                  {props.errors.City && <Text>This is required 2.</Text>}
+                </BodyCity>
+                
                 </BodyLocation>
-                <BodyDateText style={{color:'#C8C8C8'}}>2021.09.30~2036.09.30</BodyDateText>
+                
                 <BodyContents>
-                  <BodyContentsText style={{color:'#C8C8C8'}}>15년동안 축구하실분 구합니다. 영원히 뛰게 해드릴게요 무릎이 작살이 나도 뛰게 해드립니다. ㅎㅎㅎㅎㅎㅎㅎㅎㅎ</BodyContentsText>
+                <Controller
+                    control={props.control}
+                    rules={{
+                    required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <BodyCityTextInput
+                      style={{color:'#FF5F2E'}}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    )}
+                    name="Contents"
+                    defaultValue={props.user?.fetchUserLoggedIn?.contents} 
+                  />
+                  {props.errors.City && <Text>This is required 3.</Text>}
                 </BodyContents>
+                {/* <Button  onPress={props.handleSubmit(props.onSubmit)} ><Text>에디트</Text></Button> */}
               </Body>
           )}
         
         <BoardHead>
-        <Icon name={'pencil-sharp'} size={18} />
+        <Icon name={'pencil-sharp'} size={18} onPress={props.ShowBoards}/>
           <BoardHeadText>  내가 쓴 글</BoardHeadText>
           
         </BoardHead>
         <BoardHeadLine></BoardHeadLine>
         
-          {new Array(10).fill(1).map((_, index) => {
-            return (
-              <BoardBody key={index}>
-              <ProfileInit>
-                <ProfileHead>
-                  <JobTitle>asd</JobTitle>
-                  <Icon name={'bookmark'} color={'#d8d8d8'} size={20} />
-                </ProfileHead>
-                <ProfileBody>
-                  <Icon name={'location'} size={9} />
-                  <Country>tt</Country>
-                </ProfileBody>
-              </ProfileInit>
-              <Line />
-              <Title>dsfsf</Title>
-              <ProfileInfo>
-                <ProfileImg source={require('../../../Assets/Images/MainAfreecaImg.png')} />
-                <Name>sdfsdfssdf</Name>
-              </ProfileInfo>
-            </BoardBody>
-            )
-          })}
-
-                
+         
+          {props.isShow && (<BoardCard navigation={props.navigation}/>)}
+            
+            <LogOutBtn onPress={props.logOut}><LogOutText>로그아웃</LogOutText></LogOutBtn>
       
 
         </Wrapper>
