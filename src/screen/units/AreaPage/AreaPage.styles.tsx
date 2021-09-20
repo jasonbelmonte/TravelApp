@@ -80,7 +80,7 @@ export const AreaListWrap = styled.View`
   margin-top: 120px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: blue;
+  background-color: #fff;
   padding-top: 19px;
-  padding-bottom: 30px; // 스크롤 최하단 여백
+  padding-bottom: 53px; // 스크롤 최하단 여백
 `;

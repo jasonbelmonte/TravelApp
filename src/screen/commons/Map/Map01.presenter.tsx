@@ -67,12 +67,12 @@ Geocoder.fallbackToGoogle("AIzaSyCiZhmIrIuujupQJICQm7ZcLojjl0iPD-s");
   let res = await Geocoder.geocodePosition({lat, lng})
 
   let addr =(res[0].formattedAddress)
-  let locality =(res[0].locality?res[0].locality :" " )
+  let locality =(res[0].locality || res[0].adminArea )
   let country =( res[0].country)
   setCurrentAddress(addr)
   setRegion({locality:locality,country:country,lat:lat,lng:lng})
   setRegionChangeProgress(false)
-  console.log("city,",locality)
+  console.log("city,",region)
  
  } catch (error) {
    console.log(error)

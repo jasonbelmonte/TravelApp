@@ -14,7 +14,7 @@ export default function BoardCommentWriteUI() {
         <InputBox placeholder={'Add Comment...'} />
         <Button>
           <DeleteIcon
-            source={require('../../../../Assets/Images/IconClose_G.png')}
+            source={require('../../../../Assets/Images/IconArrowToTop_G.png')}
           />
         </Button>
       </WriteBox>

@@ -7,15 +7,11 @@ export const Button = styled.TouchableOpacity``;
 export const BoardReCommentWrapper = styled.View`
   width: 100%;
 `;
-export const ReCommentList = styled.View`
-  width: 100%;
-  padding-top: 4px;
-`;
 
 // !------------ BoardCommentList.presenterItem --------------
 export const ReplyWrap = styled.View`
   width: 100%;
-  padding-top: 15px;
+  padding-top: 16px;
   flex-direction: row;
 `;
 export const IconReplyBox = styled.View`
@@ -27,8 +23,8 @@ export const IconReplyBox = styled.View`
   padding-top: 9.25px;
 `;
 export const IconReply = styled.Image`
-  width: 17px;
-  height: 16.5px;
+  width: 16px;
+  height: 15.5px;
 `;
 export const ReCommentBox = styled.View`
   width: 87.5%;
@@ -36,6 +32,7 @@ export const ReCommentBox = styled.View`
 export const TopInfoBox = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 export const WriterInfo = styled.TouchableOpacity`
   flex-direction: row;
@@ -49,7 +46,7 @@ export const WriterPhoto = styled.Image`
 export const WriterName = styled.Text`
   font-size: 16px;
   line-height: 37px;
-  font-weight: 600;
+  font-weight: 700;
   padding-left: 10px;
 `;
 export const ButtonBox = styled.View`
@@ -58,17 +55,17 @@ export const ButtonBox = styled.View`
   padding-right: 3px;
 `;
 export const CommentIcon = styled.Image`
-  width: 21px;
-  height: 19px;
+  width: 18px;
+  height: 16px;
 `;
 export const EditIcon = styled.Image`
-  width: 20px;
-  height: 22px;
+  width: 18px;
+  height: 20px;
 `;
 export const DeleteIcon = styled.Image`
-  width: 18px;
-  height: 22px;
-  margin-left: 20px;
+  width: 17px;
+  height: 21px;
+  margin-left: 24px;
 `;
 export const BottomContents = styled.View`
   width: 100%;
@@ -76,11 +73,13 @@ export const BottomContents = styled.View`
   padding-right: 15px;
 `;
 export const ContentsText = styled.Text`
-  font-size: 15px;
-  line-height: 23px;
+  font-size: 14px;
+  margin-left: 3px;
+  line-height: 24px;
 `;
 export const CreatingDate = styled.Text`
-  font-size: 13px;
-  line-height: 28px;
+  font-size: 12px;
+  line-height: 18px;
+  margin-left: 3px;
   color: #a5a5a5;
 `;

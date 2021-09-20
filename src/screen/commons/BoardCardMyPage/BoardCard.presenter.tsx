@@ -17,6 +17,7 @@ import {
   WriterPhoto,
   WriterName,
   ImageBox,
+  MoreText
 } from './BoardCard.styles';
 
 export default function BoardCardUI(props: any) {
@@ -76,6 +77,7 @@ export default function BoardCardUI(props: any) {
          
         )
       })}
+      {/* <Button onPress={props.onLoadMore}><MoreText>더보기</MoreText></Button> */}
     </CardWrapper>
   );
 }

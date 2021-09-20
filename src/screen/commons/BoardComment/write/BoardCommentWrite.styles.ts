@@ -5,6 +5,7 @@ export const CommentWritetWrapper = styled.View`
   height: 70px;
   justify-content: center;
   align-items: center;
+  background-color: #d6e8e3;
 `;
 export const WriteBox = styled.View`
   width: 95%;
@@ -18,6 +19,7 @@ export const InputBox = styled.TextInput`
   width: 88%;
   padding-left: 19px;
   font-size: 15px;
+  color: #000;
 `;
 export const Button = styled.TouchableOpacity`
   width: 12%;
@@ -25,7 +27,7 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
 `;
 export const DeleteIcon = styled.Image`
-  width: 19px;
-  height: 19px;
-  margin-right: 5px;
+  width: 15px;
+  height: 20.3px;
+  margin-right: 10px;
 `;

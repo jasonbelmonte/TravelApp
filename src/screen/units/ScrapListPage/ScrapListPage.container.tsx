@@ -4,8 +4,15 @@ import ScrapListPageUI from './ScrapListPage.presenter';
 import { useQuery } from '@apollo/client';
 import { FETCH_BOARDS_I_SCRAPPED } from './ScrapListPage.queries';
 
-export default function ScrapListPage() {
+export default function ScrapListPage({navigation}) {
   const { data } = useQuery (FETCH_BOARDS_I_SCRAPPED)
+  const gotoBoardDetailPage = () => {
+    navigation.navigate('BoardDetailPage')
+  }
 
-  return <ScrapListPageUI data={data} />;
+  return <ScrapListPageUI 
+  data={data}
+  gotoBoardDetailPage={gotoBoardDetailPage}
+  />;
 }
+

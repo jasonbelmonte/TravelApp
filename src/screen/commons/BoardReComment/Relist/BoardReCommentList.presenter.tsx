@@ -1,16 +1,12 @@
 import React from 'react';
 import ReCommentListItemUI from './BoardReCommentList.presenterItem';
-import {
-  BoardReCommentWrapper,
-  ReCommentList,
-} from './BoardReCommentList.styles';
 
-export default function BoardReCommentListUI() {
+export default function BoardReCommentListUI(props: any) {
   return (
-    <BoardReCommentWrapper>
-      <ReCommentList>
-        <ReCommentListItemUI />
-      </ReCommentList>
-    </BoardReCommentWrapper>
+    <>
+      {props.data?.fetchReComments?.map((data: any) => (
+        <ReCommentListItemUI data={data} />
+      ))}
+    </>
   );
 }

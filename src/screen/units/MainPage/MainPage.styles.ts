@@ -11,25 +11,25 @@ export const Container = styled.View`
 export const Head = styled.View`
   width: 100%;
   background-color: white;
-  padding-left: 20px; 
-  padding-right: 20px; 
-  margin-top: 10px; 
+  padding-left: 20px;
+
+  padding-right: 20px;
+  margin-top: 20px;
   /* padding-top: 20px; */
   /* background-color: rgba(255, 255, 255, 0.1); */
   display: flex;
   /* flex-direction: column; */
   /* justify-content: space-between; */
   /* padding: 20px; */
-  
- 
+
   /* background-color: beige; */
 `;
 export const HeaderBar = styled.View`
-width: 100%;
-height:40px;
-padding-top: 16px;
-/* background-color: red; */
-`
+  width: 100%;
+  height: 40px;
+  padding-top: 16px;
+  /* background-color: red; */
+`;
 export const ClickText = styled.Text`
   text-align: left;
   font-size: 16px;
@@ -63,9 +63,7 @@ export const WriteBtn = styled.TouchableOpacity`
   right: 28px;
   bottom: 80px;
   border-radius: 30px;
-  
-  
-  `;
+`;
 
 // ------------
 export const Body = styled.View`
@@ -75,22 +73,19 @@ export const Body = styled.View`
   height: 100%;
   /* margin-top: 220px; */
   /* flex: 1; */
- /* padding-bottom: 50px; */
- /* margin-bottom: 200px; */
+  /* padding-bottom: 50px; */
+  /* margin-bottom: 200px; */
   /* flex-direction: column; */
   /* justify-content: center; */
   padding-top: 19px;
- ;
   /* z-Index: 1000; */
-
 `;
 
 export const List = styled.View`
   width: 100%;
-  padding: 1px 10px ;
+  padding: 1px 10px;
   /* border:1px red; */
 `;
-
 
 export const Card = styled.TouchableOpacity`
   width: 95%;
@@ -102,7 +97,6 @@ export const Card = styled.TouchableOpacity`
   /* flex: 1; */
   flex-direction: row;
   margin: 1px 11px 20px 11px;
-
 `;
 export const CardLeft = styled.View`
   width: 89.5%;
@@ -163,12 +157,9 @@ export const CardRight = styled.View`
   width: 11.5%;
   flex: 1;
   align-items: flex-end;
-
-  
 `;
 export const ScrapButton = styled.Image`
   width: 16px;
   height: 25px;
 `;
 export const Button_2 = styled.TouchableOpacity``;
-

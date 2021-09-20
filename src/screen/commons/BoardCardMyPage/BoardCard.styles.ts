@@ -84,3 +84,7 @@ export const ScrapButton = styled.Image`
   width: 16px;
   height: 25px;
 `;
+
+export const MoreText = styled.Text`
+  font-size : 20px;
+`

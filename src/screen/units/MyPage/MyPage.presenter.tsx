@@ -182,8 +182,8 @@ export default function MyPageUI(props) {
         
          
           {props.isShow && (<BoardCard />)}
+            
             <LogOutBtn onPress={props.logOut}><LogOutText>로그아웃</LogOutText></LogOutBtn>
-                
       
 
         </Wrapper>

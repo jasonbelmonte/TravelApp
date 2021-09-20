@@ -6,7 +6,7 @@ export const FETCH_BOARD = gql`
     _id
     title
     contents
-    images
+    images            
     pickedCount
     location {
       area

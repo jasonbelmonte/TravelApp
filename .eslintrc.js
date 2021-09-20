@@ -1,20 +1,22 @@
 module.exports = {
-  root: true,
-  parserOptions: {
-    parser: 'babel-eslint'
-  },
   env: {
-    browser: true
+    browser: true,
+    es2021: true,
   },
-  extends: [
-    'plugin:vue/essential',
-    'standard',
-    'prettier'
-  ],
-	plugins: ['vue', 'prettier'],
+  extends: ["plugin:react/recommended", "standard", "prettier"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: "module",
+  },
+  plugins: ["react", "@typescript-eslint"],
   rules: {
-    'generator-star-spacing': 'off',
-    
-    'prettier/prettier': 'error'
-  }
-}
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    camelcase: "off",
+    "react/display-name": "off",
+  },
+};

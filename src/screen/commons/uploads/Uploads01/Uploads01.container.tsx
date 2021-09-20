@@ -18,20 +18,31 @@ export default function Uploads01(props: IUploads01Props) {
   const openCamara=()=>{
     const options ={
       storageOptions:{
-        mediaType:"photo"
+        mediaType:"photo",
+        maxWidth:1024,
+        maxHeight:1024,
+
       },
       includeBase64:true,
     }
     launchImageLibrary(options,response=> {
         console.log("5",response.assets)
+        if (response.didCancel){
+          console.log("cancle")
+          return false
+        }
+        else if (response.errorMessage) {
+          console.log(response.errorMessage)
+          return false;
+        }
+        
         const source = {uri:'data:image/jpeg;base64,'+response.assets?.[0].base64};
-        // const newImageUri =  response.assets?.[0].uri 
         const file = new ReactNativeFile({
           uri: response.assets?.[0].uri,
           type: response.assets?.[0].type, // 'image/jpeg',
           name: response.assets?.[0].fileName,
         });
-        setImages(source.uri as string)
+        setImages(source)
         props.onChangeFiles(file, props.index);
         console.log("6",images)
     })

@@ -10,8 +10,24 @@ export default function BoardCard() {
     },
   });
   
-  console.log('data : ', data);
-
+  // console.log('data : ', data.fetchBoardsIWrote.length);
+  // const onLoadMore = () => {
+  //   if (!data) return;
+  //   fetchMore({
+  //     variables: {
+  //       page: Math.floor(data?.fetchBoardsIWrote.length) / 10 + 1,
+  //     },
+  //     updateQuery: (prev, { fetchMoreResult }) => {
+  //       // if (prev.fetchUseditems.length > 100) setHasMore(false);
+  //       return {
+  //         fetchBoardsIWrote: [
+  //           ...prev.fetchBoardsIWrote,
+  //           ...fetchMoreResult.fetchBoardsIWrote,
+  //         ],
+  //       };
+  //     },
+  //   });
+  // };
   
 
   return <BoardCardUI data={data}  />;

@@ -10,12 +10,10 @@ export const CardWrap = styled.View``;
 export const Card = styled.View`
   width: 95%;
   height: 130px;
-  background-color: red;
+  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   elevation: 3;
-  background-color: #fff;
-  /* flex: 1; */
   flex-direction: row;
   margin: 1px 11px 20px 11px;
 `;
@@ -31,12 +29,11 @@ export const CardTitle = styled.Text`
 `;
 export const CardMiddle = styled.View`
   width: 100%;
-  /* flex: 1; */
   flex-direction: row;
   justify-content: flex-start;
   border-bottom-width: 0.7px;
   border-bottom-color: #d8d8d8;
-  padding-bottom: 20px;
+  padding-bottom: 1px;
 `;
 export const CardMiddleContents = styled.View`
   flex: 1;
@@ -48,7 +45,7 @@ export const LocationImg = styled.Image`
   margin-right: 6px;
 `;
 export const CardMiddleText = styled.Text`
-  font-size: 12px;
+  font-size: 13px;
   line-height: 16px;
   padding-bottom: 3px;
   color: #a5a5a5;
@@ -57,7 +54,7 @@ export const CardWriter = styled.View`
   width: 100%;
   flex: 1;
   flex-direction: row;
-  padding-top: 8px;
+  padding-top: 7px;
 `;
 export const WriterPhoto = styled.View`
   width: 26px;

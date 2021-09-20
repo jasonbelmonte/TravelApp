@@ -31,6 +31,13 @@ export const Body = styled.View`
 
 
 
+export const Error = styled.Text`
+  font-size: 10px;
+  /* font-weight: 600; */
+  /* line-height: 18px; */
+  color:red;
+
+`;
 export const Colum = styled.Text`
   font-size: 16px;
   font-weight: 600;
@@ -41,7 +48,7 @@ export const Colum = styled.Text`
 
 export const Colum2 = styled.Text`
   font-size: 15px;
-  color:#BDBDBD ;
+  color: #FFBE2B;
   line-height: 18px;
   `;
 export const Colum3 = styled.Text` 
@@ -66,7 +73,10 @@ export const Title = styled.TextInput`
 
 ::placeholder{
   font-size: 17px;
+
+ 
 }
+
 `;
 export const Button = styled.TouchableOpacity``;
 export const DatePick = styled.TouchableOpacity`

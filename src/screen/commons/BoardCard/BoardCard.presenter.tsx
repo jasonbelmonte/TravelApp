@@ -57,7 +57,7 @@ export default function BoardCardUI(props: any) {
             <CardWrap key={item._id}>
               <Card id={item._id}>
                 <CardLeft onPress={props.goToBoardDetail}>
-                  <CardTitle>{item?.title.substr(0, 27) + '...'}</CardTitle>
+                  <CardTitle>{item?.title.substr(0, 26) + '..'}</CardTitle>
                   <CardMiddle>
                     <LocationImg
                       source={require('../../../Assets/Images/IconLocation.png')}
@@ -65,7 +65,7 @@ export default function BoardCardUI(props: any) {
                     <CardMiddleContents>
                       <CardMiddleText>
                         {item?.location?.area}
-                      
+
                         {item?.location?.country}
                         {', '}
                         {item?.location?.city}

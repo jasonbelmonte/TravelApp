@@ -98,7 +98,7 @@ export const EnrollmentDate = styled.Text`
 
 export const ContentsBox = styled.View`
   margin-top: .7px;
-  height: 980px;
+  height: 1040px;
   background-color: #fff;
   padding: 0 20px;
 `
@@ -171,7 +171,6 @@ export const Right = styled.View`
   margin-top: 19px;
 `
 
-
 export const Edit = styled.Image`
   width: 20px;
   height: 20px;
@@ -203,6 +202,5 @@ export const CommentImage = styled.Image`
 export const Comments = styled.Text`
   font-size: 14px;
   line-height: 15px;
-  /* letter-spacing: -0.02; */
   margin: 2px 0 0 7px;
 `

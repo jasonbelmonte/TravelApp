@@ -21,7 +21,7 @@ import LoginPage from '../screen/units/LoginPage/LoginPage.container';
 import CommentAlarmPage from '../screen/units/CommentAlarmPage/CommentAlarmPage.container';
 import Search from '../screen/commons/Search/Search.container';
 import CommentPage from '../screen/units/CommentPage/CommentPage.container';
-
+import BoardReCommentList from '../screen/commons/BoardReComment/Relist/BoardReCommentList.container';
 import {gql, useMutation} from '@apollo/client';
 const Tab = createBottomTabNavigator();
 const LoginStack = createNativeStackNavigator();
@@ -60,7 +60,11 @@ const Wrapper = styled.View`
   justify-content: center;
   align-items: center;
 `;
-const HomeStackScreen = () => {
+const HomeStackScreen = ({route,navigation}) => {
+  route.state && route.state.index > 0
+  ? navigation.setOptions({ tabBarVisible: false })
+  : navigation.setOptions({ tabBarVisible: true });
+  
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -105,14 +109,31 @@ const HomeStackScreen = () => {
         component={BoardDetailPage}
         options={{title: 'BoardDetailPage', headerShown: false}}
       />
-      {/* <HomeStack.Screen
+      <HomeStack.Screen
+
+        name="UserPage"
+        component={UserPage}
+        options={{title: 'UserPage', headerShown: false}}
+      />
+      
+      <HomeStack.Screen
+      
         name="CommentPage"
         component={CommentPage}
-        options={{title: 'CommentPage', headerShown: false}}
-      /> */}
+        options={{title: 'CommentPage', headerShown: false,
+      
+      
+          
+      }}
+      />
     </HomeStack.Navigator>
+    
   );
+
+  
 };
+
+
 
 const MapStackScreen = () => {
   return (
@@ -146,6 +167,7 @@ const MypageStackScreen = () => {
         component={MyPage}
         options={{title: 'Mypage', headerShown: false}}
       />
+
       <MypageStack.Screen
         name="CommentAlarmpage"
         component={CommentAlarmPage}
@@ -173,7 +195,9 @@ const MypageStackScreen = () => {
 //   </LoginStack.Navigator>
 //   )
 // }
+
 export default function Tabs() {
+  
   const [isLogin, setIsLogin] = useState(false);
   const TabNaviRounded = {
     tabBarStyle: {
@@ -189,6 +213,7 @@ export default function Tabs() {
       // right: 15,
       height: 60,
       alignItems: 'center',
+      
     },
   };
   const {accessToken, setAccessToken} = useContext(GlobalContext);

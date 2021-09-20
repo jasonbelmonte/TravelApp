@@ -3,9 +3,11 @@ import React, { useContext, useRef, useState } from 'react';
 import BoardWritePageUI from './BoardWritePage.presenter';
 import { CREATE_BOARD, UPLOAD_FILE } from './BoardWritePage.queries';
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup'
 import { Alert } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { ReactNativeFile } from 'apollo-upload-client';
+import { schema } from './BoardWrite.validation';
 
 // import ImagePicker from 'react-native-image-crop-picker';
 // type FormData = {
@@ -22,18 +24,25 @@ import { ReactNativeFile } from 'apollo-upload-client';
 // };
 export default function BoardWritePage({navigation }) {
   const [show, setShow] = useState(false);
-  const { control, handleSubmit} = useForm()
+  const [map ,setMap]=useState(false)
+  const [errorModal ,setErrorModal]=useState(false)
   const [claenderDate,setClaenderDate] =useState({startDate:'',endDate:''})
   const [onLocationSelect,setOnLocationSelect] =useState({city:"",country:"", lat:"",lng:""})
-  const [map ,setMap]=useState(false)
   const [country, setCountry] = useState('Unknown');
   const [createBoard]=useMutation(CREATE_BOARD)
-  
   const [imagFile,setImagFile]=useState<(File | null)[]>([null, null, null]);
   const [uploadFile] = useMutation(UPLOAD_FILE);
+  const { control, handleSubmit, formState:{ errors }} = useForm({
+    resolver: yupResolver(schema)
+  })
+  
 
   const onPressRegist = async(data)=>{
-  
+    console.log(data)
+    if(claenderDate.startDate === ''){
+      setErrorModal(true)
+    }
+
     try { 
   const result = imagFile
   .filter((data) => data)
@@ -41,6 +50,12 @@ export default function BoardWritePage({navigation }) {
   const results = await Promise.all(result);
   const imgUrl =  results.map((data) => data.data.uploadFile.url)
   console.log("ss",imgUrl)
+
+
+  
+  
+ 
+
       await createBoard({
       variables:{
         createBoardInput:{
@@ -50,8 +65,12 @@ export default function BoardWritePage({navigation }) {
      startDate:claenderDate.startDate,
      endDate:claenderDate.endDate,
      location:{
+       area:data.area,
        city:onLocationSelect.city,
-       country:onLocationSelect.country
+       country:onLocationSelect.country,
+       lat:onLocationSelect.lat,
+       lng:onLocationSelect.lng
+       
        
      },
      
@@ -65,7 +84,7 @@ export default function BoardWritePage({navigation }) {
       [
         {
           text: "확인",
-          onPress: () => Alert.alert("Cancel Pressed"),
+          
      
         },
       ],
@@ -73,7 +92,7 @@ export default function BoardWritePage({navigation }) {
       // console.log(data)
       console.log("imgUrl",imgUrl)
     
-      navigation.push('Home')
+      navigation.navigate('Home')
     } catch (error) {
       console.log(error.message)
     
@@ -88,6 +107,7 @@ export default function BoardWritePage({navigation }) {
     setImagFile(newFiles);
   }
   
+  console.log("date",onLocationSelect.city)
 
   return <BoardWritePageUI 
   show={show}
@@ -105,8 +125,9 @@ export default function BoardWritePage({navigation }) {
   control={control}
   navigation={navigation}
   onChangeFiles={onChangeFiles}
-  
- 
+  errors={errors}
+  errorModal={errorModal}
+  setErrorModal={setErrorModal}
  
 
   />;
