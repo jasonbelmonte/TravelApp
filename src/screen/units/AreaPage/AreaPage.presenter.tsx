@@ -26,7 +26,7 @@ export default function AreaPageUI(props: any) {
         <AreaListTop>
           <AreaTitleBox>
             <AreaBoxLeft>
-              <Button>
+              <Button onPress={() => props.navigation.goBack(null)}>
                 <GoToBack
                   source={require('../../../Assets/Images/GoToBack_W.png')}
                 />

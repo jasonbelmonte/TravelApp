@@ -12,17 +12,17 @@ import { FETCH_USER_LOGGED_IN,FETCH_BOARDS_I_WROTE,UPLOAD_FILE, UPDATE_USER } fr
 
 
 export default function MyPage({navigation}) {
-
+  const {data: user, refetch} = useQuery(FETCH_USER_LOGGED_IN)
   const [isEdit, setIsEdit] = useState(false);
   const [isShow , setIsShow] = useState(false);
-  const [imageUriGallary, setimageUriGallary] = useState('');
+  const [imageUriGallary, setimageUriGallary] = useState(user?.fetchUserLoggedIn?.picture);
   const [realFile, setRealFile] = useState([]);
   
   
 
   const {accessToken, setAccessToken } = useContext(GlobalContext);
   const {data} = useQuery(FETCH_BOARDS_I_WROTE)
-  const {data: user, refetch} = useQuery(FETCH_USER_LOGGED_IN)
+  
   const [uploadfile] = useMutation(UPLOAD_FILE)
   const [updateuser] = useMutation(UPDATE_USER)
   const { control, handleSubmit, formState: { errors } } = useForm();
@@ -30,7 +30,7 @@ export default function MyPage({navigation}) {
   
 
   const gotoCommentAlarmPage = () => {
-    navigation.navigate('CommentAlarmpage');
+    navigation.navigate('UserPage');
   }
   
   const openGallery = () => {
@@ -116,7 +116,7 @@ export default function MyPage({navigation}) {
   handleSubmit = {handleSubmit}
   openGallery = {openGallery}
   imageUriGallary = {imageUriGallary}
-  
+  navigation = {navigation}
 
   />;
 }

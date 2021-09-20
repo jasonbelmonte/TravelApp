@@ -25,7 +25,6 @@ export default function BoardCardUI(props: any) {
   const [hasMore, setHasMore] = useState(true);
 
   const onLoadMore = () => {
-
     if (!props.data) return;
     // console.log(props.data?.fetchBoards.length);
     // console.log(Math.ceil(props.data?.fetchBoards.length / 10) + 1);
@@ -56,7 +55,7 @@ export default function BoardCardUI(props: any) {
           return (
             <CardWrap key={item._id}>
               <Card id={item._id}>
-                <CardLeft onPress={props.goToBoardDetail}>
+                <CardLeft onPress={props.goToBoardDetail(item._id)}>
                   <CardTitle>{item?.title.substr(0, 26) + '..'}</CardTitle>
                   <CardMiddle>
                     <LocationImg

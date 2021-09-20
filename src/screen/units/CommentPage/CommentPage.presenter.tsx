@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native';
 import BoardCommentList from '../../commons/BoardComment/list/BoardCommentList.container';
 import BoardCommentWrite from '../../commons/BoardComment/write/BoardCommentWrite.container';
 import {
@@ -11,16 +11,13 @@ import {
   Title,
 } from './CommentPage.styles';
 
-export default function CommentPageUI({navigation}) {
+export default function CommentPageUI(props: any) {
   return (
     <Body>
       {/* //! -- Header -- */}
       <CommentPageHeader>
-        <Button>
-          <GoToBack
-            onPress={() => navigation.goBack(null)}
-            source={require('../../../Assets/Images/GoToBack_B.png')}
-          />
+        <Button onPress={() => props.navigation.goBack(null)}>
+          <GoToBack source={require('../../../Assets/Images/GoToBack_B.png')} />
         </Button>
         <TitleBox>
           <Title>댓글</Title>
@@ -28,10 +25,9 @@ export default function CommentPageUI({navigation}) {
       </CommentPageHeader>
 
       {/* //! -- Contents - Comment  -- */}
-      <ScrollView horizontal={false}>
+      <ScrollView>
         <BoardCommentList />
       </ScrollView>
-
       {/* //! -- Writer -- */}
       <BoardCommentWrite />
     </Body>

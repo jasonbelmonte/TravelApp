@@ -22,7 +22,9 @@ export default function MainPage({navigation, route}) {
     navigation.push('AreaPage');
   };
 
-  
+  const goToDetailPage = (id) => () => {
+    navigation.navigate('BoardDetailPage', {id : id})
+  }
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -67,6 +69,7 @@ export default function MainPage({navigation, route}) {
   // const refreshing = data.networkStatus
   const refreshing = networkStatus === NetworkStatus.refetch;
   // prevent the loading indicator from appearing while refreshing
+
   const onClikWritePage = (id)=> () => {
     navigation.navigate('BoardDetailPage', {id:id});
   };
@@ -83,6 +86,7 @@ export default function MainPage({navigation, route}) {
       refreshing={refreshing}
       goToAreaPage={goToAreaPage}
       onClikWritePage={onClikWritePage}
+      goToDetailPage={goToDetailPage}
     />
   );
 }

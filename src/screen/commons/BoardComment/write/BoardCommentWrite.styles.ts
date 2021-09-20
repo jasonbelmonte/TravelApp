@@ -10,7 +10,7 @@ export const CommentWritetWrapper = styled.View`
 export const WriteBox = styled.View`
   width: 95%;
   height: 50px;
-  border: 1px #d8d8d8;
+  border: ${props => (props.active ? '1px #FFBE2B' : '1px #d8d8d8')};
   border-radius: 10px;
   flex-direction: row;
   justify-content: space-between;
@@ -18,6 +18,7 @@ export const WriteBox = styled.View`
 export const InputBox = styled.TextInput`
   width: 88%;
   padding-left: 19px;
+  padding-top: 13px;
   font-size: 15px;
   color: #000;
 `;

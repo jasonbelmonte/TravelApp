@@ -3,15 +3,18 @@ import React from 'react';
 import BoardCardUI from './BoardCard.presenter';
 import {FETCH_BOARDS_I_WROTE} from './BoardCard.queries';
 
-export default function BoardCard() {
+export default function BoardCard(props) {
   const {data} = useQuery(FETCH_BOARDS_I_WROTE, {
     variables: {
       page: 1,
     },
   });
   
+  const gotoUserpage = () => {
+    props.navigation.navigate('UserPage');
+  }
   // console.log('data : ', data.fetchBoardsIWrote.length);
-  // const onLoadMore = () => {
+  // const onLoadMore = () => {  
   //   if (!data) return;
   //   fetchMore({
   //     variables: {
@@ -30,5 +33,5 @@ export default function BoardCard() {
   // };
   
 
-  return <BoardCardUI data={data}  />;
+  return <BoardCardUI data={data} gotoUserpage={gotoUserpage}  />;
 }

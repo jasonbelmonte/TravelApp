@@ -1,6 +1,6 @@
 
 
-import {Wrapper, Head,HeadLeft,HeadMiddle,HeadRight,HeadText, Body,UserImg,BodyLocation,  BodyContents,
+import {Wrapper, Head,HeadLeft,HeadMiddle,HeadRight,HeadText, Body,UserView , UserImg,UserImgBackground,BodyLocation,  BodyContents,
    BodyUserText,EditIcon,BodyCountry, BodyCity, BodyCountryText, BodyCityText, BodyDateText,BodyContentsText,
    BodyCityTextInput,BodyCountryTextInput,BodyContentsTextInput, BoardHead,BoardHeadText, BoardBody,
    BoardHeadLine,LogOutBtn, LogOutText, Button} from './MyPage.styles';
@@ -19,7 +19,7 @@ import BoardCard from '../../commons/BoardCardMyPage/BoardCard.contatiner';
 
 
 export default function MyPageUI(props) {
-  const uriedit = `https://storage.googleapis.com/${props.user?.fetchUserLoggedIn?.picture}`
+  const uriedit =   `https://storage.googleapis.com/${props.user?.fetchUserLoggedIn?.picture}` 
   console.log(uriedit)
   return (
     <>
@@ -69,9 +69,7 @@ export default function MyPageUI(props) {
           </Head>
           {!props.isEdit && (
             <Body>
-            <UserImg source={{uri : uriedit}}
-              
-            />
+            {(props.user?.fetchUserLoggedIn?.picture ? (<UserImg source={{uri : uriedit}} />) : (<UserImg source={require('../../../Assets/Images/Noimage.png')} />))}
               <BodyUserText>{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
               
               
@@ -98,7 +96,9 @@ export default function MyPageUI(props) {
                 
                 
             <Button onPress={props.openGallery}>
-                <UserImg source={{uri : uriedit}} />
+                {props.imageUriGallary? 
+                (<UserImgBackground source={props.imageUriGallary} />) : 
+                (props.user?.fetchUserLoggedIn?.picture ? (<UserImg source={{uri : uriedit}} />) : (<UserImg source={require('../../../Assets/Images/Noimage.png')} />)) }
             </Button>
           
         
@@ -107,7 +107,7 @@ export default function MyPageUI(props) {
                 <BodyUserText style={{color:'#FF5F2E'}}>{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
                 
                 <BodyLocation>
-                <Icon name={'location'} size={15} style={{color:'#C8C8C8'}}/>
+                {/* <Icon name={'location'} size={15} style={{color:'#C8C8C8'}}/> */}
                 <BodyCountry>
                 <Controller
                     control={props.control}
@@ -116,7 +116,7 @@ export default function MyPageUI(props) {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <BodyCountryTextInput
-                  
+                      style={{color:'#FF5F2E'}}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -136,7 +136,7 @@ export default function MyPageUI(props) {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <BodyCityTextInput
-                  
+                      style={{color:'#FF5F2E'}}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -158,7 +158,7 @@ export default function MyPageUI(props) {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <BodyCityTextInput
-                  
+                      style={{color:'#FF5F2E'}}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -181,7 +181,7 @@ export default function MyPageUI(props) {
         <BoardHeadLine></BoardHeadLine>
         
          
-          {props.isShow && (<BoardCard />)}
+          {props.isShow && (<BoardCard navigation={props.navigation}/>)}
             
             <LogOutBtn onPress={props.logOut}><LogOutText>로그아웃</LogOutText></LogOutBtn>
       

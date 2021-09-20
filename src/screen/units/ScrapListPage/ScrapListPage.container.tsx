@@ -6,8 +6,8 @@ import { FETCH_BOARDS_I_SCRAPPED } from './ScrapListPage.queries';
 
 export default function ScrapListPage({navigation}) {
   const { data } = useQuery (FETCH_BOARDS_I_SCRAPPED)
-  const gotoBoardDetailPage = () => {
-    navigation.navigate('BoardDetailPage')
+  const gotoBoardDetailPage = (id) =>() => {
+    navigation.navigate('BoardDetailPage', {id: id})
   }
 
   return <ScrapListPageUI 

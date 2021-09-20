@@ -57,12 +57,24 @@ export const Body = styled.View`
   flex-direction: column;
   align-items: center;
 `;
+export const UserView = styled.View`
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  margin-bottom: 34px;
+`;
 export const UserImg = styled.Image`
   width: 160px;
   height: 160px;
   border-radius: 80px;
   margin-bottom: 34px;
 `;
+export const UserImgBackground = styled.Image`
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  margin-bottom: 34px;
+`
 export const BodyLocation = styled.View`
   width: 100%;
   display: flex;

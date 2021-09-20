@@ -2,7 +2,7 @@ import React from 'react';
 import CommentAlarmPageUI from './CommentAlarmPage.presenter';
 // import MapView from 'react-native-maps';
 
-export default function CommentAlarmPage() {
+export default function CommentAlarmPage(navigation) {
   // if (BoasrdComment) {
   //   dispatch(
   //     BoasrdCommentActions.editPost(BoasrdComment_id, {
@@ -15,6 +15,7 @@ export default function CommentAlarmPage() {
 
   return (
   <CommentAlarmPageUI
+    // navigation={navigation}
     // BoasrdComment={BoasrdComment}
   />
   )

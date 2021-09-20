@@ -7,15 +7,28 @@ import {
   DeleteIcon,
 } from './BoardCommentWrite.styles';
 
-export default function BoardCommentWriteUI() {
+export default function BoardCommentWriteUI(props: any) {
   return (
     <CommentWritetWrapper>
-      <WriteBox>
-        <InputBox placeholder={'Add Comment...'} />
-        <Button>
-          <DeleteIcon
-            source={require('../../../../Assets/Images/IconArrowToTop_G.png')}
-          />
+      <WriteBox active={props.active}>
+        <InputBox
+          onChangeText={text => props.onChangeInput(text)}
+          placeholder={'최대 100글자까지 입력 가능합니다.'}
+          placeholderTextColor="silver"
+          maxLength={100}
+          multiline={true}
+          textAlignVertical={'top'}
+        />
+        <Button onPress={props.onPressBtn}>
+          {props.active ? (
+            <DeleteIcon
+              source={require('../../../../Assets/Images/IconArrowToTop_Y.png')}
+            />
+          ) : (
+            <DeleteIcon
+              source={require('../../../../Assets/Images/IconArrowToTop_G.png')}
+            />
+          )}
         </Button>
       </WriteBox>
     </CommentWritetWrapper>

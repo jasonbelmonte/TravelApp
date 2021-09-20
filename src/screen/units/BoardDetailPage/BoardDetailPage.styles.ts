@@ -7,15 +7,6 @@ export const BackImage = styled.ImageBackground`
   height: 171px;
 `;
 
-// export const DetailWrapper = styled.View`
-//   width: 100%;
-//   height: 1013px;
-//   background-color: #fff;
-//   margin-top: 30px;
-//   /* padding: 0 20px; */
-//   border-radius: 30px 30px 0 0;
-// `
-
 export const TopBox = styled.View`
   width: 100%;
   height: 146px; 
@@ -45,7 +36,6 @@ export const TopLeft = styled.View``
 export const Title = styled.Text`
   font-size: 18px;
   line-height: 20px;
-  /* letter-spacing: -0.02; */
   font-weight: 700;
 `
 
@@ -87,7 +77,6 @@ export const Name = styled.Text`
   font-size: 12px;
   line-height: 13px;
   font-weight: 500;
-  /* letter-spacing: -0.02; */
 `
 
 export const EnrollmentDate = styled.Text`
@@ -98,7 +87,7 @@ export const EnrollmentDate = styled.Text`
 
 export const ContentsBox = styled.View`
   margin-top: .7px;
-  height: 1040px;
+  height: 1080px;
   background-color: #fff;
   padding: 0 20px;
 `
@@ -155,7 +144,6 @@ export const TravelImage = styled.Image`
 export const TravelContents = styled.Text`
   font-size: 12px;
   line-height: 16px;
-  /* letter-spacing: -0.02; */
   margin-bottom: 40px;
   font-weight: 700;
 `
@@ -190,17 +178,17 @@ export const Bar = styled.View`
 
 export const Comment = styled.View`
   flex-direction: row;
+  align-items: center;
   
 `
 
 export const CommentImage = styled.Image`
   width: 20px;
   height: 17.33px;
-  margin-top: 1px;
+  margin-right: 7px;
 `
 
 export const Comments = styled.Text`
   font-size: 14px;
   line-height: 15px;
-  margin: 2px 0 0 7px;
 `

@@ -145,10 +145,11 @@ export default function MainPageUI(props: any) {
             onEndReached={(props.hasMore && props.onUpdate) || null}
             renderItem={({item, index}) => {
               return (
-                <List>
-                  <Card onPress={props.onClikWritePage(item._id)}>
+                <List key={item._id}>
+                  <Card id={item._id} onPress = {props.goToDetailPage(item._id)}>
+
                     <CardLeft>
-                      <CardTitle>{item?.title.substr(0, 27) + '...'}</CardTitle>
+                      <CardTitle >{item?.title.substr(0, 27) + '...'}</CardTitle>
                       <CardMiddle>
                         <LocationImg
                           source={require('../../../Assets/Images/IconLocation.png')}

@@ -33,19 +33,21 @@ import {
   Bar,
   Comment,
   CommentImage,
-  Comments
+  Comments,
 } from './BoardDetailPage.styles';
 import React from 'react';
 // import MapView from 'react-native-maps';
-import { ScrollView } from 'react-native';
+import {ScrollView} from 'react-native';
 
-export default function BoardDetailPageUI(props) {
+export default function BoardDetailPageUI( props: any) {
   return (
     <>
       <Wrapper>
-        <BackImage source={require('../../../Assets/Images/AreaListEuropeImg.png')}>
+        <BackImage
+          source={require('../../../Assets/Images/AreaListEuropeImg.png')}>
           <TopBox>
           
+
 
           <Button onPress={() =>props.navigation.goBack(null)}>
             <Back source={require('../../../Assets/Images/GoToBack_B.png')}></Back>
@@ -57,27 +59,31 @@ export default function BoardDetailPageUI(props) {
               </TopLeft>
 
               {/* <TopRight> */}
-                {/* -------- 타 이용자 게시글 상세페이지 -------- */}
-                {/* <Button> */}
-                  {/* <Scrap source={require('../../../Assets/Images/IconScrap_Y.png')}></Scrap> */}
-                {/* </Button> */}
-                {/* '../../../Assets/Images/IconNaviScrap.png' */}
-                {/* '../../../Assets/Images/IconScrap_Y.png' */}
+              {/* -------- 타 이용자 게시글 상세페이지 -------- */}
+              {/* <Button> */}
+              {/* <Scrap source={require('../../../Assets/Images/IconScrap_Y.png')}></Scrap> */}
+              {/* </Button> */}
+              {/* '../../../Assets/Images/IconNaviScrap.png' */}
+              {/* '../../../Assets/Images/IconScrap_Y.png' */}
               {/* </TopRight> */}
             </Top>
 
             <UserInfo>
               <UserInfoLeft>
                 <Button onPress={props.gotoUserPage}>
-                  <Avatar source={require('../../../Assets/Images/IconUserPhoto.png')}></Avatar>
+                  <Avatar
+                    source={require('../../../Assets/Images/IconUserPhoto.png')}></Avatar>
                 </Button>
                 <Name>{props.data?.fetchBoard?.writer.name}</Name>
               </UserInfoLeft>
 
               <UserInfoRight>
-                <EnrollmentDate>{props.data?.fetchBoard?.createdAt.substr(0, 10)}</EnrollmentDate>
+                <EnrollmentDate>
+                  {props.data?.fetchBoard?.createdAt.substr(0, 10)}
+                </EnrollmentDate>
               </UserInfoRight>
             </UserInfo>
+
               
           
               </TopBox>
@@ -100,7 +106,7 @@ export default function BoardDetailPageUI(props) {
                   <City>
                       <LocationIcon source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
                         <CityName>
-                          {props.data?.fetchBoard?.location.area || '미등록'}{', '}
+                          {props.data?.fetchBoard?.location?.area || '미등록'}{', '}
                           {props.data?.fetchBoard?.location.country || '미등록'}{', '}
                           {props.data?.fetchBoard?.location.city || '미등록'}
                         </CityName>
@@ -114,19 +120,9 @@ export default function BoardDetailPageUI(props) {
                   </Date>
                 </Left>
 
-                <Right>
-                  
-                  <Button onPress={props.onClickMoveToEdit}>
-                    {/* -------- 글쓴이 게시글 상세페이지 -------- */}
-                    <Edit source={require('../../../Assets/Images/IconEdit.png')}></Edit>
-                  </Button>
+                <Right>            
 
-                  <Button onPress={props.onClickDelete}>
-                    <Delete source={require('../../../Assets/Images/IconDelete.png')}></Delete>
-                  </Button>
-                </Right>
-              </Asdf>
-
+                
               <Bar></Bar>
 
               {/* ----- 댓글 보기 ----- */}
@@ -138,10 +134,27 @@ export default function BoardDetailPageUI(props) {
                 </Comment>
               </Button>
 
-              </ContentsBox>
-          </ScrollView>
-      </Wrapper>
+                <Button onPress={props.onClickDelete}>
+                  <Delete
+                    source={require('../../../Assets/Images/IconDelete.png')}></Delete>
+                </Button>
+              </Right>
+            </Asdf>
 
+            <Bar></Bar>
+
+            {/* ----- 댓글 보기 ----- */}
+
+            <Button onPress={props.goToCommentPage(props.data?.fetchBoard._id)}>
+              <Comment>
+                <CommentImage
+                  source={require('../../../Assets/Images/IconComment_B.png')}></CommentImage>
+                <Comments>댓글 보기</Comments>
+              </Comment>
+            </Button>
+          </ContentsBox>
+        </ScrollView>
+      </Wrapper>
     </>
-  )
+  );
 }

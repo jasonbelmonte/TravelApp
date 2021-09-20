@@ -35,7 +35,7 @@ export default function ScrapListPageUI(props) {
               <ScrapImage source={require('../../../Assets/Images/DetailPhoto.png')}></ScrapImage>
 
                 <Contents>
-                <Button onPress={props.gotoBoardDetailPage}>
+                <Button onPress={props.gotoBoardDetailPage(data._id)}>
                   <Title>{data.title}</Title>
                     <Location>
                       <LocationIcon source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
