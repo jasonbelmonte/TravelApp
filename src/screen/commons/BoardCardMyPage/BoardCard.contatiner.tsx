@@ -10,8 +10,8 @@ export default function BoardCard(props) {
     },
   });
   
-  const gotoUserpage = () => {
-    props.navigation.navigate('UserPage');
+  const gotoUserpage = (id) => () => {
+    props.navigation.navigate('UserPage', {id: id});
   }
   // console.log('data : ', data.fetchBoardsIWrote.length);
   // const onLoadMore = () => {  

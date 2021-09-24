@@ -4,10 +4,11 @@ import { FETCH_BOARDS } from '../MainPage/MainPage.queries';
 import MapPageUI from './MapPage.presenter';
 import { FETCH_BOARD } from './MapPage.queries';
 
-export default function MapPage({route}) {
+export default function MapPage({route,navigation}) {
   const [location, setLocation] = useState({
-    latitude: 41.3879,
-    longitude: 2.16992 ,
+    latitude: 37.44571496460574,
+    longitude: 126.9418198429048
+    ,
   });
 
 
@@ -19,14 +20,15 @@ export default function MapPage({route}) {
     } })
 
     const {data:datas} = useQuery(FETCH_BOARD, {
-      variables: {boardId: route.params?.id},
-      // variables: { boardId: "props.data.어쩌구저쩌구" },
+      variables: {boardId:route?.params?.id }
+     
     });
 
-  console.log("data",data)
+  console.log("data",datas)
   return <MapPageUI location={location}
                     data={data}
-                    datas={datas}
+                    navigation={navigation}
+                    // datas={datas}
   
   />;
 }

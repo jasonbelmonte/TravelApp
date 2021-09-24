@@ -9,7 +9,7 @@ export const MarkView = styled.View`
 `;
 export const Title = styled.Text`
   font-size: 16px;
-  color: #e24e4a;
+  color: #FFBE2B;
   font-weight: bold;
 `;
 export const TimeAndPlace = styled.Text`
@@ -31,6 +31,6 @@ export const TextWrapper = styled.View`
 `;
 export const Recruitment = styled.Text`
   font-size: 13px;
-  color: #e24e4a;
+  color: #FFBE2B;
   font-weight: bold;
 `;

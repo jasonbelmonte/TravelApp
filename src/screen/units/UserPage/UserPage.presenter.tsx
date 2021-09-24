@@ -84,7 +84,7 @@ export default function UserPageUI(props) {
         <BoardHeadLine></BoardHeadLine>
         
          
-          {props.isShow && (<BoardCard />)}
+          {props.isShow && (<BoardCard navigation={props.navigation} userId= {props.userId}/>)}
             <LogOutBtn onPress={props.logOut}><LogOutText>로그아웃</LogOutText></LogOutBtn>
                 
       

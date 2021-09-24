@@ -4,6 +4,37 @@ export const Title = styled.TextInput``;
 export const Contents = styled.Text``;
 export const Button = styled.TouchableOpacity``;
 
+
+
+
+export const CommentPageHeader = styled.View`
+  width: 100%;
+  height: 60px;
+  border-bottom-color: #dbdbdb;
+  border-bottom-width: 0.7px;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+export const GoToBackBtn = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+`;
+export const GoToBack = styled.Image`
+  width: 12px;
+  height: 15px;
+  margin-left: 20px;
+`;
+export const TitleBox = styled.View`
+  width: 100%;
+`;
+export const CommentTitle = styled.Text`
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 60px;
+  padding-right: 45px;
+`;
+
 export const BoardCommentWrapper = styled.View`
   width: 100%;
   padding: 0px 20px;

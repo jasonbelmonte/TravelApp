@@ -88,11 +88,11 @@ export const BodyContents = styled.View`
  
 `
 export const BodyCountry = styled.View`
- background-color: blue;
+ 
  
 `
 export const BodyCity = styled.View`
-  background-color: green;
+  
 `
 
 export const BodyUserText = styled.Text`

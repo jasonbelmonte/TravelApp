@@ -30,7 +30,7 @@ export default function MyPage({navigation}) {
   
 
   const gotoCommentAlarmPage = () => {
-    navigation.navigate('UserPage');
+    navigation.navigate('CommentAlarmPage');
   }
   
   const openGallery = () => {

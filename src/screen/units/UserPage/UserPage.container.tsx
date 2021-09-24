@@ -6,10 +6,10 @@ import { FETCH_BOARDS_USER_WROTE, FETCH_USER_LOGGED_IN } from './UserPage.querie
 
 // import MapView from 'react-native-maps';
 
-export default function UserPage() {
+export default function UserPage({navigation,route}) {
   const {data} = useQuery(FETCH_BOARDS_USER_WROTE, {
     variables : {
-      userId : "61405d2bbf73a1002a625ce7"
+      userId : route.params.id
       
     }
   })
@@ -27,7 +27,7 @@ export default function UserPage() {
     
     
       
-      <UserPageUI  data = {data}  isShow={isShow} ShowBoards = {ShowBoards}/>
+      <UserPageUI  data = {data}  isShow={isShow} ShowBoards = {ShowBoards} navigation={navigation} userId={route.params.id}/>
     
     
   ) 

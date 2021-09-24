@@ -39,7 +39,7 @@ export default function ScrapListPageUI(props) {
                   <Title>{data.title}</Title>
                     <Location>
                       <LocationIcon source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
-                      <CityName>{data?.location?.country || '없음' }, {data?.location?.city || '없음' }</CityName>
+                      <CityName>{data?.location?.country || '미등록' }, {data?.location?.city || '미등록' }</CityName>
                     </Location>
                 <Content>{data?.contents.substr(0, 70) + '..'}</Content>
                 </Button>
@@ -52,7 +52,7 @@ export default function ScrapListPageUI(props) {
             <Bar2></Bar2>
           </>
         ))}
-      </ScrollView>
+        </ScrollView>
 
       </Wrapper>
     </>

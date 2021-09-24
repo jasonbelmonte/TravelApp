@@ -104,7 +104,7 @@ export default function MyPageUI(props) {
         
 
               {/* <UserImg source={require('../../../Assets/Images/MainEuropeImg.png')} /> */}
-                <BodyUserText style={{color:'#FF5F2E'}}>{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
+                <BodyUserText >{props.user?.fetchUserLoggedIn?.name}</BodyUserText>
                 
                 <BodyLocation>
                 {/* <Icon name={'location'} size={15} style={{color:'#C8C8C8'}}/> */}
@@ -116,7 +116,7 @@ export default function MyPageUI(props) {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <BodyCountryTextInput
-                      style={{color:'#FF5F2E'}}
+                      style={{color:'#E5E5E5'}}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -136,7 +136,7 @@ export default function MyPageUI(props) {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <BodyCityTextInput
-                      style={{color:'#FF5F2E'}}
+                      style={{color:'#E5E5E5'}}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -158,7 +158,7 @@ export default function MyPageUI(props) {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <BodyCityTextInput
-                      style={{color:'#FF5F2E'}}
+                      style={{color:'#E5E5E5'}}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}

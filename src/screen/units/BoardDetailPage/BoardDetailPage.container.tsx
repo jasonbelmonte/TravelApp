@@ -5,6 +5,7 @@ import BoardDetailPageUI from './BoardDetailPage.presenter';
 import {FETCH_BOARD, DELETE_BOARD} from './BoardDetailPage.queries';
 
 export default function BoardDetailPage({navigation, route}) {
+
   const {data} = useQuery(FETCH_BOARD, {
     variables: {boardId: route.params.id},
     // variables: { boardId: "props.data.어쩌구저쩌구" },
@@ -16,18 +17,18 @@ export default function BoardDetailPage({navigation, route}) {
   };
 
   const goToCommentPage = id => () => {
-    navigation.navigate('CommentPage', {id: id});
+    navigation.navigate('BoardCommentList', {id: id});
   };
 
   async function onClickDelete() {
     try {
       await deleteBoard({variables: {boardId: route?.params?.id}});
       alert('게시물이 삭제되었습니다.');
+      navigation.goBack(null);
     } catch (error) {
       alert(error.message);
     }
   }
-
 
   return (
     <BoardDetailPageUI

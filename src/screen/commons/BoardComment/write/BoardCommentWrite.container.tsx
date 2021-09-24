@@ -25,7 +25,7 @@ export default function BoardCommentWrite(props: any, {route}) {
           createBoardCommentInput: {
             contents: inputComment,
           },
-          boardId: route.params.id,
+          boardId: props.boardId
           // boardId: '61471e74da0ecc002ae9864c',
         },
         // refetchQueries: [

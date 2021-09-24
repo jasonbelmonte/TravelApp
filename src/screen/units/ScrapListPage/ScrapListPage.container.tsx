@@ -11,8 +11,8 @@ export default function ScrapListPage({navigation}) {
   }
 
   return <ScrapListPageUI 
-  data={data}
-  gotoBoardDetailPage={gotoBoardDetailPage}
+    data={data}
+    gotoBoardDetailPage={gotoBoardDetailPage}
   />;
 }
 

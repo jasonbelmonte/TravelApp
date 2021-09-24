@@ -15,20 +15,23 @@ import {
 } from './BoardCommentList.styles';
 import BoardReCommentList from '../../BoardReComment/Relist/BoardReCommentList.container';
 import BoardCommentWrite from '../write/BoardCommentWrite.container';
-import {FETCH_COMMENTS, DELETE_COMMENT} from './BoardCommentList.queries';
-import React, {useContext, useState} from 'react';
-import {GlobalContext} from '../../../../../App';
-import {useMutation} from '@apollo/client';
+import {FETCH_COMMENTS, DELETE_COMMENT,FETCH_USER_LOGGED_IN } from './BoardCommentList.queries';
+import React, { useState} from 'react';
+import {useMutation, useQuery} from '@apollo/client';
 import BoardReCommentWrite from '../../BoardReComment/Rewrite/BoardReCommentWrite.container';
 import {ScrollView} from 'react-native';
 
 export default function CommentListItemUI(props: any) {
-  const {userInfo} = useContext(GlobalContext);
   const [isReplyOpen, setIsReplyOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [deleteCommentMutation] = useMutation(DELETE_COMMENT);
+  const {data : userInfo} = useQuery(FETCH_USER_LOGGED_IN);
 
-  console.log('유저네임 :', userInfo.name);
+
+
+// console.log( '이메일 : ', userInfo.email)
+console.log(userInfo?.fetchUserLoggedIn._id)
+console.log('데이터 :' , props.data._id)
 
   const onPressIsReplyOpen = () => {
     if (isReplyOpen === false) {
@@ -62,7 +65,7 @@ export default function CommentListItemUI(props: any) {
   return (
     <>
       <ScrollView horizontal={false}>
-        {!isEdit && (
+        {/* {!isEdit && ( */}
           <CommentBox key={props.data._id}>
             <TopInfoBox>
               <WriterInfo>
@@ -72,15 +75,13 @@ export default function CommentListItemUI(props: any) {
                 <WriterName>{props.data?.user.name}</WriterName>
               </WriterInfo>
 
-              {/* //! -- Button Box Start -- */}
               <ButtonBox>
-                {props.data.user.name !== userInfo.name ? (
+                {props.data.user._id !== userInfo?.fetchUserLoggedIn._id ? (
                   <Button onPress={onPressIsReplyOpen}>
                     <CommentIcon
                       source={require('../../../../Assets/Images/IconComment_B.png')}
                     />
-                  </Button>
-                ) : (
+                  </Button>) : (
                   <>
                     <Button onPress={onPressIsEdit}>
                       <EditIcon
@@ -93,9 +94,8 @@ export default function CommentListItemUI(props: any) {
                       />
                     </Button>
                   </>
-                )}
+                  )}
               </ButtonBox>
-              {/* //! -- Button Box End -- */}
             </TopInfoBox>
 
             <BottomContents>
@@ -106,15 +106,18 @@ export default function CommentListItemUI(props: any) {
             <BoardReCommentList data={props.data} />
             {isReplyOpen && <BoardReCommentWrite data={props.data} />}
           </CommentBox>
-        )}
-      </ScrollView>
-      {isEdit && (
+        {/* )} */}
+   
+      {/* {isEdit && ( */}
         <BoardCommentWrite
           ondata={props.data}
           isEdit={isEdit}
           setIsEdit={setIsEdit}
+          boardId={props.boardId}
+
         />
-      )}
+      {/* )}    */}
+      </ScrollView>
     </>
   );
 }

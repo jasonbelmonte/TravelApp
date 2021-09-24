@@ -3,10 +3,10 @@ import React from 'react';
 import BoardCardUI from './BoardCard.presenter';
 import {FETCH_BOARDS_USER_WROTE, SCRAP_BOARD} from './BoardCard.queries';
 
-export default function BoardCard() {
+export default function BoardCard(props) {
   const {data} = useQuery(FETCH_BOARDS_USER_WROTE, {
     variables: {
-      userId: "61405d2bbf73a1002a625ce7",
+      userId: props.userId,
     },
   });
   const [scrapboard] = useMutation(SCRAP_BOARD)
@@ -19,5 +19,8 @@ export default function BoardCard() {
     console.log(result)
   }
 
-  return <BoardCardUI data={data} Scrapping={Scrapping} />;
+  const gotoUserpage = (id) => () => {
+    props.navigation.navigate('UserPage',{id:id});
+  }
+  return <BoardCardUI data={data} Scrapping={Scrapping} gotoUserpage={gotoUserpage} />;
 }

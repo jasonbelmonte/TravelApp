@@ -7,6 +7,7 @@ export const FETCH_COMMENTS = gql`
     fetchComments(boardId: $boardId) {
       _id
       contents
+      
       user {
         _id
         email
@@ -22,3 +23,14 @@ export const DELETE_COMMENT = gql`
     deleteComment(boardCommentId: $boardCommentId)
   }
 `;
+
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn{
+    fetchUserLoggedIn{
+      _id
+      email
+      name
+    }
+  }
+`

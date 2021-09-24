@@ -45,7 +45,6 @@ export const GlobalContext = createContext({});
 
 const App = () => {
   const [accessToken, setAccessToken] = useState('');
-  const [userInfo, setUserInfo] = useState({});
 
   // const clientnoheaders = new ApolloClient({
   //   uri: 'http://35.222.217.201:4000/graphql',
@@ -69,7 +68,7 @@ const App = () => {
   return (
     <>
       <GlobalContext.Provider
-        value={{accessToken, setAccessToken, userInfo, setUserInfo}}>
+        value={{accessToken, setAccessToken}}>
         <ApolloProvider client={client}>
           <NavigationContainer>
             <Tabs />
