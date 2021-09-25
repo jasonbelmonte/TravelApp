@@ -67,8 +67,7 @@ const App = () => {
   // const client = accessToken === "" ? clientheaders : clientheaders
   return (
     <>
-      <GlobalContext.Provider
-        value={{accessToken, setAccessToken}}>
+      <GlobalContext.Provider value={{accessToken, setAccessToken}}>
         <ApolloProvider client={client}>
           <NavigationContainer>
             <Tabs />

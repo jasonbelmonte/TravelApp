@@ -10,12 +10,7 @@ import {
 } from './MapPage.styles';
 import React from 'react';
 // import {Text, View} from 'react-native';
-import MapView, {
-  Callout,
-  Marker,
-  Overlay,
-  PROVIDER_GOOGLE,
-} from 'react-native-maps';
+import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {
   Image,
   StyleSheet,
@@ -26,7 +21,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {getDate} from '../../commons/libraries/getdate';
-
+import 'react-native-get-random-values';
+import {v4 as uuidv4} from 'uuid';
 export default function MapPageUI(props: any) {
   // console.log("data",props.data.fetchBoards)
   return (
@@ -45,7 +41,7 @@ export default function MapPageUI(props: any) {
             return data?.location?.lat ? (
               <Marker
                 onPress={props.showCard(data._id)}
-                key={index}
+                key={uuidv4()}
                 coordinate={{
                   latitude: data?.location?.lat,
                   longitude: data?.location?.lng,
@@ -54,12 +50,8 @@ export default function MapPageUI(props: any) {
                 description="this is a marker example">
                 <View
                   style={{
-                    // borderRadius: 50 / 2,
-                    // backgroundColor: 'white',
-                    // borderWidth: 1,
                     width: 60,
                     height: 60,
-                    // position: 'absolute',
                   }}>
                   {/* <Icon name={'street-view'} size={30} color={'darkred'} /> */}
                   <ImageBackground

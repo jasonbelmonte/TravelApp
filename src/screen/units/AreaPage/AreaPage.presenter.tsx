@@ -20,9 +20,7 @@ export default function AreaPageUI(props: any) {
   return (
     <Wrapper>
       {/* //! ===== TopHeader Start ===== */}
-      <AreaListHeader
-        source={require('../../../Assets/Images/AreaListEuropeImg.png')}
-        resizeMode="cover">
+      <AreaListHeader source={props.area.picture} resizeMode="cover">
         <AreaListTop>
           <AreaTitleBox>
             <AreaBoxLeft>
@@ -31,7 +29,7 @@ export default function AreaPageUI(props: any) {
                   source={require('../../../Assets/Images/GoToBack_W.png')}
                 />
               </Button>
-              <AreaTextBox>Europe</AreaTextBox>
+              <AreaTextBox>{props.area.text}</AreaTextBox>
             </AreaBoxLeft>
             <AreaBoxRight>
               <Button onPress={props.goToSearch}>
@@ -57,7 +55,7 @@ export default function AreaPageUI(props: any) {
 
       {/* //! ===== Contents Start ===== */}
       <AreaListWrap>
-        <BoardCard navigation={props.navigation} />
+        <BoardCard navigation={props.navigation} area={props.area} />
       </AreaListWrap>
     </Wrapper>
   );

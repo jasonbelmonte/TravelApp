@@ -47,11 +47,9 @@ export default function BoardWritePage({navigation}) {
       .every(data => data);
     if (!isEvery) {
       setErrorModal(true);
-    }
-    if (Object.values(newLoc).every(data => data === '')) {
+    } else if (Object.values(newLoc).every(data => data === '')) {
       setErrorModal(true);
-    }
-    if (Object.values(newDate).every(data => data === '')) {
+    } else if (Object.values(newDate).every(data => data === '')) {
       setErrorModal(true);
     } else {
       try {

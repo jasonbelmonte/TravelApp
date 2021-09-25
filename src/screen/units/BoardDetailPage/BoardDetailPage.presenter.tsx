@@ -36,23 +36,21 @@ import {
   Comments,
 } from './BoardDetailPage.styles';
 import React from 'react';
-// import MapView from 'react-native-maps';
 
-import { ScrollView } from 'react-native';
-import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import {ScrollView} from 'react-native';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
-export default function BoardDetailPageUI( props: any) {
-
+export default function BoardDetailPageUI(props: any) {
   return (
     <>
       <Wrapper>
         <BackImage
           source={require('../../../Assets/Images/AreaListEuropeImg.png')}>
           <TopBox>
-          
-          <Button onPress={() =>props.navigation.goBack(null)}>
-            <Back source={require('../../../Assets/Images/GoToBack_B.png')}></Back>
-          </Button>
+            <Button onPress={() => props.navigation.goBack(null)}>
+              <Back
+                source={require('../../../Assets/Images/GoToBack_B.png')}></Back>
+            </Button>
 
             <Top>
               <TopLeft>
@@ -62,12 +60,12 @@ export default function BoardDetailPageUI( props: any) {
               <TopRight>
                 {/* -------- 타 이용자 게시글 상세페이지 -------- */}
                 <Button>
-                  <Scrap source={require('../../../Assets/Images/IconNaviScrap.png')}></Scrap>
+                  <Scrap
+                    source={require('../../../Assets/Images/IconScrap_G.png')}></Scrap>
                 </Button>
-                {/* '../../../Assets/Images/IconNaviScrap.png' */}
+                {/* '../../../Assets/Images/IconScrap_G.png' */}
                 {/* '../../../Assets/Images/IconScrap_Y.png' */}
               </TopRight>
-
             </Top>
 
             <UserInfo>
@@ -75,6 +73,7 @@ export default function BoardDetailPageUI( props: any) {
                 <Button onPress={props.gotoUserPage}>
                   <Avatar
                     source={require('../../../Assets/Images/IconUserPhoto.png')}></Avatar>
+                  {/* {{uri: `https://storage.googleapis.com/${data}`}} */}
                 </Button>
                 <Name>{props.data?.fetchBoard?.writer.name}</Name>
               </UserInfoLeft>
@@ -85,69 +84,67 @@ export default function BoardDetailPageUI( props: any) {
                 </EnrollmentDate>
               </UserInfoRight>
             </UserInfo>
+          </TopBox>
+        </BackImage>
 
-              
-          
-              </TopBox>
+        {/* ------- Contents ------- */}
+        <ScrollView>
+          <ContentsBox>
+            {props.data?.fetchBoard?.images.map(data => (
+              <TravelImage
+                source={{uri: `https://storage.googleapis.com/${data}`}}
+              />
+            ))}
 
-            </BackImage>
-              
-            {/* ------- Contents ------- */}
-            <ScrollView>
-            <ContentsBox>
+            <TravelContents>{props.data?.fetchBoard?.contents}</TravelContents>
 
-              {props.data?.fetchBoard?.images.map((data)=>(
-                  <TravelImage source={{uri : `https://storage.googleapis.com/${data}`}} />
-              ))}
+            <TravelMap>
+              <MapView
+                provider={PROVIDER_GOOGLE}
+                style={{flex: 1}}
+                initialRegion={{
+                  latitude:
+                    props.data?.fetchBoard?.location?.lat || 37.44555206021027,
+                  longitude:
+                    props.data?.fetchBoard?.location?.lng || 126.94461101666093,
+                  latitudeDelta: 0.005,
+                  longitudeDelta: 0.005,
+                }}>
+                <Marker
+                  coordinate={{
+                    latitude: props.data?.fetchBoard?.location?.lat || 0,
+                    longitude: props.data?.fetchBoard?.location?.lng || 0,
+                  }}
+                  description="this is a marker example"></Marker>
+              </MapView>
+            </TravelMap>
 
-              
-              
-              <TravelContents>{props.data?.fetchBoard?.contents}</TravelContents>
+            <Asdf>
+              <Left>
+                <City>
+                  <LocationIcon
+                    source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
+                  <CityName>
+                    {props.data?.fetchBoard?.location?.area || '미등록'}
+                    {', '}
+                    {props.data?.fetchBoard?.location.country || '미등록'}
+                    {', '}
+                    {props.data?.fetchBoard?.location.city || '미등록'}
+                  </CityName>
+                </City>
 
-              <TravelMap>
-                <MapView
-                  provider={PROVIDER_GOOGLE}
-                  style={{flex:1,}}
-                  initialRegion={{
-                    latitude:props.data?.fetchBoard?.location?.lat  ||  37.44555206021027,
-                    longitude: props.data?.fetchBoard?.location?.lng  || 126.94461101666093, 
-                    latitudeDelta: 0.005,
-                    longitudeDelta: 0.005,
-                  }}> 
-                    <Marker
-                      coordinate={{
-                        latitude: props.data?.fetchBoard?.location?.lat || 0, 
-                        longitude: props.data?.fetchBoard?.location?.lng || 0
-                      }}
-                      description="this is a marker example">
-                    </Marker>
-                  </MapView>
-              </TravelMap>
+                <Date>
+                  <TravelDateIcon
+                    source={require('../../../Assets/Images/IconSchedule.png')}></TravelDateIcon>
+                  <TravelDate>
+                    {props.data?.fetchBoard?.startDate.substr(0, 10)} ~{' '}
+                    {props.data?.fetchBoard?.endDate.substr(0, 10)}
+                  </TravelDate>
+                </Date>
+              </Left>
 
-              <Asdf>
-                <Left>
-                  <City>
-                      <LocationIcon source={require('../../../Assets/Images/IconLocation.png')}></LocationIcon>
-                        <CityName>
-                          {props.data?.fetchBoard?.location?.area || '미등록'}{', '}
-                          {props.data?.fetchBoard?.location.country || '미등록'}{', '}
-                          {props.data?.fetchBoard?.location.city || '미등록'}
-                        </CityName>
-                  </City>
-
-                  <Date>
-                        <TravelDateIcon source={require('../../../Assets/Images/IconSchedule.png')}></TravelDateIcon>
-                        <TravelDate>
-                          {props.data?.fetchBoard?.startDate.substr(0, 10)} ~ {props.data?.fetchBoard?.endDate.substr(0, 10)}
-                        </TravelDate>
-                  </Date>
-                </Left>
-
-                <Right>            
-
-                
-              <Bar></Bar>
-
+              <Right>
+                <Bar></Bar>
 
                 <Button onPress={props.onClickDelete}>
                   <Delete

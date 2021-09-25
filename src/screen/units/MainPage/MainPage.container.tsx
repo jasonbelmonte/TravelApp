@@ -9,16 +9,46 @@ import {useState} from 'react';
 import {Animated} from 'react-native';
 import MainPageUI from './MainPage.presenter';
 import {FETCH_BOARDS} from './MainPage.queries';
-export default function MainPage({navigation, route}) {
-  useEffect(() => {
-    refetch();
-  }, []);
 
+export default function MainPage({navigation, route}) {
+  const AreaArray = [
+    {
+      picture: require('../../../Assets/Images/MainEuropeImg.png'),
+      text: 'Europe',
+      textKorean: '유럽',
+    },
+    {
+      picture: require('../../../Assets/Images/MainSouthAmericaImg.png'),
+      text: 'South America',
+      textKorean: '남아메리카',
+    },
+    {
+      picture: require('../../../Assets/Images/MainNorthAmericaImg.png'),
+      text: 'North America',
+      textKorean: '북아메리카',
+    },
+    {
+      picture: require('../../../Assets/Images/MainAsiaImg.png'),
+      text: 'Asia',
+      textKorean: '아시아',
+    },
+    {
+      picture: require('../../../Assets/Images/MainAfreecaImg.png'),
+      text: 'Africa',
+      textKorean: '아프리카',
+    },
+    {
+      picture: require('../../../Assets/Images/MainOceaniaImg.png'),
+      text: 'Oceania',
+      textKorean: '오세아니아',
+    },
+  ];
+  console.log(AreaArray[0].picture);
   const goToWrite = () => {
     navigation.navigate('Write');
   };
-  const goToAreaPage = () => {
-    navigation.push('AreaPage');
+  const goToAreaPage = area => () => {
+    navigation.navigate('AreaPage', {area: area});
   };
 
   const goToDetailPage = id => () => {
@@ -94,6 +124,7 @@ export default function MainPage({navigation, route}) {
       goToAreaPage={goToAreaPage}
       onClikWritePage={onClikWritePage}
       goToDetailPage={goToDetailPage}
+      AreaArray={AreaArray}
     />
   );
 }

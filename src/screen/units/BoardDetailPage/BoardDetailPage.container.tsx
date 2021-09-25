@@ -1,19 +1,17 @@
 import React from 'react';
 import {useQuery, useMutation} from '@apollo/client';
 import BoardDetailPageUI from './BoardDetailPage.presenter';
-// import MapView from 'react-native-maps';
 import {FETCH_BOARD, DELETE_BOARD} from './BoardDetailPage.queries';
+// import MapView from 'react-native-maps';
 
 export default function BoardDetailPage({navigation, route}) {
   const {data} = useQuery(FETCH_BOARD, {
     variables: {boardId: route.params.id},
-    // variables: { boardId: "props.data.어쩌구저쩌구" },
   });
   const [deleteBoard] = useMutation(DELETE_BOARD);
-  // console.log(data.fetchBoard._id);
   const gotoUserPage = () => {
-    navigation.navigate('UserPage',{id: data?.fetchBoard?.writer?._id});
-    console.log(data?.fetchBoard)
+    navigation.navigate('UserPage', {id: data?.fetchBoard?.writer?._id});
+    console.log(data?.fetchBoard);
   };
 
   const goToCommentPage = id => () => {

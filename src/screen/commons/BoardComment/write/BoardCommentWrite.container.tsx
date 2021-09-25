@@ -25,13 +25,13 @@ export default function BoardCommentWrite(props: any, {route}) {
           createBoardCommentInput: {
             contents: inputComment,
           },
-          boardId: props.boardId
+          boardId: props.boardId,
         },
         refetchQueries: [
           {
             query: FETCH_COMMENTS,
             variables: {
-              boardId:  props.boardId
+              boardId: props.boardId,
             },
           },
         ],

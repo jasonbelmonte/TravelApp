@@ -18,7 +18,7 @@ import {
   WriterName,
   ImageBox,
 } from './BoardCard.styles';
-
+import ScrapMark from '../ScrapMark/ScrapMark.container';
 export default function BoardCardUI(props: any) {
   // const [myMenu, setMyMenu] = useState('') // myMenu = "유럽"
 
@@ -41,8 +41,6 @@ export default function BoardCardUI(props: any) {
     });
   };
 
-
-
   return (
     //       {/* {props.data?.fetchBoards.filter((data) => data.location.area === myMenu) && (
     //         <FlatList
@@ -58,8 +56,11 @@ export default function BoardCardUI(props: any) {
             <CardWrap key={item._id}>
               <Card id={item._id}>
                 <CardLeft onPress={props.goToBoardDetail(item._id)}>
-                  <CardTitle>{ item?.title.length >= 24 ? item?.title.substr(0, 24) + '..' : item?.title}</CardTitle>
-                 
+                  <CardTitle>
+                    {item?.title.length >= 24
+                      ? item?.title.substr(0, 24) + '..'
+                      : item?.title}
+                  </CardTitle>
 
                   <CardMiddle>
                     <LocationImg
@@ -91,10 +92,7 @@ export default function BoardCardUI(props: any) {
                 </CardLeft>
                 <CardRight>
                   <Button onPress={props.scrapBtn}>
-                    <ScrapButton
-                      source={require('../../../Assets/Images/IconScrap_G.png')}
-                      resizeMode="cover"
-                    />
+                    <ScrapMark _id={item._id} />
                   </Button>
                 </CardRight>
               </Card>

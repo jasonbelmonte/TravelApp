@@ -1,11 +1,15 @@
-// import { gql } from "@apollo/client"
+import { gql } from "@apollo/client"
 
-// export const FETCH_BOARDS_I_SCRAPPED = gql`
-//     query fetchboardsIscrapped{
-//         fetchBoardsIScrapped{
+export const SCRAP_BOARD = gql`
+  mutation scrapboard($boardId : ID!){
+    scrapBoard(boardId : $boardId)
+  }
+`
 
-//         }
-//     }
-// ` 
-
-// queries 들은 각각 따로 
+export const FETCH_BOARDS_I_SCRAPPED = gql`
+     query fetchboardsIscrapped{
+         fetchBoardsIScrapped{
+            _id
+         }
+     }
+ ` 

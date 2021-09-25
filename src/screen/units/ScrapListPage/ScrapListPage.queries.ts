@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import {gql} from '@apollo/client';
 
 export const FETCH_BOARDS_I_SCRAPPED = gql`
   query scrapped {
@@ -12,4 +12,9 @@ export const FETCH_BOARDS_I_SCRAPPED = gql`
       }
     }
   }
-`
+`;
+export const SCRAP_BOARD = gql`
+  mutation scrapboard($boardId: ID!) {
+    scrapBoard(boardId: $boardId)
+  }
+`;

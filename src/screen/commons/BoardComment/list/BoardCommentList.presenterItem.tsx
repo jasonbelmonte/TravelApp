@@ -15,8 +15,12 @@ import {
 } from './BoardCommentList.styles';
 import BoardReCommentList from '../../BoardReComment/Relist/BoardReCommentList.container';
 import BoardCommentWrite from '../write/BoardCommentWrite.container';
-import {FETCH_COMMENTS, DELETE_COMMENT,FETCH_USER_LOGGED_IN } from './BoardCommentList.queries';
-import React, { useState} from 'react';
+import {
+  FETCH_COMMENTS,
+  DELETE_COMMENT,
+  FETCH_USER_LOGGED_IN,
+} from './BoardCommentList.queries';
+import React, {useState} from 'react';
 import {useMutation, useQuery} from '@apollo/client';
 import BoardReCommentWrite from '../../BoardReComment/Rewrite/BoardReCommentWrite.container';
 import {Alert, ScrollView} from 'react-native';
@@ -25,10 +29,10 @@ export default function CommentListItemUI(props: any) {
   const [isReplyOpen, setIsReplyOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [deleteCommentMutation] = useMutation(DELETE_COMMENT);
-  const {data : userInfo} = useQuery(FETCH_USER_LOGGED_IN);
+  const {data: userInfo} = useQuery(FETCH_USER_LOGGED_IN);
 
-console.log(userInfo?.fetchUserLoggedIn._id)
-console.log('데이터 :' , props.data._id)
+  console.log(userInfo?.fetchUserLoggedIn._id);
+  console.log('데이터 :', props.data._id);
 
   const onPressIsReplyOpen = () => {
     if (isReplyOpen === false) {
@@ -45,20 +49,20 @@ console.log('데이터 :' , props.data._id)
     try {
       await deleteCommentMutation({
         variables: {
-          boardCommentId: commentDeleteId
+          boardCommentId: commentDeleteId,
         },
-        refetchQueries:[
+        refetchQueries: [
           {
             query: FETCH_COMMENTS,
-           variables:{
-            boardId:  props.boardId
-          }}
-        ]
+            variables: {
+              boardId: props.boardId,
+            },
+          },
+        ],
       });
       Alert.alert('댓글이 삭제되었습니다.');
     } catch (error) {
       Alert.alert('댓글이 삭제되지 않았습니다.', error.message);
-
     }
   };
 
@@ -81,7 +85,8 @@ console.log('데이터 :' , props.data._id)
                     <CommentIcon
                       source={require('../../../../Assets/Images/IconComment_B.png')}
                     />
-                  </Button>) : (
+                  </Button>
+                ) : (
                   <>
                     <Button onPress={onPressIsEdit}>
                       <EditIcon
@@ -94,7 +99,7 @@ console.log('데이터 :' , props.data._id)
                       />
                     </Button>
                   </>
-                  )}
+                )}
               </ButtonBox>
             </TopInfoBox>
 
@@ -103,20 +108,19 @@ console.log('데이터 :' , props.data._id)
               <CreatingDate>{props.data?.createdAt.substr(0, 10)}</CreatingDate>
             </BottomContents>
 
-            <BoardReCommentList data={props.data} />
+            {/* <BoardReCommentList data={props.data} /> */}
             {isReplyOpen && <BoardReCommentWrite data={props.data} />}
           </CommentBox>
         )}
-   
-      {isEdit && (
-        <BoardCommentWrite
-          ondata={props.data}
-          isEdit={isEdit}
-          setIsEdit={setIsEdit}
-          boardId={props.boardId}
 
-        />
-      )} 
+        {isEdit && (
+          <BoardCommentWrite
+            ondata={props.data}
+            isEdit={isEdit}
+            setIsEdit={setIsEdit}
+            boardId={props.boardId}
+          />
+        )}
       </ScrollView>
     </>
   );
