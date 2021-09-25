@@ -26,16 +26,15 @@ export default function BoardCommentWrite(props: any, {route}) {
             contents: inputComment,
           },
           boardId: props.boardId
-          // boardId: '61471e74da0ecc002ae9864c',
         },
-        // refetchQueries: [
-        //   {
-        //     query: FETCH_COMMENTS,
-        //     variables: {
-        //       boardId: route.params.id,
-        //     },
-        //   },
-        // ],
+        refetchQueries: [
+          {
+            query: FETCH_COMMENTS,
+            variables: {
+              boardId:  props.boardId
+            },
+          },
+        ],
       });
       // setInputComment;
       Alert.alert('댓글이 등록되었습니다.');

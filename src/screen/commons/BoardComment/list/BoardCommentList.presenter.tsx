@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import {ScrollView} from 'react-native';
 import BoardCommentWrite from '../write/BoardCommentWrite.container';
 import CommentListItemUI from './BoardCommentList.presenterItem';
 import {
@@ -9,17 +9,18 @@ import {
   GoToBack,
   TitleBox,
   CommentTitle,
-  BoardCommentWrapper
+  BoardCommentWrapper,
 } from './BoardCommentList.styles';
 
 export default function BoardCommentListUI(props: any) {
-
   return (
     <Body>
-        {/* //! -- Header -- */}
+      {/* //! -- Header -- */}
       <CommentPageHeader>
         <GoToBackBtn onPress={() => props.navigation.goBack(null)}>
-          <GoToBack source={require('../../../../Assets/Images/GoToBack_B.png')} />
+          <GoToBack
+            source={require('../../../../Assets/Images/GoToBack_B.png')}
+          />
         </GoToBackBtn>
         <TitleBox>
           <CommentTitle>댓글</CommentTitle>
@@ -30,14 +31,18 @@ export default function BoardCommentListUI(props: any) {
       <ScrollView>
         <BoardCommentWrapper>
           {props.data?.fetchComments.map((data: any) => (
-            <CommentListItemUI navigation={props.navigation} data={data} key={data._id} boardId={props.boardId} />
+            <CommentListItemUI
+              navigation={props.navigation}
+              data={data}
+              key={data._id}
+              boardId={props.boardId}
+            />
           ))}
         </BoardCommentWrapper>
       </ScrollView>
 
       {/* //! -- Write  -- */}
-      <BoardCommentWrite />
+      <BoardCommentWrite data={props.data}/>
     </Body>
-
   );
 }

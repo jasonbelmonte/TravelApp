@@ -4,7 +4,7 @@ import {
   WriteBox,
   InputBox,
   Button,
-  DeleteIcon,
+  UploadBtn,
 } from './BoardCommentWrite.styles';
 
 export default function BoardCommentWriteUI(props: any) {
@@ -21,11 +21,11 @@ export default function BoardCommentWriteUI(props: any) {
         />
         <Button onPress={props.onPressBtn}>
           {props.active ? (
-            <DeleteIcon
+            <UploadBtn
               source={require('../../../../Assets/Images/IconArrowToTop_Y.png')}
             />
           ) : (
-            <DeleteIcon
+            <UploadBtn
               source={require('../../../../Assets/Images/IconArrowToTop_G.png')}
             />
           )}

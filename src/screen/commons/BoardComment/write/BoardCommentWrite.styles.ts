@@ -8,7 +8,7 @@ export const CommentWritetWrapper = styled.View`
   background-color: #d6e8e3;
 `;
 export const WriteBox = styled.View`
-  width: 95%;
+  width: 100%;
   height: 50px;
   border: ${props => (props.active ? '1px #FFBE2B' : '1px #d8d8d8')};
   border-radius: 10px;
@@ -27,7 +27,7 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
-export const DeleteIcon = styled.Image`
+export const UploadBtn = styled.Image`
   width: 15px;
   height: 20.3px;
   margin-right: 10px;

@@ -96,8 +96,11 @@ export default function BoardDetailPageUI( props: any) {
             <ScrollView>
             <ContentsBox>
 
-              {/* <TravelImage source={require('../../../Assets/Images/DetailPhoto.png')}></TravelImage> */}
-              <TravelImage source={props.data?.fetchBoard?.images[0]} />
+              {props.data?.fetchBoard?.images.map((data)=>(
+                  <TravelImage source={{uri : `https://storage.googleapis.com/${data}`}} />
+              ))}
+
+              
               
               <TravelContents>{props.data?.fetchBoard?.contents}</TravelContents>
 

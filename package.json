@@ -51,6 +51,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-webview": "11.6.5",
     "react-navigation": "^4.4.4",
+    "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
     "@types/react-native-calendars": "^1.1264.2",
     "@types/react-native-vector-icons": "^6.4.8",
     "@types/react-test-renderer": "^16.9.2",
+    "@types/uuid": "^8.3.1",
     "babel-jest": "^26.6.3",
     "eslint": "^7.14.0",
     "jest": "^26.6.3",

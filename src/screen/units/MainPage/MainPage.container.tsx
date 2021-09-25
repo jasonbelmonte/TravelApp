@@ -10,11 +10,10 @@ import {Animated} from 'react-native';
 import MainPageUI from './MainPage.presenter';
 import {FETCH_BOARDS} from './MainPage.queries';
 export default function MainPage({navigation, route}) {
+  useEffect(() => {
+    refetch();
+  }, []);
 
-
-  // useEffect(() => {
-  //   refetch()
-  // }, []);
   const goToWrite = () => {
     navigation.navigate('Write');
   };
@@ -22,9 +21,9 @@ export default function MainPage({navigation, route}) {
     navigation.push('AreaPage');
   };
 
-  const goToDetailPage = (id) => () => {
-    navigation.navigate('BoardDetailPage', {id : id})
-  }
+  const goToDetailPage = id => () => {
+    navigation.navigate('BoardDetailPage', {id: id});
+  };
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -35,7 +34,7 @@ export default function MainPage({navigation, route}) {
   });
 
   const [hasMore, setHasMore] = useState(true);
- 
+
   const {data, refetch, loading, fetchMore, networkStatus} = useQuery(
     FETCH_BOARDS,
     {
@@ -52,11 +51,9 @@ export default function MainPage({navigation, route}) {
     if (!data) return;
     fetchMore({
       variables: {page: Math.ceil(data?.fetchBoards.length / 10) + 1},
-
       updateQuery: (prev, {fetchMoreResult}) => {
         // cache 수정이랑 비슷함  , prev하면 기존에 있던 cache전체 , fetchMoreResult(매게변수) 2페이지
         if (!fetchMoreResult.fetchBoards.length) setHasMore(false);
-
         return {
           fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards],
         };
@@ -64,14 +61,24 @@ export default function MainPage({navigation, route}) {
       },
     });
   };
+  // const cache = new InMemoryCache({
+  //   typePolicies: {
+  //     Query: {
+  //       fields: {
+  //         fetchBoards: offsetLimitPagination(),
+  //       },
+  //     },
+  //   },
+  // });
+
   // console.log('good', data?.fetchUseditems);
 
   // const refreshing = data.networkStatus
   const refreshing = networkStatus === NetworkStatus.refetch;
   // prevent the loading indicator from appearing while refreshing
 
-  const onClikWritePage = (id)=> () => {
-    navigation.navigate('BoardDetailPage', {id:id});
+  const onClikWritePage = id => () => {
+    navigation.navigate('BoardDetailPage', {id: id});
   };
 
   return (

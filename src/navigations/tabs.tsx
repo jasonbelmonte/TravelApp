@@ -62,11 +62,7 @@ const Wrapper = styled.View`
   justify-content: center;
   align-items: center;
 `;
-const HomeStackScreen = ({route,navigation}) => {
-  route.state && route.state.index > 0
-  ? navigation.setOptions({ tabBarVisible: false })
-  : navigation.setOptions({ tabBarVisible: true });
-  
+const HomeStackScreen = ({route, navigation}) => {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -116,7 +112,7 @@ const HomeStackScreen = ({route,navigation}) => {
         component={UserPage}
         options={{title: 'UserPage', headerShown: false}}
       />
-      
+
       <HomeStack.Screen
         name="BoardCommentList"
         // tabBarStyle={{display: 'none'}}
@@ -127,13 +123,8 @@ const HomeStackScreen = ({route,navigation}) => {
         }}
       />
     </HomeStack.Navigator>
-    
   );
-
-  
 };
-
-
 
 const MapStackScreen = () => {
   return (
@@ -142,6 +133,11 @@ const MapStackScreen = () => {
         name="Map"
         component={MapPage}
         options={{title: 'Map', headerShown: false}}
+      />
+      <MapStack.Screen
+        name="BoardDetailPage"
+        component={BoardDetailPage}
+        options={{title: 'BoardDetailPage', headerShown: false}}
       />
     </MapStack.Navigator>
   );
@@ -167,12 +163,11 @@ const MypageStackScreen = () => {
         component={MyPage}
         options={{title: 'Mypage', headerShown: false}}
       />
-    
-      <MypageStack.Screen
 
-    name="UserPage"
-    component={UserPage}
-    options={{title: 'UserPage', headerShown: false}}
+      <MypageStack.Screen
+        name="UserPage"
+        component={UserPage}
+        options={{title: 'UserPage', headerShown: false}}
       />
       <MypageStack.Screen
         name="CommentAlarmpage"
@@ -206,7 +201,6 @@ const MypageStackScreen = () => {
 // }
 
 export default function Tabs() {
-  
   const [isLogin, setIsLogin] = useState(false);
   const TabNaviRounded = {
     tabBarStyle: {
@@ -222,7 +216,6 @@ export default function Tabs() {
       // right: 15,
       height: 60,
       alignItems: 'center',
-      
     },
   };
   const {accessToken, setAccessToken} = useContext(GlobalContext);

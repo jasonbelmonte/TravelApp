@@ -19,7 +19,7 @@ import {FETCH_COMMENTS, DELETE_COMMENT,FETCH_USER_LOGGED_IN } from './BoardComme
 import React, { useState} from 'react';
 import {useMutation, useQuery} from '@apollo/client';
 import BoardReCommentWrite from '../../BoardReComment/Rewrite/BoardReCommentWrite.container';
-import {ScrollView} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 
 export default function CommentListItemUI(props: any) {
   const [isReplyOpen, setIsReplyOpen] = useState(false);
@@ -27,9 +27,6 @@ export default function CommentListItemUI(props: any) {
   const [deleteCommentMutation] = useMutation(DELETE_COMMENT);
   const {data : userInfo} = useQuery(FETCH_USER_LOGGED_IN);
 
-
-
-// console.log( '이메일 : ', userInfo.email)
 console.log(userInfo?.fetchUserLoggedIn._id)
 console.log('데이터 :' , props.data._id)
 
@@ -44,28 +41,31 @@ console.log('데이터 :' , props.data._id)
     setIsEdit(true);
   };
 
-  // const onPressIsDelete = (commentDeleteId: any) => async () => {
-  //   try {
-  //     await deleteCommentMutation({
-  //       variables: {
-  //         boardCommentId: commentDeleteId
-  //       },
-  //       refetchQueries:[
-  //         {query: FETCH_COMMENTS,
-  //         variables:{
-  //           boardCommentId: //refetch어디로 갈거니
-  //         }}
-  //       ]
-  //     });
-  //   } catch (error) {
-  //     //삭제가 취소되었다.
-  //   }
-  // };
+  const onPressIsDelete = (commentDeleteId: any) => async () => {
+    try {
+      await deleteCommentMutation({
+        variables: {
+          boardCommentId: commentDeleteId
+        },
+        refetchQueries:[
+          {
+            query: FETCH_COMMENTS,
+           variables:{
+            boardId:  props.boardId
+          }}
+        ]
+      });
+      Alert.alert('댓글이 삭제되었습니다.');
+    } catch (error) {
+      Alert.alert('댓글이 삭제되지 않았습니다.', error.message);
+
+    }
+  };
 
   return (
     <>
       <ScrollView horizontal={false}>
-        {/* {!isEdit && ( */}
+        {!isEdit && (
           <CommentBox key={props.data._id}>
             <TopInfoBox>
               <WriterInfo>
@@ -88,7 +88,7 @@ console.log('데이터 :' , props.data._id)
                         source={require('../../../../Assets/Images/IconEdit.png')}
                       />
                     </Button>
-                    <Button>
+                    <Button onPress={onPressIsDelete(props.data._id)}>
                       <DeleteIcon
                         source={require('../../../../Assets/Images/IconDelete.png')}
                       />
@@ -106,9 +106,9 @@ console.log('데이터 :' , props.data._id)
             <BoardReCommentList data={props.data} />
             {isReplyOpen && <BoardReCommentWrite data={props.data} />}
           </CommentBox>
-        {/* )} */}
+        )}
    
-      {/* {isEdit && ( */}
+      {isEdit && (
         <BoardCommentWrite
           ondata={props.data}
           isEdit={isEdit}
@@ -116,7 +116,7 @@ console.log('데이터 :' , props.data._id)
           boardId={props.boardId}
 
         />
-      {/* )}    */}
+      )} 
       </ScrollView>
     </>
   );

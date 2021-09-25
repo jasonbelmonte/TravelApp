@@ -41,6 +41,8 @@ export default function BoardCardUI(props: any) {
     });
   };
 
+
+
   return (
     //       {/* {props.data?.fetchBoards.filter((data) => data.location.area === myMenu) && (
     //         <FlatList
@@ -56,7 +58,9 @@ export default function BoardCardUI(props: any) {
             <CardWrap key={item._id}>
               <Card id={item._id}>
                 <CardLeft onPress={props.goToBoardDetail(item._id)}>
-                  <CardTitle>{item?.title.substr(0, 26) + '..'}</CardTitle>
+                  <CardTitle>{ item?.title.length >= 24 ? item?.title.substr(0, 24) + '..' : item?.title}</CardTitle>
+                 
+
                   <CardMiddle>
                     <LocationImg
                       source={require('../../../Assets/Images/IconLocation.png')}

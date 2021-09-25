@@ -1,6 +1,9 @@
-{
-    "trailingComma": "es5",
-    "tabWidth": 4,
-    "semi": false ,
-    "singleQuote": true
-  };
+
+module.exports = {
+  bracketSpacing: false,
+  jsxBracketSameLine: true,
+  singleQuote: true,
+
+  trailingComma: 'all',
+  arrowParens: 'avoid',
+}

@@ -16,6 +16,7 @@ export const FETCH_BOARD = gql`
       lng
     }
     writer {
+      _id
       email
       name
       picture
