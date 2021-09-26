@@ -1,40 +1,62 @@
 import {
+  Button,
+  Wrapper,
   AreaListHeader,
   AreaListTop,
-  AreaTitle,
+  AreaTitleBox,
+  AreaBoxLeft,
+  AreaBoxRight,
   GoToBack,
   AreaTextBox,
+  SearchIcon,
+  CommentAlarm,
   IconImg,
-  IconLine,
-  Wrapper,
-  AreaListBody,
-  Contents,
+  SubTitleBox,
+  AreaListWrap,
 } from './AreaPage.styles';
 import React from 'react';
-
-export default function AreaPageUI() {
+import BoardCard from '../../commons/BoardCard/BoardCard.contatiner';
+export default function AreaPageUI(props: any) {
   return (
-    <>
-      <AreaListHeader>
-        <AreaListTop
-          source={require('../../../Assets/Images/MainAfreecaImg.png')}
-          resizeMode="cover">
-          <AreaTitle>
-            <GoToBack source={require('../../../Assets/Images/MainAfreecaImg.png')} />
-            <AreaTextBox> Europe</AreaTextBox>
-          </AreaTitle>
-          <IconLine>
+    <Wrapper>
+      {/* //! ===== TopHeader Start ===== */}
+      <AreaListHeader source={props.area.picture2} resizeMode="cover">
+        <AreaListTop>
+          <AreaTitleBox>
+            <AreaBoxLeft>
+              <Button onPress={() => props.navigation.goBack(null)}>
+                <GoToBack
+                  source={require('../../../Assets/Images/GoToBack_W.png')}
+                />
+              </Button>
+              <AreaTextBox>{props.area.text}</AreaTextBox>
+            </AreaBoxLeft>
+            <AreaBoxRight>
+              <Button onPress={props.goToSearch}>
+                <SearchIcon
+                  source={require('../../../Assets/Images/IconSearch.png')}
+                />
+              </Button>
+              <Button onPress={props.goToCommetAlarm}>
+                <CommentAlarm
+                  source={require('../../../Assets/Images/IconAlarm_W.png')}
+                />
+              </Button>
+            </AreaBoxRight>
+          </AreaTitleBox>
+
+          <SubTitleBox>
             <IconImg
-              source={require('../../../Assets/Images/MainAfreecaImg.png')}
+              source={require('../../../Assets/Images/IconAirplane.png')}
             />
-          </IconLine>
+          </SubTitleBox>
         </AreaListTop>
       </AreaListHeader>
-      <Wrapper>
-        <AreaListBody>
-          <Contents>AreaPage</Contents>
-        </AreaListBody>
-      </Wrapper>
-    </>
+
+      {/* //! ===== Contents Start ===== */}
+      <AreaListWrap>
+        <BoardCard navigation={props.navigation} area={props.area} />
+      </AreaListWrap>
+    </Wrapper>
   );
 }

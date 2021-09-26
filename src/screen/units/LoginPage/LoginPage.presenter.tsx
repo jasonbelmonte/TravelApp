@@ -5,9 +5,11 @@ import React from 'react';
 export default function LoginPageUI() {
   return (
     <>
-      <Head></Head>
+      <Head />
       <Wrapper>
-        <Body><Contents>LoginPage</Contents></Body>
+        <Body>
+          <Contents>LoginPage</Contents>
+        </Body>
       </Wrapper>
     </>
   );
