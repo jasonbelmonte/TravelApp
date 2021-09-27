@@ -19,9 +19,6 @@ import {
   IconImg,
   Line,
   ImageBox,
-  ImagePicked,
-  Image1,
-  Error,
 } from './BoardWritePage.styles';
 import React from 'react';
 import {Alert, Dimensions, Modal, StyleSheet} from 'react-native';
@@ -29,10 +26,9 @@ import {Alert, Dimensions, Modal, StyleSheet} from 'react-native';
 import Claender from '../../commons/Calender/Calender.container';
 import {Picker} from '@react-native-picker/picker';
 import Map01 from '../../commons/Map/Map01.container';
-import {Controller} from 'react-hook-form';
 
 import Uploads01 from '../../commons/uploads/Uploads01/Uploads01.container';
-import {View} from '../MapPage/MapPage.styles';
+
 import ModalTester from '../../commons/Modal/Modal';
 export default function BoardWritePageUI(props: any) {
   const styles = StyleSheet.create({

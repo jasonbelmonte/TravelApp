@@ -12,7 +12,7 @@ export const Wrapper = styled.View`
 export const Head = styled.View`
   width: 321px;
   height: 20px;
-  background-color: blue; 
+  /* background-color: blue;  */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,24 +34,24 @@ export const HeadMiddle = styled.View`
 export const HeadRight = styled.View`
   width: 10px;
   display: flex;
-  
+
   flex-direction: row;
   justify-content: flex-end;
-
-`
+`;
 export const EditIcon = styled.Image`
-  width: 20px;
-  height: 20px;
+  width: 11px;
+  height: 18px;
+  margin-top: 3px;
 `;
 export const HeadText = styled.Text`
-  font-size : 16px;
-  font-weight : 500;
+  font-size: 16px;
+  font-weight: 500;
 `;
 export const HeadTextBold = styled.Text`
-  font-size : 16px;
-  font-weight : 800;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffbe2b;
 `;
-
 
 export const Body = styled.View`
   width: 281px;
@@ -72,38 +72,35 @@ export const BodyLocation = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom : 26px;
+  margin-bottom: 26px;
 `;
 
 export const BodyContents = styled.View`
   width: 281px;
- 
-`
+`;
 
 export const BodyUserText = styled.Text`
-  font-size : 15px;
-  font-weight : 700;
-  margin-bottom : 24px;
-  
-`
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 24px;
+`;
 export const BodyCountryText = styled.Text`
-  font-size : 14px;
-  font-weight : 400;
-`
+  font-size: 14px;
+  font-weight: 400;
+`;
 export const BodyCityText = styled.Text`
-  font-size : 14px;
-  font-weight : 400;
-`
+  font-size: 14px;
+  font-weight: 400;
+`;
 export const BodyDateText = styled.Text`
-  font-size : 10px;
-  font-weight : 400;
-  color : #BDBDBD;
-`
+  font-size: 10px;
+  font-weight: 400;
+  color: #bdbdbd;
+`;
 export const BodyContentsText = styled.Text`
-  font-size : 14px;
-  font-weight : 400;
-`
-
+  font-size: 14px;
+  font-weight: 400;
+`;
 
 export const BoardHead = styled.View`
   width: 330px;
@@ -113,32 +110,29 @@ export const BoardHead = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 `;
 
 export const BoardHeadLine = styled.View`
-  width : 330px;
-  height : 0px;
-  margin-bottom : 19px;
-  border : 0.5px solid black;
-`
-
-
-export const BoardHeadText= styled.Text`
-  font-size : 18px;
-  font-weight : 400;
+  width: 330px;
+  height: 0px;
+  margin-bottom: 19px;
+  border: 0.5px solid black;
 `;
 
-export const BoardHeadTextBold= styled.Text`
-  font-size : 18px;
-  font-weight : 900;
+export const BoardHeadText = styled.Text`
+  font-size: 18px;
+  font-weight: 400;
 `;
-
-
-
-
-  
-
+export const BoardHeadUserText = styled.Text`
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffbe2b;
+`;
+export const BoardHeadTextBold = styled.Text`
+  font-size: 18px;
+  font-weight: 900;
+`;
 
 export const Button = styled.TouchableOpacity``;
 
@@ -154,17 +148,15 @@ export const BoardBody = styled.View`
   margin-bottom: 9.5px;
   border-radius: 10px;
   elevation: 2;
-  
 `;
 
-
 export const LogOutBtn = styled.TouchableOpacity`
-  width : 300px;
+  width: 300px;
   height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-`
+`;
 export const LogOutText = styled.Text`
-  font-size : 20px;
-`
+  font-size: 20px;
+`;

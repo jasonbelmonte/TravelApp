@@ -35,7 +35,7 @@ export default function MyPage({navigation}) {
   const aaa = '../../../Assets/Images/MainAfreecaImg.png';
 
   const gotoCommentAlarmPage = () => {
-    navigation.navigate('CommentAlarmPage');
+    navigation.navigate('CommentAlarmpage');
   };
 
   const openGallery = () => {

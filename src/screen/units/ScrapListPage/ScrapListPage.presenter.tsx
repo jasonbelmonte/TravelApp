@@ -21,7 +21,7 @@ import {ScrollView} from 'react-native';
 import ScrapMark from '../../commons/ScrapMark/ScrapMark.container';
 export default function ScrapListPageUI(props) {
   return (
-    <>
+    <ScrollView horizontal={false}>
       <Wrapper>
         <Top>
           <TopTitle>스크랩</TopTitle>
@@ -60,10 +60,10 @@ export default function ScrapListPageUI(props) {
             </>
           ))}
         </ScrollView>
-        <Button onPress={props.show}>
+        {/* <Button onPress={props.show}>
           <TopTitle>refresh</TopTitle>
-        </Button>
+        </Button> */}
       </Wrapper>
-    </>
+    </ScrollView>
   );
 }

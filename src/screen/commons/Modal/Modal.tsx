@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 function ModalTester(props: any) {
   const toggleModal = () => {
@@ -17,19 +17,27 @@ function ModalTester(props: any) {
       <View
         style={{
           borderRadius: 10,
-          width: '80%',
+          width: '75%',
           height: '25%',
           backgroundColor: 'white',
           justifyContent: 'space-around',
           alignItems: 'center',
-          padding: 20,
+          paddingTop: 32,
         }}>
-        <Text style={{fontSize: 17}}>!! 내용을 입력해 주세요 !!</Text>
-        <Button
-          title="네 알겠습니다."
+        <Text style={{fontSize: 17, fontWeight: '700'}}>
+          빈 칸을 모두 채워주세요
+        </Text>
+        <TouchableOpacity
           onPress={toggleModal}
-          color={'#FFBE2B'}
-        />
+          style={{
+            width: '100%',
+            borderTopWidth: 1,
+            borderTopColor: '#ECECEC',
+            alignItems: 'center',
+            paddingTop: 15,
+          }}>
+          <Text style={{fontSize: 17, color: '#FFBE2B'}}>OK</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

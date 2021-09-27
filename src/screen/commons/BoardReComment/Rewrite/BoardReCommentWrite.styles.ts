@@ -2,15 +2,14 @@ import styled from '@emotion/native';
 
 export const CommentWritetWrapper = styled.View`
   width: 100%;
-  height: 70px;
+  height: 72px;
   justify-content: center;
   align-items: center;
-  background-color: #fff8ea;
   margin-top: 8px;
 `;
 export const WriteBox = styled.View`
-  width: 95%;
-  height: 50px;
+  width: 100%;
+  height: 48px;
   border: 1px #d8d8d8;
   border-radius: 10px;
   flex-direction: row;

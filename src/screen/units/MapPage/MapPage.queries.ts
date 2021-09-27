@@ -1,8 +1,8 @@
 import {gql} from '@apollo/client';
 
 export const FETCH_BOARDS = gql`
-  query fetchBoards($endDate: DateTime!, $startDate: DateTime!, $page:Int) {
-    fetchBoards(endDate: $endDate, startDate: $startDate ,page:$page) {
+  query fetchBoards($endDate: DateTime!, $startDate: DateTime!, $page: Int) {
+    fetchBoards(endDate: $endDate, startDate: $startDate, page: $page) {
       _id
       title
       contents
@@ -29,29 +29,29 @@ export const FETCH_BOARDS = gql`
   }
 `;
 export const FETCH_BOARD = gql`
-  query fetchBoard($boardId: ID!){
-    fetchBoard(boardId : $boardId) {
-    _id
-    title
-    contents
-    images            
-    pickedCount
-    location {
-      area
-      country
-      city
-    }
-    writer {
-      email
-      name
-      picture
+  query fetchBoard($boardId: ID!) {
+    fetchBoard(boardId: $boardId) {
+      _id
+      title
+      contents
+      images
+      pickedCount
+      location {
+        area
+        country
+        city
+      }
+      writer {
+        email
+        name
+        picture
+        createdAt
+      }
       createdAt
+      updatedAt
+      deletedAt
+      startDate
+      endDate
     }
-    createdAt
-    updatedAt
-    deletedAt
-    startDate
-    endDate
   }
-}
 `;

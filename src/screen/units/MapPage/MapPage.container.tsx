@@ -1,6 +1,6 @@
 import {useQuery} from '@apollo/client';
 import React, {useRef, useState} from 'react';
-import {Animated, StyleSheet} from 'react-native';
+import {Animated} from 'react-native';
 import {FETCH_BOARDS} from '../MainPage/MainPage.queries';
 import MapPageUI from './MapPage.presenter';
 import {FETCH_BOARD} from './MapPage.queries';
@@ -37,32 +37,7 @@ export default function MapPage({route, navigation}) {
     }).start();
     setId(id);
   };
-  const styles = StyleSheet.create({
-    card: {
-      // padding: 20,
-      elevation: 2,
-      backgroundColor: '#FFF',
-      borderRadius: 5,
-      marginBottom: 20,
-      height: 100,
-      width: '90%',
-      overflow: 'hidden',
-      position: 'absolute',
-      bottom: 50,
-      left: 20,
-      right: 0,
-      transform: [
-        {
-          translateX: animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [-600, 0],
-          }),
-        },
-      ],
-    },
-  });
 
-  console.log('datas', Id);
   return (
     <MapPageUI
       location={location}
@@ -71,7 +46,6 @@ export default function MapPage({route, navigation}) {
       datas={datas}
       onPressCard={onPressCard}
       showCard={showCard}
-      styles={styles}
     />
   );
 }

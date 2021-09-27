@@ -2,10 +2,15 @@ import {useMutation} from '@apollo/client';
 import React, {useState} from 'react';
 import {Alert} from 'react-native';
 import BoardCommentWriteUI from './BoardCommentWrite.presenter';
-import {CREATE_COMMENT, FETCH_COMMENTS} from './BoardCommentWrite.queries';
+import {
+  CREATE_COMMENT,
+  UPDATE_COMMENT,
+  FETCH_COMMENTS,
+} from './BoardCommentWrite.queries';
 
 export default function BoardCommentWrite(props: any, {route}) {
-  const [createCommentMutaion] = useMutation(CREATE_COMMENT);
+  const [createCommentMutation] = useMutation(CREATE_COMMENT);
+  const [updateCommentMutation] = useMutation(UPDATE_COMMENT);
   const [inputComment, setInputComment] = useState('');
   const [active, setAcitve] = useState(false);
 
@@ -18,9 +23,9 @@ export default function BoardCommentWrite(props: any, {route}) {
     }
   };
   console.log('aa', inputComment);
-  async function onPressBtn() {
+  async function onPressSubmit() {
     try {
-      await createCommentMutaion({
+      await createCommentMutation({
         variables: {
           createBoardCommentInput: {
             contents: inputComment,
@@ -43,13 +48,39 @@ export default function BoardCommentWrite(props: any, {route}) {
     }
   }
 
+  async function onPressEdit() {
+    try {
+      await updateCommentMutation({
+        variables: {
+          updateBoardCommentInput: {
+            contents: inputComment,
+          },
+          boardCommentId: props.boardCommentId,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_COMMENTS,
+            variables: {
+              boardId: props.boardId,
+            },
+          },
+        ],
+      });
+      // setInputComment;
+      Alert.alert('댓글이 수정되었습니다.');
+    } catch (error) {
+      Alert.alert('댓글이 수정되지 않았습니다.', error.message);
+    }
+    props.setIsEdit(false);
+  }
   return (
     <BoardCommentWriteUI
       active={active}
       isEdit={props.isEdit}
-      ondata={props.ondata}
+      boardCommentId={props.boardCommentId}
       inputComment={inputComment}
-      onPressBtn={onPressBtn}
+      onPressSubmit={onPressSubmit}
+      onPressEdit={onPressEdit}
       onChangeInput={onChangeInput}
     />
   );

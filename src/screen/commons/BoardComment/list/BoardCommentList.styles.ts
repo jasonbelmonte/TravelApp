@@ -1,7 +1,9 @@
 import styled from '@emotion/native';
+
 export const Body = styled.View`
   height: 100%;
-  padding-bottom: 70px;
+  width: 100%;
+  justify-content: space-between;
 `;
 export const Title = styled.TextInput``;
 export const Contents = styled.Text``;
@@ -63,6 +65,7 @@ export const WriterInfo = styled.TouchableOpacity`
 export const WriterPhoto = styled.Image`
   width: 37px;
   height: 37px;
+  border-radius: 74px;
 `;
 export const WriterName = styled.Text`
   font-size: 16px;

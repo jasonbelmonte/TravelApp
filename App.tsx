@@ -9,7 +9,7 @@
  */
 
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, useEffect} from 'react';
 
 // import {
 //   SafeAreaView,
@@ -39,11 +39,22 @@ import {
 } from '@apollo/client';
 import {red100} from 'react-native-paper/lib/typescript/styles/colors';
 import {createUploadLink} from 'apollo-upload-client';
+import SplashScreen from 'react-native-splash-screen';
 declare const global: {HermesInternal: null | {}};
 
 export const GlobalContext = createContext({});
 
 const App = () => {
+  useEffect(() => {
+    try {
+      setTimeout(() => {
+        SplashScreen.hide(); /** 추가 **/
+      }, 1000); /** 스플래시 시간 조절 (2초) **/
+    } catch (e) {
+      console.warn('에러발생');
+      console.warn(e);
+    }
+  });
   const [accessToken, setAccessToken] = useState('');
 
   // const clientnoheaders = new ApolloClient({

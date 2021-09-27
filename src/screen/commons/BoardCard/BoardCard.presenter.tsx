@@ -84,16 +84,23 @@ export default function BoardCardUI(props: any) {
                   <CardWriter>
                     <WriterPhoto>
                       <ImageBox
-                        source={require('../../../Assets/Images/IconUserPhoto.png')}
+                        source={
+                          {
+                            uri: `https://storage.googleapis.com/${item?.writer?.picture}`,
+                          } ||
+                          require('../../../Assets/Images/IconUserPhoto.png')
+                        }
                       />
                     </WriterPhoto>
                     <WriterName>{item?.writer.name}</WriterName>
                   </CardWriter>
                 </CardLeft>
                 <CardRight>
-                  <Button onPress={props.scrapBtn}>
-                    <ScrapMark _id={item._id} />
-                  </Button>
+                  {props.user_id !== item.writer._id && (
+                    <Button onPress={props.scrapBtn}>
+                      <ScrapMark _id={item._id} />
+                    </Button>
+                  )}
                 </CardRight>
               </Card>
             </CardWrap>

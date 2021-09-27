@@ -3,9 +3,9 @@ import React, {useContext, useRef, useState} from 'react';
 import BoardWritePageUI from './BoardWritePage.presenter';
 import {CREATE_BOARD, UPLOAD_FILE} from './BoardWritePage.queries';
 import {useForm, Controller} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
+
 import {Alert} from 'react-native';
-import {schema} from './BoardWrite.validation';
+import {CommonActions} from '@react-navigation/native';
 
 // import ImagePicker from 'react-native-image-crop-picker';
 type FormData = {
@@ -36,9 +36,7 @@ export default function BoardWritePage({navigation}) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [imagFile, setImagFile] = useState<(File | null)[]>([null, null, null]);
   const [uploadFile] = useMutation(UPLOAD_FILE);
-  const {control, handleSubmit} = useForm({
-    resolver: yupResolver(schema),
-  });
+  const {control, handleSubmit} = useForm();
 
   const onPressRegist = async () => {
     const newLoc = {...onLocationSelect};
@@ -84,7 +82,8 @@ export default function BoardWritePage({navigation}) {
           },
         ]);
         console.log('imgUrl', imgUrl);
-        navigation.navigate('Home');
+        // navigation.dispatch('Home');
+        navigation.dispatch(CommonActions.navigate('Home'));
       } catch (error) {
         console.log(error.message);
       }

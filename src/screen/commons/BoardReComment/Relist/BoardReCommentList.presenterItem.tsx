@@ -16,22 +16,23 @@ import {
   ContentsText,
   CreatingDate,
 } from './BoardReCommentList.styles';
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {
   FETCH_RE_COMMENTS,
   DELETE_RE_COMMENT,
+  FETCH_USER_LOGGED_IN,
 } from './BoardReCommentList.queries';
 import BoardReCommentWrite from '../Rewrite/BoardReCommentWrite.container';
-import {GlobalContext} from '../../../../../App';
-import {useMutation} from '@apollo/client';
+import {Alert} from 'react-native';
+import {useMutation, useQuery} from '@apollo/client';
 
 export default function ReCommentListItemUI(props: any) {
   console.log('리댓: ', props.data);
-  const {userInfo} = useContext(GlobalContext);
+
   const [isReplyOpen, setIsReplyOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [deleteReCommentMutation] = useMutation(DELETE_RE_COMMENT);
-
+  const {data: userInfo} = useQuery(FETCH_USER_LOGGED_IN);
   const onPressIsReplyOpen = () => {
     if (isReplyOpen === false) {
       setIsReplyOpen(true);
@@ -41,6 +42,26 @@ export default function ReCommentListItemUI(props: any) {
   };
   const onPressIsEdit = () => {
     setIsEdit(true);
+  };
+  const onPressIsDeleteRe = (reCommentDeleteId: any) => async () => {
+    try {
+      await deleteReCommentMutation({
+        variables: {
+          boardReCommentId: reCommentDeleteId,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_RE_COMMENTS,
+            variables: {
+              boardCommentId: props.boardCommentId,
+            },
+          },
+        ],
+      });
+      Alert.alert('리댓글이 삭제되었습니다.');
+    } catch (error) {
+      Alert.alert('리댓글이 삭제되지 않았습니다.', error.message);
+    }
   };
 
   // const onPressIsDelete = (RecommentDeleteId: any) => async () => {
@@ -73,19 +94,26 @@ export default function ReCommentListItemUI(props: any) {
             <TopInfoBox>
               <WriterInfo>
                 <WriterPhoto
-                  source={require('../../../../Assets/Images/IconUserPhoto.png')}
+                  source={
+                    props?.data?.user?.picture
+                      ? {
+                          uri: `https://storage.googleapis.com/${props.data?.user?.picture}`,
+                        }
+                      : require('../../../../Assets/Images/IconUserPhoto.png')
+                  }
                 />
                 <WriterName>{props.data?.user.name}</WriterName>
               </WriterInfo>
 
               {/* //! -- Button Box Start -- */}
               <ButtonBox>
-                {props.data.user.name !== userInfo.name ? (
-                  <Button onPress={onPressIsReplyOpen}>
-                    <CommentIcon
-                      source={require('../../../../Assets/Images/IconComment_B.png')}
-                    />
-                  </Button>
+                {props.data.user._id !== userInfo?.fetchUserLoggedIn._id ? (
+                  // <Button onPress={onPressIsReplyOpen}>
+                  //   <CommentIcon
+                  //     source={require('../../../../Assets/Images/IconComment_B.png')}
+                  //   />
+                  // </Button>
+                  <></>
                 ) : (
                   <>
                     <Button onPress={onPressIsEdit}>
@@ -93,7 +121,7 @@ export default function ReCommentListItemUI(props: any) {
                         source={require('../../../../Assets/Images/IconEdit.png')}
                       />
                     </Button>
-                    <Button>
+                    <Button onPress={onPressIsDeleteRe(props.data._id)}>
                       <DeleteIcon
                         source={require('../../../../Assets/Images/IconDelete.png')}
                       />
@@ -108,12 +136,18 @@ export default function ReCommentListItemUI(props: any) {
               <CreatingDate>{props.data?.createdAt.substr(0, 10)}</CreatingDate>
             </BottomContents>
 
-            {isReplyOpen && <BoardReCommentWrite data={props.data} />}
+            {/* {isReplyOpen && <BoardReCommentWrite data={props.data} />} */}
           </ReCommentBox>
         </ReplyWrap>
       )}
 
-      {isEdit && <BoardReCommentWrite />}
+      {isEdit && (
+        <BoardReCommentWrite
+          boardReCommentId={props.data._id}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+        />
+      )}
     </>
   );
 }

@@ -17,7 +17,7 @@ import {
   WriterPhoto,
   WriterName,
   ImageBox,
-  MoreText
+  MoreText,
 } from './BoardCard.styles';
 
 export default function BoardCardUI(props: any) {
@@ -37,7 +37,7 @@ export default function BoardCardUI(props: any) {
         return (
           <CardWrap key={index}>
             <Card>
-              <CardLeft>
+              <CardLeft onPress={props.goToBoardDetail(item._id)}>
                 <CardTitle>{item?.title.substr(0, 27) + '...'}</CardTitle>
                 <CardMiddle>
                   <LocationImg
@@ -61,18 +61,22 @@ export default function BoardCardUI(props: any) {
                 <CardWriter>
                   <WriterPhoto>
                     <ImageBox
-                      source={require('../../../Assets/Images/IconUserPhoto.png')}
+                      source={
+                        {
+                          uri: `https://storage.googleapis.com/${item?.writer?.picture}`,
+                        } || require('../../../Assets/Images/IconUserPhoto.png')
+                      }
                     />
-
                   </WriterPhoto>
-                  <WriterName onPress={props.gotoUserpage(item.writer._id)}>{item?.writer.name}</WriterName>
+                  <WriterName onPress={props.gotoUserpage(item.writer._id)}>
+                    {item?.writer.name}
+                  </WriterName>
                 </CardWriter>
               </CardLeft>
               <CardRight></CardRight>
             </Card>
           </CardWrap>
         );
-
       })}
       {/* <Button onPress={props.onLoadMore}><MoreText>더보기</MoreText></Button> */}
     </CardWrapper>

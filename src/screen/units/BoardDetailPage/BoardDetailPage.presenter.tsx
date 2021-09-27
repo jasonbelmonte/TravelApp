@@ -39,6 +39,7 @@ import React from 'react';
 
 import {ScrollView} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import ScrapMark from '../../commons/ScrapMark/ScrapMark.container';
 
 export default function BoardDetailPageUI(props: any) {
   return (
@@ -59,10 +60,12 @@ export default function BoardDetailPageUI(props: any) {
 
               <TopRight>
                 {/* -------- 타 이용자 게시글 상세페이지 -------- */}
-                <Button>
-                  <Scrap
-                    source={require('../../../Assets/Images/IconScrap_G.png')}></Scrap>
-                </Button>
+                {props.user_id !== props.data?.fetchBoard?.writer?._id && (
+                  <Button>
+                    <ScrapMark _id={props.data?.fetchBoard?._id} />
+                  </Button>
+                )}
+
                 {/* '../../../Assets/Images/IconScrap_G.png' */}
                 {/* '../../../Assets/Images/IconScrap_Y.png' */}
               </TopRight>
@@ -72,8 +75,12 @@ export default function BoardDetailPageUI(props: any) {
               <UserInfoLeft>
                 <Button onPress={props.gotoUserPage}>
                   <Avatar
-                    source={require('../../../Assets/Images/IconUserPhoto.png')}></Avatar>
-                  {/* {{uri: `https://storage.googleapis.com/${data}`}} */}
+                    source={
+                      {
+                        uri: `https://storage.googleapis.com/${props.data?.fetchBoard?.writer?.picture}`,
+                      } || require('../../../Assets/Images/IconUserPhoto.png')
+                    }
+                  />
                 </Button>
                 <Name>{props.data?.fetchBoard?.writer.name}</Name>
               </UserInfoLeft>
@@ -99,24 +106,25 @@ export default function BoardDetailPageUI(props: any) {
             <TravelContents>{props.data?.fetchBoard?.contents}</TravelContents>
 
             <TravelMap>
-              <MapView
-                provider={PROVIDER_GOOGLE}
-                style={{flex: 1}}
-                initialRegion={{
-                  latitude:
-                    props.data?.fetchBoard?.location?.lat || 37.44555206021027,
-                  longitude:
-                    props.data?.fetchBoard?.location?.lng || 126.94461101666093,
-                  latitudeDelta: 0.005,
-                  longitudeDelta: 0.005,
-                }}>
-                <Marker
-                  coordinate={{
-                    latitude: props.data?.fetchBoard?.location?.lat || 0,
-                    longitude: props.data?.fetchBoard?.location?.lng || 0,
-                  }}
-                  description="this is a marker example"></Marker>
-              </MapView>
+              {props.data?.fetchBoard?.location?.lat &&
+              props.data?.fetchBoard?.location?.lng ? (
+                <MapView
+                  provider={PROVIDER_GOOGLE}
+                  style={{flex: 1}}
+                  initialRegion={{
+                    latitude: props.data?.fetchBoard?.location?.lat,
+                    longitude: props.data?.fetchBoard?.location?.lng,
+                    latitudeDelta: 0.005,
+                    longitudeDelta: 0.005,
+                  }}>
+                  <Marker
+                    coordinate={{
+                      latitude: props.data?.fetchBoard?.location?.lat || 0,
+                      longitude: props.data?.fetchBoard?.location?.lng || 0,
+                    }}
+                    description="this is a marker example"></Marker>
+                </MapView>
+              ) : null}
             </TravelMap>
 
             <Asdf>

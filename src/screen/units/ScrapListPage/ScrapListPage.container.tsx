@@ -7,6 +7,9 @@ import {useEffect} from 'react';
 import {GlobalContext} from '../../../../App';
 
 export default function ScrapListPage({navigation}) {
+  useEffect(() => {
+    refetch();
+  }, []);
   const {data, refetch} = useQuery(FETCH_BOARDS_I_SCRAPPED);
 
   const [scrapboard] = useMutation(SCRAP_BOARD);

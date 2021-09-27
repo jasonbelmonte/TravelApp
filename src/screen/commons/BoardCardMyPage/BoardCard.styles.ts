@@ -20,7 +20,7 @@ export const Card = styled.View`
   flex-direction: row;
   margin: 1px 11px 20px 11px;
 `;
-export const CardLeft = styled.View`
+export const CardLeft = styled.TouchableOpacity`
   width: 89.5%;
 `;
 
@@ -67,6 +67,7 @@ export const WriterPhoto = styled.View`
 export const ImageBox = styled.Image`
   width: 25px;
   height: 25px;
+  border-radius: 50px;
 `;
 
 export const WriterName = styled.Text`
@@ -86,5 +87,5 @@ export const ScrapButton = styled.Image`
 `;
 
 export const MoreText = styled.Text`
-  font-size : 20px;
-`
+  font-size: 20px;
+`;

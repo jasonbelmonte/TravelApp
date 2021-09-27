@@ -22,7 +22,7 @@ import {
 } from './BoardCommentList.queries';
 import React, {useState} from 'react';
 import {useMutation, useQuery} from '@apollo/client';
-import BoardReCommentWrite from '../../BoardReComment/Rewrite/BoardReCommentWrite.container';
+
 import {Alert, ScrollView} from 'react-native';
 
 export default function CommentListItemUI(props: any) {
@@ -37,8 +37,10 @@ export default function CommentListItemUI(props: any) {
   const onPressIsReplyOpen = () => {
     if (isReplyOpen === false) {
       setIsReplyOpen(true);
+      props.setIsWriteOpen(false);
     } else {
       setIsReplyOpen(false);
+      props.setIsWriteOpen(true);
     }
   };
   const onPressIsEdit = () => {
@@ -68,60 +70,66 @@ export default function CommentListItemUI(props: any) {
 
   return (
     <>
-      <ScrollView horizontal={false}>
-        {!isEdit && (
-          <CommentBox key={props.data._id}>
-            <TopInfoBox>
-              <WriterInfo>
-                <WriterPhoto
-                  source={require('../../../../Assets/Images/IconUserPhoto.png')}
-                />
-                <WriterName>{props.data?.user.name}</WriterName>
-              </WriterInfo>
+      {!isEdit && (
+        <CommentBox key={props.data._id}>
+          <TopInfoBox>
+            <WriterInfo>
+              <WriterPhoto
+                source={
+                  props?.data?.user?.picture
+                    ? {
+                        uri: `https://storage.googleapis.com/${props.data?.user?.picture}`,
+                      }
+                    : require('../../../../Assets/Images/IconUserPhoto.png')
+                }
+              />
+              <WriterName>{props.data?.user.name}</WriterName>
+            </WriterInfo>
 
-              <ButtonBox>
-                {props.data.user._id !== userInfo?.fetchUserLoggedIn._id ? (
-                  <Button onPress={onPressIsReplyOpen}>
-                    <CommentIcon
-                      source={require('../../../../Assets/Images/IconComment_B.png')}
+            <ButtonBox>
+              {props.data.user._id !== userInfo?.fetchUserLoggedIn._id ? (
+                <Button onPress={onPressIsReplyOpen}>
+                  <CommentIcon
+                    source={require('../../../../Assets/Images/IconComment_B.png')}
+                  />
+                </Button>
+              ) : (
+                <>
+                  <Button onPress={onPressIsEdit}>
+                    <EditIcon
+                      source={require('../../../../Assets/Images/IconEdit.png')}
                     />
                   </Button>
-                ) : (
-                  <>
-                    <Button onPress={onPressIsEdit}>
-                      <EditIcon
-                        source={require('../../../../Assets/Images/IconEdit.png')}
-                      />
-                    </Button>
-                    <Button onPress={onPressIsDelete(props.data._id)}>
-                      <DeleteIcon
-                        source={require('../../../../Assets/Images/IconDelete.png')}
-                      />
-                    </Button>
-                  </>
-                )}
-              </ButtonBox>
-            </TopInfoBox>
+                  <Button onPress={onPressIsDelete(props.data._id)}>
+                    <DeleteIcon
+                      source={require('../../../../Assets/Images/IconDelete.png')}
+                    />
+                  </Button>
+                </>
+              )}
+            </ButtonBox>
+          </TopInfoBox>
 
-            <BottomContents>
-              <ContentsText>{props.data?.contents}</ContentsText>
-              <CreatingDate>{props.data?.createdAt.substr(0, 10)}</CreatingDate>
-            </BottomContents>
+          <BottomContents>
+            <ContentsText>{props.data?.contents}</ContentsText>
+            <CreatingDate>{props.data?.createdAt.substr(0, 10)}</CreatingDate>
+          </BottomContents>
 
-            {/* <BoardReCommentList data={props.data} /> */}
-            {isReplyOpen && <BoardReCommentWrite data={props.data} />}
-          </CommentBox>
-        )}
-
-        {isEdit && (
-          <BoardCommentWrite
-            ondata={props.data}
-            isEdit={isEdit}
-            setIsEdit={setIsEdit}
-            boardId={props.boardId}
+          <BoardReCommentList
+            boardCommentId={props.data._id}
+            isReplyOpen={isReplyOpen}
+            setIsReplyOpen={setIsReplyOpen}
           />
-        )}
-      </ScrollView>
+        </CommentBox>
+      )}
+
+      {isEdit && (
+        <BoardCommentWrite
+          boardCommentId={props.data._id}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+        />
+      )}
     </>
   );
 }

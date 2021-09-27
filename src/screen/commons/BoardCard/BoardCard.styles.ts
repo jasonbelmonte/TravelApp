@@ -63,6 +63,7 @@ export const WriterPhoto = styled.View`
 export const ImageBox = styled.Image`
   width: 25px;
   height: 25px;
+  border-radius: 50px;
 `;
 
 export const WriterName = styled.Text`

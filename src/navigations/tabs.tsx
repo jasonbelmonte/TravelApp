@@ -1,13 +1,8 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import Screen1 from '../screen/Screen1';
-// import Screen2 from '../screen/Screen2';
-// import Screen3 from '../screen/Screen3';
-// import Screen4 from '../screen/Screen4';
 import React, {useState, useContext} from 'react';
 import {GlobalContext} from '../../App';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Button} from 'react-native';
 import styled from '@emotion/native';
 import MainPage from '../screen/units/MainPage/MainPage.container';
 import AreaPage from '../screen/units/AreaPage/AreaPage.container';
@@ -17,28 +12,23 @@ import MapPage from '../screen/units/MapPage/MapPage.container';
 import ScrapListPage from '../screen/units/ScrapListPage/ScrapListPage.container';
 import MyPage from '../screen/units/MyPage/MyPage.container';
 import UserPage from '../screen/units/UserPage/UserPage.container';
-import LoginPage from '../screen/units/LoginPage/LoginPage.container';
 import CommentAlarmPage from '../screen/units/CommentAlarmPage/CommentAlarmPage.container';
 import Search from '../screen/commons/Search/Search.container';
 import BoardCommentList from '../screen/commons/BoardComment/list/BoardCommentList.container';
-
 import {gql, useMutation} from '@apollo/client';
 const Tab = createBottomTabNavigator();
-const LoginStack = createNativeStackNavigator();
+
 const HomeStack = createNativeStackNavigator();
 const MapStack = createNativeStackNavigator();
 const ScrapStack = createNativeStackNavigator();
 const MypageStack = createNativeStackNavigator();
-
-// const [isInputOpen, setIsInputOpen] = useState(false);
-
-// const HomeStack = creacteStackNavigator();
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import {red100} from 'react-native-paper/lib/typescript/styles/colors';
+
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const LOGIN_USER_WITH_FIREBASE = gql`
   mutation loginUserwithFB($name: String!, $email: String!) {
@@ -62,7 +52,26 @@ const Wrapper = styled.View`
   justify-content: center;
   align-items: center;
 `;
+const LoginSplashImg = styled.ImageBackground`
+  width: 100%;
+`;
 const HomeStackScreen = ({route, navigation}) => {
+  const tabHiddenRoutes = ['BoardCommentList', 'Search'];
+  if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+    navigation.setOptions({tabBarStyle: {display: 'none'}});
+  } else {
+    navigation.setOptions({
+      tabBarStyle: {
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        backgroundColor: 'white',
+        position: 'absolute',
+        height: 60,
+        alignItems: 'center',
+      },
+    });
+  }
+
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -177,43 +186,25 @@ const MypageStackScreen = () => {
           headerShown: false,
         }}
       />
+      <MypageStack.Screen
+        name="BoardDetailPage"
+        component={BoardDetailPage}
+        options={{title: 'BoardDetailPage', headerShown: false}}
+      />
     </MypageStack.Navigator>
   );
 };
-// const EuropeStackScreen = () => {
-//   return (
-//     <EuropeStack>
-//       <AreaPageStack.Screen name="EuropePage" component={}/>
-//     </EuropeStack>
-//   );
-// };
-
-// const LoginStackScreen = () => {
-//   return (
-//     <LoginStack.Navigator>
-//     <LoginStack.Screen
-//       name = "Login"
-//       component= {LoginPage}
-//       options = {{title: 'Login하세용', headerShown: true}}
-//     />
-//   </LoginStack.Navigator>
-//   )
-// }
 
 export default function Tabs() {
   const [isLogin, setIsLogin] = useState(false);
   const TabNaviRounded = {
+    unmountOnBlur: true,
     tabBarStyle: {
-      // borderRadius: 50,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
 
       backgroundColor: 'white',
       position: 'absolute',
-      // bottom: 10,
-      // width: 420,
-      // left: 15,
-      // right: 15,
       height: 60,
       alignItems: 'center',
     },
@@ -221,6 +212,7 @@ export default function Tabs() {
   const {accessToken, setAccessToken} = useContext(GlobalContext);
 
   const [loginuserwithFB] = useMutation(LOGIN_USER_WITH_FIREBASE);
+
   return (
     <>
       {accessToken !== '' && (
@@ -280,49 +272,53 @@ export default function Tabs() {
         </>
       )}
       {accessToken === '' && (
-        <Wrapper>
-          {/* <LoginStack.Navigator>
+        <LoginSplashImg
+          source={require('../Assets/SplashScreen_Login.png')}
+          resizeMode="cover">
+          <Wrapper>
+            {/* <LoginStack.Navigator>
             <LoginStack.Screen
               name="Login"
               component={LoginPage}
               options={{title: 'Login하세용', headerShown: false}}
             />
           </LoginStack.Navigator> */}
-          <GoogleSigninButton
-            style={{width: 200, height: 50}}
-            onPress={async () => {
-              const {idToken} = await GoogleSignin.signIn();
+            <GoogleSigninButton
+              style={{width: 200, height: 50}}
+              onPress={async () => {
+                const {idToken} = await GoogleSignin.signIn();
 
-              // console.log(idToken);
+                // console.log(idToken);
 
-              // Create a Google credential with the token
-              const googleCredential =
-                auth.GoogleAuthProvider.credential(idToken);
+                // Create a Google credential with the token
+                const googleCredential =
+                  auth.GoogleAuthProvider.credential(idToken);
 
-              // Sign-in the user with the credential
-              const result = await auth().signInWithCredential(
-                googleCredential,
-              );
+                // Sign-in the user with the credential
+                const result = await auth().signInWithCredential(
+                  googleCredential,
+                );
 
-              const aaa = result?.additionalUserInfo?.profile?.name;
-              const bbb = result?.additionalUserInfo?.profile?.email;
-              try {
-                const result2 = await loginuserwithFB({
-                  variables: {
-                    name: aaa,
-                    email: bbb,
-                  },
-                });
-                console.log(result2?.data?.loginUserWithFB?.accessToken);
-                setAccessToken(result2?.data?.loginUserWithFB?.accessToken);
-              } catch (error) {
-                console.log(error.message);
-              }
+                const aaa = result?.additionalUserInfo?.profile?.name;
+                const bbb = result?.additionalUserInfo?.profile?.email;
+                try {
+                  const result2 = await loginuserwithFB({
+                    variables: {
+                      name: aaa,
+                      email: bbb,
+                    },
+                  });
+                  // console.log(result2?.data?.loginUserWithFB?.accessToken);
+                  setAccessToken(result2?.data?.loginUserWithFB?.accessToken);
+                } catch (error) {
+                  console.log(error.message);
+                }
 
-              setIsLogin(true);
-            }}
-          />
-        </Wrapper>
+                setIsLogin(true);
+              }}
+            />
+          </Wrapper>
+        </LoginSplashImg>
       )}
     </>
   );

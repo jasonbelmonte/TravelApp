@@ -84,3 +84,19 @@ export const AreaListWrap = styled.View`
   padding-top: 19px;
   padding-bottom: 53px; // 스크롤 최하단 여백
 `;
+
+export const WriteBtn = styled.TouchableOpacity`
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+  right: 28px;
+  bottom: 80px;
+  border-radius: 30px;
+`;
+export const CountryImage = styled.ImageBackground`
+  width: 100%;
+  height: 100%;
+  /* border-radius: 50px; */
+`;
